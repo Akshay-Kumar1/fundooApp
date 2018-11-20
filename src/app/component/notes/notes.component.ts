@@ -163,8 +163,8 @@ export class NotesComponent implements OnInit , OnDestroy {
         this.dataArrayCheck=[]
         this.remVar=''
         this.rem=''
-         this.move = false;
-        this.eventEmit.emit()
+        this.move = false;
+        this.notesEmit.emit(data['status'].details)
       },error => {
         this.labelId=[]
         this.labelArray=[]

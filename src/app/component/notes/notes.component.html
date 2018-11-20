@@ -1,0 +1,101 @@
+<div fxLayout="column" fxLayoutWrap fxLayoutAlign="center center" style="margin-top:100px">
+  <!-- ******************* Note Card ******************* -->
+  <mat-card class="card" *ngIf="show">
+    <div style="float:left" (click)="toggle()">Take a note...</div>
+    <div style="float:right" fxLayout="row" fxLayoutAlign="space-between">
+      <mat-icon style="cursor:pointer" matTooltip="List" aria-label="list" 
+      (click)="togg()">list</mat-icon>
+      <div class="spaceTitle"></div>
+    </div>
+  </mat-card>
+  <mat-card *ngIf="!show" class="card" [style.background]="color">
+    <mat-card-content>
+      <div contenteditable="true" #titleId class="fields" data-text="Title"></div>
+      <div style="float:right">
+        <!-- <app-pin></app-pin> -->
+      <!-- <img src="../../../assets/images/pin.svg" style="cursor:pointer"> -->
+    </div>
+      <div class="spaceTitle"></div>
+      <div *ngIf = "!move">
+      <div  contenteditable="true" #noteId class="fields" data-text="Take a note..." 
+      (click)="checked=false"></div>
+      </div>
+    <div *ngIf="move"  id="title"  autofocus #description>
+        <div class="check" *ngFor="let data of dataarray" id="note" fxLayout="row">
+        <mat-checkbox fxFlex="5%"></mat-checkbox>
+        <input fxFlex="90" id="note" [(ngModel)]=data.data (keydown)="editing($event.data)">
+    <mat-icon fxFlex="4%" (click)=ondelete(data) matTooltip="delete">cancel</mat-icon>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="check" fxLayout="row" id="title" id="note" autofocus #description>
+    <mat-icon fxFlex="5%">add</mat-icon>
+    <input id="note" [(ngModel)]=data fxFlex="95%" class="inputNote" [(ngModel)]=data.data 
+    (click)="checked=true" placeholder="list item" (keydown.enter)="enter()">
+    </div>
+    <mat-divider></mat-divider> 
+    </div>
+    <div class="spaceTitle"></div>
+    <!-- ********************* Labels For Taking a Note ******************* -->
+    <div fxLayout="row">  
+    <div *ngFor="let index of name">
+        <mat-chip-list>
+          <mat-chip>
+            <div style="padding-left:10%">
+             {{index.label}}<mat-icon class="hider" (click)="removeLabelTag(content.id,index.id)" 
+             style="cursor:pointer" (click)="deleteNoteLabel()">cancel</mat-icon>
+            </div>
+          </mat-chip>
+      </mat-chip-list>
+      </div>
+      </div>
+      <!-- ********************* Reminders for Taking a Note ******************* -->
+      <div *ngFor="let index of remArray">
+        <mat-chip-list selected>
+            <div *ngIf="(today | date:shortDate) == (index | date:shortDate)">
+            <mat-chip>
+                Today {{index | date:'shortTime'}}<mat-icon class = "hider" 
+               style="cursor:pointer" (click)="deleteReminder()">cancel</mat-icon>
+            </mat-chip>
+            </div>
+      <div *ngIf="(tomorrow | date:shortDate )== (index | date:shortDate)">   
+            <mat-chip class="chipStyle">
+                Tomorrow {{index | date:'shortTime'}}<mat-icon class = "hider" 
+               style="cursor:pointer" (click)="deleteReminder()">cancel</mat-icon>
+            </mat-chip>
+      </div>
+      <div *ngIf="(today | date:shortDate) != (index | date:shortDate) &&
+            (tomorrow | date:shortDate) != (index | date:shortDate)">
+              <mat-chip class="chipStyle">
+                {{index | date:'medium'}}<mat-icon class = "hider" 
+               style="cursor:pointer" (click)="deleteReminder()">cancel</mat-icon>
+              </mat-chip>
+      </div>
+        </mat-chip-list>
+      </div>
+<!-- ********************* Icons Selectors for Adding Notes Component ******************* -->
+      <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div>
+          <app-remindme [noteDetails]='id' (todayEventDateInfo)="reminderEvent($event)"></app-remindme>
+        </div>
+        <div>
+          <app-collaborator></app-collaborator>
+        </div>
+        <div >
+          <app-colorpalette [colorChange]="content" (colorEmit)=colorEntry($event)></app-colorpalette>
+        </div>
+        <div>
+          <app-image></app-image>
+        </div>
+        <div>
+          <app-more (labelEvent) = eventOfLabels($event)></app-more>
+        </div>
+        <div>
+          <button mat-button (click)="addNotes()">close</button> 
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+

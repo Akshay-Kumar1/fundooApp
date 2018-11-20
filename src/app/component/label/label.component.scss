@@ -1,0 +1,13 @@
+.fields
+{
+    border:none;
+    outline: none;
+    background:transparent;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+[contenteditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+

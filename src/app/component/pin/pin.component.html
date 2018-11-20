@@ -1,0 +1,5 @@
+<!-- ********************* Pin / Unpin Icons For Notes  ******************* -->
+<img src="../../../assets/images/pin.svg" *ngIf="arrayPin.isPined==false" style="cursor:pointer" matTooltip="Pin" 
+(click)="pin()" alt="">
+<img src="../../../assets/images/pin.svg" *ngIf="arrayPin.isPined==true" style="cursor:pointer" matTooltip="Unpin" 
+(click)="Unpin()" alt="">

@@ -1,0 +1,19 @@
+
+    <!-- ****************** Color Palette of Colors ************************** -->
+<mat-icon style="cursor: pointer;" matTooltip="Change color" aria-label="change color" 
+    [matMenuTriggerFor]="appMenu">palette </mat-icon>
+<mat-menu #appMenu="matMenu" [overlapTrigger]="false">
+    <ng-template matMenuContent >
+      <div class="buttons">
+              <!-- ****************** Loop for colors and Tooltip ************************** -->
+          <div fxLayout=row fxLayoutGap=10px style="margin-top:5px" 
+              *ngFor='let colors of Array'>
+                <div *ngFor='let color of colors'>
+                 <button class="colorButton" [ngStyle]="{'background-color': color.color }" 
+                 (click)='cardsColor(color.color)' matTooltip="{{color.name}}" 
+                 mat-mini-fab></button> 
+                </div>
+          </div>
+      </div>
+      </ng-template>
+</mat-menu>

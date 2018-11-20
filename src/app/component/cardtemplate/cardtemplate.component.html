@@ -1,0 +1,19 @@
+<!-- ****************** Take Notes Component ************************** -->
+<!-- <app-notes (eventEmit) = "cardsList($event)"></app-notes> -->
+<app-notes (notesEmit) = "listOfCards($event)"></app-notes>
+<div *ngIf="newArray.length != 0">
+    <!-- ******************Pinned Notes Collection  ************************** -->
+    
+<div class="pinnedCards" ><b>PINNED</b></div>
+<app-savenotes [cardsArr] = "newArray" (trashEvent)="cardsList($event)"></app-savenotes>  
+    <!-- ******************Other Notes Collection  ************************** -->
+
+<div class="otherCards"><b>OTHERS</b></div>
+<app-savenotes [cardsArr] = "array" (trashEvent)="cardsList($event)"></app-savenotes>
+</div>
+    <!-- ******************All Notes Collection  ************************** -->
+
+<div *ngIf="newArray.length == 0">
+    <app-savenotes [cardsArr] = "newArray" (trashEvent)="cardsList($event)"></app-savenotes>  
+    <app-savenotes [cardsArr] = "array" (trashEvent)="cardsList($event)"></app-savenotes>
+</div> 

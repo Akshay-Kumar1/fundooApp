@@ -1,0 +1,73 @@
+<!-- ********************* Update Notes Dialog ******************* -->
+<mat-card style="border-radius: 5%" [style.backgroundColor]="data.color">
+  <div class="fields" #updateLabel contenteditable="true" data-text=" " 
+  [innerHTML]="data.title"></div>
+  <div style="padding-top:10px"></div>
+  <div class="fields" *ngIf="!checkList" #updateLabelDesc contenteditable="true" 
+  data-text=" " [innerHTML]="data.description"></div>
+  <div style="padding-top:10px"></div>
+
+  <!-- ********************* Add CheckList ******************* -->
+  
+  <div class="note" *ngFor="let check of tempArray" fxLayout="row">
+      <mat-checkbox fxFlex="10%" *ngIf="check.status=='open'&& !check.isDeleted" 
+      (click)=checkBox(check)></mat-checkbox>
+      <input [(ngModel)]=check.itemName fxFlex="80%" class="note" 
+      (keydown)=editing(check,$event)
+      [ngStyle]="{'background-color':data.color}" 
+      *ngIf="!check.isDeleted && check.status=='open'">
+      <mat-icon fxFlex="10%" class="clearIcon" (click)=removeList(check) 
+      *ngIf="!check.isDeleted && check.status=='open'">clear</mat-icon> 
+  </div>
+  
+      <mat-divider *ngIf="checklist"></mat-divider>
+      <div fxLayout="row" *ngIf="checklist">
+        <mat-icon fxFlex="5%" *ngIf="!adding">add</mat-icon>
+        <mat-checkbox *ngIf="adding" [(ngModel)]=addCheck  color="primary"></mat-checkbox>
+        <input   fxFlex="95%" class="note" placeholder="List Item" 
+        [ngStyle]="{'background-color':data.color}" [(ngModel)]=newList (keydown)=addList($event)/>
+      </div>
+      <mat-divider *ngIf="checklist"></mat-divider>
+     
+      <div class="note" *ngFor="let check of tempArray" fxLayout="row">
+        <mat-checkbox fxFlex="10%" checked=true *ngIf="check.status=='close'&& !check.isDeleted"
+         (click)=checkBox(check)></mat-checkbox>
+        <input [(ngModel)]=check.itemName class="note" style="text-decoration: line-through;"
+         fxFlex="80%" *ngIf="check.status=='close' && !check.isDeleted"
+        [ngStyle]="{'background-color':data.color}"  (keydown)=editing(check,$event)>
+        <mat-icon fxFlex="10%" class="clearIcon" (click)=removeList(check)
+         *ngIf="!check.isDeleted && check.status=='close'">clear</mat-icon>
+  </div>
+
+  <div style="padding-top:10px"></div>
+  <div fxLayout="row" class="spacing">
+  <div *ngFor="let res of data.noteLabels trackBy:val?.id">
+    <mat-chip-list >
+      <mat-chip class="chipStyle" *ngIf="res.isDeleted==false"> 
+        {{res.label}}<mat-icon class="hider" style="cursor:pointer" 
+        (click)="removeLabelTag(res.id)">cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+  <!-- ********************* Reminders for Update Notes ******************* -->
+  <div *ngFor="let index of data.reminder trackBy:val?.id">
+    <mat-chip-list selected>
+        <mat-chip class="chipStyle" >
+            {{index | date:'medium'}}<mat-icon 
+            (click)="removeReminder(index.id)" style="cursor:pointer">close</mat-icon>
+        </mat-chip>
+    </mat-chip-list>
+</div>
+</div>
+<!-- ********************* Selector Icons for Update Notes ******************* -->
+<div fxLayout="row" fxLayoutAlign="space-between start">
+    <app-remindme [noteDetails]="data"></app-remindme>
+    <app-collaborator></app-collaborator>
+    <app-colorpalette [colorChange]="data"></app-colorpalette>
+    <app-image></app-image>
+    <app-archivesub [archive]="data"></app-archivesub>
+    <app-more [deleteCard]="data"></app-more>
+    <button mat-button (click)="notesUpdate()">Close</button> 
+</div>
+
+</mat-card>

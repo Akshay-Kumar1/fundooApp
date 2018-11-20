@@ -1,0 +1,60 @@
+<div class="container1" fxLayout="column" fxLayout.xs="row">
+  <div class="item item-1" fxFlex fxFlexOffset="1%"></div>
+  <div class="item item-2" fxFlex fxFlexOffset="1%" fxFlexOrder="3"></div>
+  <form>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px"
+    fxLayoutGap.xs="0">
+    <div class="item item-3" fxFlex="33%"></div>
+    <div class="item item-4" fxFlex="33%" fxFlexOrder="3"></div>
+    <div class="item item-5" fxFlex>
+      <mat-card class="mainWidth radius">
+          <span class="color1" style="font-size: 25px">F</span>
+          <span class="color2" style="font-size: 25px">U</span>
+          <span class="color3" style="font-size: 25px">N</span>
+          <span class="color4" style="font-size: 25px">D</span>
+          <span class="color5" style="font-size: 25px">O</span>
+          <span style="font-size: 25px">O</span>
+        <p>
+          <font size="3px">Create Your Account</font>
+        </p>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <mat-form-field>
+            <input matInput placeholder="First name" type="text" minlength="3" [formControl]="firstname" [(ngModel)]="user.firstName"
+              required>
+            <mat-error *ngIf="firstname.invalid">{{getErrorMessagefirstName()}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Last name" minlength="3" [formControl]="lastname" [(ngModel)]="user.lastName"
+              required>
+            <mat-error *ngIf="lastname.invalid">{{getErrorMessagelastName()}}</mat-error>
+          </mat-form-field>
+        </div>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" type="email" [formControl]="email" [(ngModel)]="user.email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+              <input matInput placeholder="Password" autocomplete="off" [type]="hide ? 'password' : 'text'"  minlength="6"
+                [(ngModel)]="user.password" [formControl]="password" required>
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+            </mat-form-field>
+        <p><b>Services</b></p>
+        <div class="width" fxLayout="row" fxLayoutAlign="space-between">
+          <span *ngFor="let card of cards" style="padding:20px">
+          <mat-card class="round" (click)="selectCards(card)" [ngClass]="card.select ? 'select' : 'notSelect'">
+            <div class="upper"><strong>{{card.name}}</strong></div><div style="padding:10px"></div>
+              <i>{{card.description}}</i>
+          </mat-card>
+        </span>
+        </div>
+        <div style="padding:10px"></div>
+        <div class=button-row fxLayout="row" fxLayoutAlign="space-between">
+            <a routerLink="/login">Sign-In instead</a>
+          <button mat-flat-button color="primary" [disabled]="isDisabled" (click)="onSubmit()">Submit</button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</form>

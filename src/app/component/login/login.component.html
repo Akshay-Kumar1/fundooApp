@@ -1,0 +1,84 @@
+    <!-- ****************** Login Page ************************** -->
+<div class="container1" fxLayout="column" fxLayout.xs="row">
+  <div class="item item-1" fxFlex fxFlexOffset="10%"></div>
+  <div class="item item-2" fxFlex fxFlexOffset="10%" fxFlexOrder="3"></div>
+  <form>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" 
+      fxLayoutGap="10px" fxLayoutGap.xs="0">
+      <div class="item item-3" fxFlex="30%"></div>
+      <div class="item item-4" fxFlex="35%" fxFlexOrder="3"></div>
+      <div class="item item-5" fxFlex>
+        <mat-card>
+          <my-slide-panel [activePane]="isLeftVisible ? 'right' : 'left'">
+            <div leftPanel>
+              <div>
+                <div fxLayoutAlign="center">
+                  <span class="color1">F</span>
+                  <span class="color2">U</span>
+                  <span class="color3">N</span>
+                  <span class="color4">D</span>
+                  <span class="color5">O</span>
+                  <span class="color3">O</span>
+                </div>
+                <p>
+                  <font size="3px"><b>Sign-in</b></font>
+                </p>
+                <p>
+                  <font size="2.5px">Use Your Fundoo Account</font>
+                </p>
+                <div>
+        <!-- ****************** Get User Email ************************** -->
+                  <mat-form-field class="fullWidth">
+                  <input matInput placeholder="Email" [(ngModel)]="user.email" [formControl]="email" 
+                    required>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
+                </div>
+                 <div></div> 
+                  <div class=button-row fxLayout="row" fxLayoutAlign="space-between">
+                  <a routerLink="/signup">Create Account</a>
+                  <button mat-flat-button (click)="call()">Next</button>
+                </div>
+              </div>
+            </div>
+            <div rightPanel>
+              <div>
+                <div fxLayoutAlign="center">
+                  <span class="color1">F</span>
+                  <span class="color2">U</span>
+                  <span class="color3">N</span>
+                  <span class="color4">D</span>
+                  <span class="color5">O</span>
+                  <span class="color3">O</span>
+                </div>
+                <p>
+                  <font size="3px"><b>Sign-in</b></font>
+                </p>
+                <p>
+                  <font size="2.5px">Use Your Fundoo Account</font>
+                </p>
+                <div>
+          <!-- ****************** Get Password ************************** -->
+                  <mat-form-field class="fullWidth">
+                    <input matInput placeholder="Password" [(ngModel)]="user.password" 
+                    [formControl]="password" [type]="hide ? 'password' : 'text'" required>
+                    <mat-icon matSuffix (click)="hide = !hide">
+                      {{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessagePassword()}}</mat-error>
+                  </mat-form-field>
+                </div>
+         <!-- ***************** Navigate to Forgot Password Component **************** -->
+                <div class=button-row fxLayout="row" fxLayoutAlign="space-between">
+                  <a routerLink="/forgot-password">Forgot Password ?</a>
+                  <button mat-flat-button type="submit" (click)="isLeftVisible = !isLeftVisible">
+                    Back</button>
+                  <button mat-flat-button type="submit" (click)="login()" color="primary">
+                    Login</button>
+                </div>
+              </div>
+            </div>
+          </my-slide-panel>
+        </mat-card>
+      </div>
+    </div>
+  </form>

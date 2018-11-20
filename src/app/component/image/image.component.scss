@@ -1,0 +1,12 @@
+::ng-deep.mat-dialog-container {
+    /* display: contents; */
+    padding: 0px;
+    border-radius: 2px;
+    box-sizing: border-box;
+    overflow: auto;
+    outline: 0;
+    width: 200%;
+    height: 200%;
+    min-height: inherit;
+    max-height: inherit;
+}

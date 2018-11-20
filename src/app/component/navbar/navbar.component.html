@@ -1,0 +1,124 @@
+<!-- ********************* Navigaton Bar Components ************************* -->
+<div>
+  <mat-toolbar class="tool">
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+      <mat-icon style="color:black" aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span style="color:black;cursor: pointer;">{{name}}</span> 
+    
+    <!-- ********************* Search Bar ************************* -->
+
+    <mat-icon class="icon" (click)="navigate()">search</mat-icon>
+        <input class="searchBox" fxHide.xs=1  [(ngModel)]="globalSearch" 
+        (keydown)="keySearch()"  
+        placeholder="Search" autocomplete='on'>
+    <div class="align"> 
+      <i class="material-icons" matTooltip="List View" style="cursor:pointer" 
+      (click)="viewToggle()" 
+      *ngIf="gridObj == 0">view_stream</i>
+      <i class="material-icons" matTooltip="Grid View" style="cursor:pointer" 
+      (click)="view()" 
+      *ngIf="gridObj == 1">view_module</i> 
+    </div>
+
+    <!-- ********************* Profile Pic Menu *********************** -->
+  <div class="align" >
+    <button *ngIf="image2!=''" class="profilebutton" [matMenuTriggerFor]="appMenu" 
+    matTooltip="{{firstName}} {{lastName}}" 
+      style="background:#fb0"><img src="{{img}}" class="profileImage"></button>
+        <button *ngIf="image2==''" class="profilebutton" [matMenuTriggerFor]="appMenu" 
+        matTooltip="{{firstName}} {{lastName}}" 
+        style="background:white">
+        {{firstName | slice:0:1}}
+        </button>
+  </div>
+        <mat-menu class="nameContent" #appMenu="matMenu" [overlapTrigger]="false">
+          <div fxLayout="row" fxLayoutAlign="space-evenly center"  >
+          <button *ngIf="image2!=''" (click) = "$event.stopPropagation()" 
+          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover'}"
+           matTooltip="{{firstName}}"
+          mat-mini-fab class="profile-pic">
+          <div style="margin-top:70%">
+            <div style= "color:white" (click)="selectFile.click()">change</div>
+          </div>
+          </button>
+          <button *ngIf="image2==''" class="profilebutton" [matMenuTriggerFor]="appMenu" 
+          matTooltip="{{firstName}} {{lastName}}" 
+        style="background:blue">
+        {{firstName | slice:0:1}}
+        </button>
+          <input style="display:none" (click) = "$event.stopPropagation()" class="image"
+          type="file" (change)="onFileUpload($event)" #selectFile>
+         
+           <div class="miniPanelMenu">
+          <mat-content  style="font-size: 14px">
+          {{firstName}} {{lastName}}
+          {{email}}</mat-content>
+          </div>
+      </div>
+             <hr style="width:99%">
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <button mat-button (click)="removeToken()"> Log out </button>
+            </div>
+          </mat-menu>
+
+  </mat-toolbar>
+  <mat-sidenav-container style="scroll-behavior: smooth" class="sidenav-container" 
+  fxLayout="column">
+  <!-- ********************* Side Navigation Contents ************************* -->
+
+    <mat-sidenav style=" background-color:rgb(221,221,230)" #drawer class="sidenav"  
+    fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" 
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+      <!-- ********************* Notes ************************* -->
+      <mat-nav-list >
+        <a (click)='titles("FUNDOO")' mat-list-item routerLink='/homepage/cardtemplate'>
+          <mat-icon>assignment</mat-icon>
+          <div class="gap">Notes</div>
+        </a>
+        <!-- ********************* Reminders  ************************* -->
+        <a (click)='titles("Reminders")' mat-list-item routerLink='/homepage/reminder'>
+          <mat-icon>alarm</mat-icon>
+          <div class="gap">Reminders</div>
+        </a>
+        <hr>
+        <!-- ********************* Labels ************************* -->
+        <a mat-list-item>
+          <mat-icon>view</mat-icon>
+          <div class="gap" style="font-size:15px">Labels</div>
+        </a>
+        <div *ngFor=" let labels of labelArray trackBy:val?.id " 
+        (click)='titles(labels.label)'>
+          <a mat-list-item (click)="labelByName(labels)"> 
+            <mat-icon >label_outline</mat-icon>
+            <div class="gap" [innerHTML]="labels.label"></div>
+          </a>
+        </div>
+        <!-- ********************* Creating Labels ************************* -->
+        <a mat-list-item (click)="openDialog()">
+          <mat-icon>edit</mat-icon>
+          <div class="gap">Create label</div>
+        </a>
+        <hr>
+        <!-- ********************* Archive ************************* -->
+
+        <a (click)='titles("Archive")' mat-list-item routerLink='/homepage/archive'>
+          <mat-icon>archive</mat-icon>
+          <div class="gap">Archive</div>
+        </a>
+        <!-- ********************* Trash ************************* -->
+
+        <a (click)='titles("Trash")' mat-list-item routerLink='/homepage/bin'>
+          <mat-icon>delete</mat-icon>
+          <div class="gap">Trash</div>
+        </a>
+        <hr>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

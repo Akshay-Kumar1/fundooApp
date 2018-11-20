@@ -1,0 +1,38 @@
+    <!-- ****************** Create / Delete / Edit Labels ************************** -->
+<h5> Edit Labels </h5>
+<div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-icon style="cursor: pointer" routerLink="homepage/label">close</mat-icon>
+    <div contenteditable="true" data-text="Create new label" class="fields" 
+    #newLabels></div>
+</div>
+<div *ngFor="let labels of labelArray trackBy:val?.id">
+    <div *ngIf="edit!=labels.id">
+        <a mat-list-item>
+            <div fxLayout="row">
+                <mat-icon style="cursor: pointer" matTooltip="Delete" 
+                (click)="deleteLabel(labels.id)">delete</mat-icon>
+                <div contenteditable="false" class="fields" [innerHTML]="labels.label">
+                </div>
+                <mat-icon style="cursor: pointer" (click)="editToggle(labels.id)"
+                 matTooltip="Edit">edit</mat-icon>
+            </div>
+        </a>
+    </div>
+    <!-- ********************* Editing Labels ************************* -->
+
+    <div *ngIf="edit==labels.id"> 
+        <a mat-list-item>
+            <div fxLayout="row">
+                <mat-icon style="cursor: pointer; float: left;" 
+                matTooltip="Delete">delete</mat-icon>
+                <span #Labels contenteditable="true" class="fields" 
+                [innerHTML]="labels.label" ></span>
+                <mat-icon style="cursor: pointer" (click)="editLabel(labels.id)" 
+                matTooltip="Edit">edit</mat-icon>
+            </div>
+        </a> 
+    </div>
+</div>
+<div style="float:right">
+    <button mat-button (click)="createLabel()">Done</button> 
+</div>

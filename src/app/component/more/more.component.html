@@ -1,0 +1,24 @@
+<!-- *********************Contents Inside More Icon ************************* -->
+<mat-icon style="cursor:pointer" [matMenuTriggerFor]="appMenu" 
+matTooltip="More">more_vert</mat-icon>
+<mat-menu #appMenu="matMenu" [overlapTrigger]="false">
+    <div>
+        <button mat-button (click)="delete(deleteCard)">Delete</button>
+    </div>
+    <div>
+        <button mat-menu-item [matMenuTriggerFor]="labelMenu">Add Label</button>
+        <mat-menu #labelMenu="matMenu">
+            <div (click)="$event.stopPropagation()">
+            <input type="text" aria-hidden="false" placeholder="Search" [(ngModel)]="query">
+            </div>
+    <!-- ********************* Searching Labels ************************* -->
+            <div *ngFor="let labels of labelArray | filterLabel: query trackBy:val?.id" (click)="$event.stopPropagation()">
+            <button mat-menu-item (click)="$event.stopPropagation()">
+            <mat-checkbox (click)="$event.stopPropagation();addLabelTag(labels)" >{{labels.label}} 
+            </mat-checkbox></button>
+          </div>
+        </mat-menu> 
+    </div> 
+</mat-menu>
+
+  

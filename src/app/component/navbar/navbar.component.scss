@@ -1,0 +1,143 @@
+
+ .sidenav-container 
+ {
+  height: stretch;
+  // width: stretch;
+  scroll-behavior: auto;
+  background-color:rgb(221,221,230)  
+}
+
+.sidenav 
+{
+  width: 190px;
+  margin: 64px 0px 0px 0px;
+}
+
+// .mat-toolbar.mat-primary 
+// {
+//   position: fixed;
+// }
+
+.tool
+{
+  background-color: #fb0;
+  z-index: 2;
+  width:stretch;
+  position: fixed;
+  display: flex;
+  flex:1 1 100%;
+}
+
+.align 
+{
+  padding-left: 60px;
+} 
+.space 
+{
+  padding-left: 75px;
+} 
+.searchBox
+{
+  color:rgb(34, 34, 37);
+  padding-top: 10px;
+  height: 30px;
+  width:stretch; 
+  background: rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: 4px;
+  flex: 1 1 100%;
+  padding-left:40px;
+  font-size: 15px
+
+}
+
+.background
+{
+  background-color: black
+}
+.space1 {
+  padding-left: 30px;
+} 
+.gap
+{
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+input:focus 
+{
+  background-color:whitesmoke;
+} 
+
+.icon
+{
+  cursor: pointer;
+  margin-left: 5%;
+}
+.mat-nav-list
+{
+  overflow: hidden
+}
+.spacing
+{
+  padding-left:40px;
+  font-size: 15px
+}
+.pointer
+{
+  cursor:pointer;
+}
+.profilebutton
+{
+  border: none;
+  outline: none;
+ 
+}
+
+.spacing{
+  padding-top: 10px;
+}
+.profile-pic 
+{
+float: right;
+color: white;
+}
+
+::ng-deep.profile-pic[_ngcontent-c2] {
+  float: left;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin-left: 5%;
+}
+
+::ng-deep.mat-mini-fab .mat-button-wrapper {
+  padding: 25px 0;
+  display: inline-block;
+  line-height: 24px;
+}
+
+.contentStyle
+{
+  word-break: break-all;
+}
+
+.miniMenu{
+  width: 300px;
+}
+:host::ng-deep.mat-menu-panel.nameContent {
+  min-width: 112px;
+   max-width: 380px !important;
+  width: 266px;
+  height: 200px;
+}
+.miniPanelMenu{
+  margin-left: 4%;
+}
+
+.profileImage
+{
+  float:left ;
+  width:50px;height:50px;
+  border-radius: 50%
+}

@@ -1,0 +1,41 @@
+
+<!-- **************** Trash Notes ***************** -->
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap="30px" style="margin-top:10%">
+        <div *ngFor="let content of array trackBy:val?.id" fxFlex="0 1 calc(30% - 32px)" >
+            <mat-card style="margin-top:4%" [style.backgroundColor]="content.color">
+                <mat-card-title>
+                    <div style="font-family:Verdana, Geneva, Tahoma, sans-serif, Helvetica, sans-serif" [innerHTML]="content.title"></div>
+                </mat-card-title>
+                <mat-card-content>
+                    <div style="font-family:Verdana, Geneva, Tahoma, sans-serif, Helvetica, sans-serif" [innerHTML]="content.description"></div>
+                </mat-card-content>
+
+            <!-- *******************Labels Printing ****************** -->
+                <div *ngFor="let index of content.noteLabels trackBy:val?.id">
+                    <mat-chip-list selected>
+                        <mat-chip class="chipStyle" *ngIf="index.isDeleted==false">
+                            {{index.label}}<mat-icon class="hider"  
+                            style="cursor:pointer">cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+                <!-- *******************Reminders Printing ****************** -->
+                <div *ngFor="let index of content.reminder trackBy:val?.id">
+                    <mat-chip-list selected>
+                        <mat-chip class="chipStyle">
+                            {{index | date:'medium'}}<mat-icon class = "hider" 
+                            (click)="removeReminder(content.id)" 
+                            style="cursor:pointer">cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start">
+                <mat-icon class="hider" style="cursor:pointer" [matMenuTriggerFor]="appMenu" matTooltip="More">more_vert</mat-icon>
+                <mat-menu #appMenu="matMenu" [overlapTrigger]="false">
+                    <button mat-menu-item (click)="deleteForever(content.id)">Delete Forever</button>
+                    <button mat-menu-item (click)="restore(content.id)">Restore</button>
+                </mat-menu>
+               </div>
+            </mat-card>
+        </div>
+</div>

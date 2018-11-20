@@ -1,0 +1,5 @@
+<!-- **************** Archive unArchive Icons ****************** -->
+<mat-icon class="space" *ngIf="archive.isArchived==false" style="cursor:pointer" 
+matTooltip="Archive" (click)="archiveNotes()">archive</mat-icon> 
+<mat-icon class="space" *ngIf="archive.isArchived==true" style="cursor:pointer" 
+matTooltip="Unarchive" (click)="unArchiveNotes()">archive</mat-icon>

@@ -1,0 +1,49 @@
+.card
+{
+    border-radius: 8px;
+}
+.action{
+    opacity:0;
+}
+.action:hover
+{
+    opacity:1;
+}
+
+.spacing
+{
+    margin-left:4px;
+}
+
+.grid
+{
+    width: 300px;
+}
+.list
+{
+    width: 800px;
+}
+
+.hider
+{
+    opacity:0;
+}
+.hider:hover
+{
+    opacity:1;
+}
+.note
+{
+    border:none;
+    outline: none !important;
+    word-wrap: break-word;
+    background:transparent;
+}
+.paddingTop
+{
+    padding-top: 5px;
+}
+.cardAlign
+{
+    margin-left: 130px;
+}

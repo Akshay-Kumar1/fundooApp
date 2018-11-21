@@ -56,7 +56,7 @@
         <!-- ********************* Custom Reminders ******************* -->
         <mat-menu #timeMenu [overlapTrigger]=false yPosition="above">
         <div fxLayout="column" *ngFor="let list of reminders">
-                <button mat-button (click)="reminderBody.time = timing.viewTime" (click)="$event.stopPropagation()">
+                <button mat-button (click)="reminderBody.time = list.viewTime" (click)="$event.stopPropagation()">
                         
                         <div fxFlex="30" >{{list.timeOfDay}}</div> 
                         <div fxFlex="30"></div>

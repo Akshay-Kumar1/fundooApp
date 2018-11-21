@@ -91,7 +91,7 @@ input:focus
 {
   border: none;
   outline: none;
- 
+  color:black;
 }
 
 .spacing{
@@ -138,6 +138,7 @@ color: white;
 .profileImage
 {
   float:left ;
-  width:50px;height:50px;
+  width:50px;
+  height:50px;
   border-radius: 50%
 }

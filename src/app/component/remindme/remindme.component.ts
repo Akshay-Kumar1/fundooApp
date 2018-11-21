@@ -225,9 +225,7 @@ export class RemindmeComponent implements OnInit,OnDestroy {
     {
       LoggerService.error('error',error);
     }
-    
       }
-      
     }
   }
   ngOnDestroy() {

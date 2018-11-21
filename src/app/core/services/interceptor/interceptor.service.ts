@@ -23,7 +23,7 @@ export class InterceptService  implements HttpInterceptor {
     	// modify request
 	    request = request.clone({
 	      setHeaders: {
-	        Authorization: `Bearer ${localStorage.getItem('MY_TOKEN')}`
+	        Authorization: `${localStorage.getItem('token')}`
 	      }
 	    });
 	   

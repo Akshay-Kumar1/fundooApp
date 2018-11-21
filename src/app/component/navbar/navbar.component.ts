@@ -114,9 +114,10 @@ removeToken() {
         }
         array.sort(function(a, b)
         {
-          if(a.label < b.label) { return -1; }
-          if(a.label > b.label ) { return 1; }
-          // return 0;
+          var A=a.label.toLowerCase(),B=b.label.toLowerCase()
+          if(A < B) return -1;
+          if(A > B ) return 1; 
+           return 0;
         })
         this.labelArray=array;
         this.labelsEmit.emit({

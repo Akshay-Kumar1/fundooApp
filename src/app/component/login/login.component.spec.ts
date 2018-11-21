@@ -22,17 +22,17 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-    // it('Form should be valid '),async(()=>{
-    // expect(component.model.email.toEqual('akshay@gmail.com'));
-    // expect(component.model.password.toEqual('akshay'));
-    // expect(component.model.email).toBeTruthy();
-    // expect(component.model.password).toBeTruthy();
-    // })
+    it('Form should be valid '),async(()=>{
+    expect(component.user.email.toEqual('akshay@gmail.com'));
+    expect(component.user.password.toEqual('akshay'));
+    expect(component.user.email).toBeTruthy();
+    expect(component.user.password).toBeTruthy();
+    })
 
-    // it('Invalid Form'),async(()=>{
-    //   expect(component.model.email.toEqual(''));
-    //   expect(component.model.password.toEqual(''));
-    //   expect(component.model.email).toBeFalsy();
-    //   expect(component.model.password).toBeFalsy();
-    //   })
+    it('Invalid Form'),async(()=>{
+      expect(component.user.email.toEqual(''));
+      expect(component.user.password.toEqual(''));
+      expect(component.user.email).toBeFalsy();
+      expect(component.user.password).toBeFalsy();
+      })
 });

@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-// import { InterceptService} from '../app/core/services/interceptor/interceptor.service';
-// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptService} from '../app/core/services/interceptor/interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpService } from './core/services/httpService/http.service';
 import { AuthGuard } from './core/services/authGuard/auth.guard';
 import { AuthServiceService } from './core/services/authGuard/auth-service.service';
@@ -115,10 +115,13 @@ import { PinComponent } from './component/pin/pin.component';
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   entryComponents:[DeletedialogComponent,ImagecropComponent,DeletenoteComponent], 
-  providers: [HttpService,AuthGuard,AuthServiceService,LoggerService,MatDatepickerModule],  
+  providers: [InterceptService,
+         {
+           provide: HTTP_INTERCEPTORS,
+           useClass: InterceptService,
+           multi: true
+         },HttpService,AuthGuard,AuthServiceService,LoggerService,MatDatepickerModule],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
 

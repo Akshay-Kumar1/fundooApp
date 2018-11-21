@@ -15,7 +15,7 @@ import { takeUntil } from 'rxjs/operators'
 export class LoginComponent implements OnInit , OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
   private hide = true;
-  private user: any = {};
+  public user: any = {};
   private message: any = {};
   constructor(private snackBar: MatSnackBar, private myHttpService: HttpService,private userService:UserserviceService,
     private router:Router) { }

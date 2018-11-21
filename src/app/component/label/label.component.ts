@@ -47,9 +47,15 @@ export class LabelComponent implements OnInit , OnDestroy
           if (data['data']['details'][i].isDeleted == false) 
           {
             array.push(data['data']['details'][i]);
-            console.error(data['data']['details'][i])
           }
         }
+        array.sort(function(a, b)
+        {
+          var A=a.label.toLowerCase(),B=b.label.toLowerCase()
+          if(A < B) return -1;
+          if(A > B ) return 1; 
+           return 0;
+        })
         this.labelArray=array;
         this.labelsEmit.emit({ 
         })

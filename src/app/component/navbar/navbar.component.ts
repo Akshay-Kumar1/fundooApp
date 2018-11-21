@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit,OnDestroy
   private globalSearch:any;
   private params:any;
   private ProfilePath: any;
-  private name='FUNDOO'
+  public name='FUNDOO'
   constructor(private dataService:DataserviceService,public dialog: MatDialog, private notesService:NoteserviceService
     ,private breakpointObserver: BreakpointObserver,private myHttpService: HttpService, 
     private router: Router,public data:DataserviceService,private route:ActivatedRoute,private userService:UserserviceService) { }
@@ -67,11 +67,12 @@ removeToken() {
     this.email = localStorage.getItem('email')
     this.lastName = localStorage.getItem('lastName')
     this.firstName = localStorage.getItem('firstName')
-    
+    this.name = localStorage.getItem('name');
   }
   titles(name)
   {
     this.name=name;
+    localStorage.setItem('name',name);
   }
 /**
  * @description : Opening Dialog for labels

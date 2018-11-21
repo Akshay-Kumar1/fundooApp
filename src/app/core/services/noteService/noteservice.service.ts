@@ -7,17 +7,20 @@ import { HttpService } from '../httpService/http.service';
 export class NoteserviceService {
   token = localStorage.getItem('token')
   constructor(private http : HttpService) { }
+
+  // <------------------Notes Services--------------->
   
-  addNotes(body){
-return this.http.formEncoded('/notes/addNotes',body)
-  }
-  label(body)
+  addNotes(body)
   {
-    return this.http.jsonPost('/noteLabels',body)
+    return this.http.formEncoded('/notes/addNotes',body)
   }
   updateNotes(body)
   {
     return this.http.formEncoded('/notes/updateNotes',body)
+  }
+  label(body)
+  {
+    return this.http.jsonPost('/noteLabels',body)
   }
   getArchive()
   {

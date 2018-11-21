@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
-import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule ,CUSTOM_ELEMENTS_SCHEMA, ErrorHandler} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -50,6 +50,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImagecropComponent } from './component/imagecrop/imagecrop.component';
 import { DeletenoteComponent } from './component/deletenote/deletenote.component';
 import { PinComponent } from './component/pin/pin.component';
+import { ErrorsHandler } from './core/services/errorHandling/errorHandler';
 @NgModule({
   declarations: [
     AppComponent,
@@ -120,7 +121,12 @@ import { PinComponent } from './component/pin/pin.component';
            provide: HTTP_INTERCEPTORS,
            useClass: InterceptService,
            multi: true
-         },HttpService,AuthGuard,AuthServiceService,LoggerService,MatDatepickerModule],  
+         },
+         {
+         provide: ErrorHandler,
+         useClass: ErrorsHandler
+         }
+         ,HttpService,AuthGuard,AuthServiceService,LoggerService,MatDatepickerModule],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

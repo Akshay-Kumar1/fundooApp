@@ -114,13 +114,12 @@ private  tomorrow=new Date(this.today.getFullYear(), this.today.getMonth(), this
     }
   } 
 
-
   /**
  * @description : Dialog popup for update Component
  */
   openDialog(content): void {
     const dialogRef = this.dialog.open(UpdatenotesComponent, {
-      width:'400px',
+      width:'450px',height:'auto',
       data: content
     });
     dialogRef.afterClosed().subscribe(result => {

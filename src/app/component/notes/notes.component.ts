@@ -157,6 +157,7 @@ export class NotesComponent implements OnInit , OnDestroy {
       .subscribe(data => {
         this.checked = false;
         this.labelId=[]
+        
         this.labelArray=[]
         this.remArray=[]
         this.name=[]

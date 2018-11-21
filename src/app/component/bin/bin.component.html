@@ -4,10 +4,10 @@
         <div *ngFor="let content of array trackBy:val?.id" fxFlex="0 1 calc(30% - 32px)" >
             <mat-card style="margin-top:4%" [style.backgroundColor]="content.color">
                 <mat-card-title>
-                    <div style="font-family:Verdana, Geneva, Tahoma, sans-serif, Helvetica, sans-serif" [innerHTML]="content.title"></div>
+                    <div class="words" [innerHTML]="content.title"></div>
                 </mat-card-title>
                 <mat-card-content>
-                    <div style="font-family:Verdana, Geneva, Tahoma, sans-serif, Helvetica, sans-serif" [innerHTML]="content.description"></div>
+                    <div class="words" [innerHTML]="content.description"></div>
                 </mat-card-content>
 
             <!-- *******************Labels Printing ****************** -->

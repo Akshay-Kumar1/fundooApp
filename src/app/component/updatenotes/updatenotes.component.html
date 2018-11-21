@@ -1,5 +1,5 @@
 <!-- ********************* Update Notes Dialog ******************* -->
-<mat-card style="border-radius: 5%" [style.backgroundColor]="data.color">
+<mat-card class="mat" style="border-radius: 5%" [style.backgroundColor]="data.color">
   <div class="fields" #updateLabel contenteditable="true" data-text=" " 
   [innerHTML]="data.title"></div>
   <div style="padding-top:10px"></div>
@@ -24,7 +24,7 @@
       <div fxLayout="row" *ngIf="checklist">
         <mat-icon fxFlex="5%" *ngIf="!adding">add</mat-icon>
         <mat-checkbox *ngIf="adding" [(ngModel)]=addCheck  color="primary"></mat-checkbox>
-        <input   fxFlex="95%" class="note" placeholder="List Item" 
+        <input  fxFlex="95%" class="note" placeholder="List Item" 
         [ngStyle]="{'background-color':data.color}" [(ngModel)]=newList (keydown)=addList($event)/>
       </div>
       <mat-divider *ngIf="checklist"></mat-divider>

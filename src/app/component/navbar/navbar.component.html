@@ -4,7 +4,7 @@
     <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
       <mat-icon style="color:black" aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
-    <span style="color:black;cursor: pointer;">{{name}}</span> 
+    <div class="title">{{name}}</div> 
     
     <!-- ********************* Search Bar ************************* -->
 
@@ -12,7 +12,7 @@
         <input class="searchBox" fxHide.xs=1  [(ngModel)]="globalSearch" 
         (keydown)="keySearch()"  
         placeholder="Search" autocomplete='on'>
-    <div class="align"> 
+    <div class="aligns"> 
       <i class="material-icons" matTooltip="List View" style="cursor:pointer" 
       (click)="viewToggle()" 
       *ngIf="gridObj == 0">view_stream</i>
@@ -22,7 +22,7 @@
     </div>
 
     <!-- ********************* Profile Pic Menu *********************** -->
-  <div class="align" >
+  <div class="align" fxLayout='row' fxLayout="end">
     <button *ngIf="image2!=''" class="profilebutton" [matMenuTriggerFor]="appMenu" 
     matTooltip="{{firstName}} {{lastName}}" 
       style="background:#fb0"><img src="{{img}}" class="profileImage"></button>

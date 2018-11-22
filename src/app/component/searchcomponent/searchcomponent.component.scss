@@ -1,6 +1,7 @@
+@import '../../../scss/variables.scss';
 .container
 {
     height: 100%;
-    width: 100%;
+    width: $width;
     display: flex
 }

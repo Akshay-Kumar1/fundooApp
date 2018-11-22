@@ -13,6 +13,7 @@ import { AuthGuard } from './core/services/authGuard/auth.guard';
 import { AuthServiceService } from './core/services/authGuard/auth-service.service';
 import { LoggerService } from './core/services/logger/logger.service';
 import { LabelSearchPipe } from './core/pipes/label-search.pipe';
+import { ErrorsHandler } from './core/services/errorHandling/errorHandler';
 
 import { MatInputModule ,MatCardModule, MatButtonModule,MatRadioModule,MatCheckboxModule,
          MatStepperModule,MatFormFieldModule,MatIconModule,MatSnackBarModule,MatToolbarModule,
@@ -50,7 +51,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImagecropComponent } from './component/imagecrop/imagecrop.component';
 import { DeletenoteComponent } from './component/deletenote/deletenote.component';
 import { PinComponent } from './component/pin/pin.component';
-import { ErrorsHandler } from './core/services/errorHandling/errorHandler';
+import { CollaboratorDialogComponent } from './component/collaborator-dialog/collaborator-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +83,8 @@ import { ErrorsHandler } from './core/services/errorHandling/errorHandler';
     DeletedialogComponent,
     ImagecropComponent,
     DeletenoteComponent,
-    PinComponent
+    PinComponent,
+    CollaboratorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -115,7 +118,7 @@ import { ErrorsHandler } from './core/services/errorHandling/errorHandler';
     ImageCropperModule
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents:[DeletedialogComponent,ImagecropComponent,DeletenoteComponent], 
+  entryComponents:[DeletedialogComponent,ImagecropComponent,DeletenoteComponent,CollaboratorDialogComponent,UpdatenotesComponent], 
   providers: [InterceptService,
          {
            provide: HTTP_INTERCEPTORS,

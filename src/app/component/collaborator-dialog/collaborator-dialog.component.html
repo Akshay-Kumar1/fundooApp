@@ -1,0 +1,46 @@
+
+<b>Collaborators</b>
+<hr>
+<div fxLayout="column">
+<div >
+<div fxLayout="row" fxLayoutAlign="start end">
+<div>
+<button mat-mini-fab [ngStyle]="{'background-image':'url(' +profilePic+ ')',
+'background-size':'cover'}">
+</button>
+</div>
+<div>
+  <div fxLayout="column">
+  <div class="space">
+      {{firstName}} {{lastName}} (owner)
+  </div>
+  <div class="space">
+    <div class="fonts">{{email}}</div>
+  </div>
+
+  </div>
+</div>
+<div>
+</div>
+</div>
+</div>
+<div class="column-gap">
+  <div fxLayout="row">
+  <div>
+      <button mat-mini-fab disabled> <mat-icon>person_add</mat-icon> </button>
+  </div>
+ <div class="spacing">
+    <input contenteditable="true" [(ngModel)]="searchString" (keyup)="search()" 
+    class="fields" 
+    placeholder="Person or email to share with">
+ </div>
+</div>
+</div>
+</div>
+<div class="padding">
+</div>
+
+<div fxLayout="row" fxLayoutAlign="end">
+<button mat-button (click)="close()">Cancel</button>
+<button mat-button>Save</button>
+</div>

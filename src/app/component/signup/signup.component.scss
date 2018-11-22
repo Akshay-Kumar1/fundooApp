@@ -1,3 +1,4 @@
+@import '../../../scss/variables.scss';
 .round
 {
   border-radius: 4%;
@@ -12,11 +13,11 @@
 }
 .mainWidth
 {
-  width:100%;
+  width:$width;
 } 
 .full-width
 {
-  width: 100%;
+  width: $width;
 }
 .radius
 {
@@ -30,25 +31,25 @@
 }
 .notSelect
 {
-  background-color:darkorange;
+  background-color:rgb(243, 137, 8);
 }
 .color1
 {
-  color:red;
+  color:$colors;
 }
 .color2
 {
-  color:blue;
+  color:$color;
 }
 .color3
 {
-  color:darkorange;
+  color:rgb(255, 140, 0);
 }
 .color4
 {
-  color:black;
+  color:rgb(0, 0, 0);
 }
 .color5
 {
-  color:green;
+  color:rgb(0, 128, 0);
 }

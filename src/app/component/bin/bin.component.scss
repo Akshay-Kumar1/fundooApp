@@ -1,3 +1,4 @@
+@import '../../../scss/variables.scss';
 .card
 {
     padding:10px;
@@ -11,11 +12,11 @@ mat-card
 
 .hider
 {
-    opacity:0;
+    opacity:$zeroOpacity;
 }
 .hider:hover
 {
-    opacity:2;
+    opacity:$oneOpacity;
 }
 
 .words

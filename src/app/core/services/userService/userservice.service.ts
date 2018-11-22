@@ -38,4 +38,8 @@ export class UserserviceService {
   {
     return this.http.resetConfig("/user/reset-password",body)
   }
+  usersSearch(body)
+  {
+    return this.http.jsonPost("/user/searchUserList",body)
+  }
 }

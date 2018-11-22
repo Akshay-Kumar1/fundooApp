@@ -73,11 +73,15 @@ export class UpdatenotesComponent implements OnInit , OnInit {
           this.updateEmit.emit({
   
           })
+          this.dialogRef.close();
+
         })
       error => {
         LoggerService.error('error',error);
+        this.dialogRef.close();
       }
       this.dialogRef.close();
+      
     }
      
       else{
@@ -89,11 +93,16 @@ export class UpdatenotesComponent implements OnInit , OnInit {
       JSON.stringify(apiData)).subscribe(response => { 
 
       })
-    
+      this.dialogRef.close();
+
       }
       error => {
         LoggerService.error(error);
+        this.dialogRef.close();
+
       }
+      this.dialogRef.close();
+
   }
   /**
  * @description : Remove Labels in Update Notes API

@@ -1,3 +1,5 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
 .spacing
 {
     height:90vh;
@@ -17,10 +19,7 @@
 }
 .fields
 {
-    border:none;
-    outline: none;
-    word-wrap: break-word;
-    background:transparent;
+    @include noBorder();
 }
 [contenteditable=true]:empty:not(:focus):before{
     content:attr(data-text)
@@ -28,18 +27,18 @@
 
 .card
 {
-    padding:8px;
+    padding:6px;
     border-radius: 4px;
-    width:420px;
+    width:45%;
     // margin-left:30%;
     // margin-right:33%;
-    flex : 1 1 auto;
+    // flex : 1 1 auto;
 }
 .hider
 {
-    opacity: 0;
+    opacity: $zeroOpacity;
 }
 .hider:hover
 {
-    opacity: 1
+    opacity: $oneOpacity;
 }

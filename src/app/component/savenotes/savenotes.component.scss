@@ -3,7 +3,7 @@
 .card
 {
     border-radius: 8px;
-
+    flex: 1 1 auto;
 }
 
 .words
@@ -35,6 +35,7 @@
 
 .hider
 {
+    margin-left: 24px;
     opacity:0;
 }
 .hider:hover
@@ -43,7 +44,7 @@
 }
 .note
 {
-    @include noBorder;
+    @include noBorder();
 }
 .paddingTop
 {
@@ -52,4 +53,11 @@
 .cardAlign
 {
     margin-left: 130px;
+}
+.chipStyle
+{
+    width: 100px;
+    overflow: hidden !important;
+    white-space: nowrap;
+    text-overflow:ellipsis;
 }

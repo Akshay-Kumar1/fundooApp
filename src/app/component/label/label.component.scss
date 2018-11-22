@@ -1,13 +1,19 @@
+@import '../../../scss/variables.scss';
+
 .fields
 {
-    border:none;
-    outline: none;
-    background:transparent;
-    width: 100%;
-    word-wrap: break-word;
+    width:$width;
 }
 
 [contenteditable=true]:empty:not(:focus):before{
     content:attr(data-text)
+}
+
+.title
+{
+  overflow: hidden !important;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  width: 100%;
 }
 

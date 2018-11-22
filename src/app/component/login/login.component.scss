@@ -1,3 +1,5 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
 
 mat-card
 {
@@ -5,33 +7,33 @@ mat-card
 } 
 .fullWidth
 {
-    width: 100%;
+    width: $width;
 }
 
 .color1
 {
-  color:red;
-  font-size: 25px;
+  color:$colors;
+  font-size: $fontSize();
 }
 .color2
 {
-  color:blue;
-  font-size: 25px;
+  color:$color;
+  font-size: $fontSize;
 }
 .color3
 {
   color:darkorange;
-  font-size: 25px;
+  font-size: $fontSize;
 }
 .color4
 {
-  color:black;
-  font-size: 25px;
+  color:rgb(14, 13, 13);
+  font-size: $fontSize;
 }
 .color5
 {
-  color:green;
-  font-size: 25px;
+  color:rgb(3, 138, 3);
+  font-size: $fontSize;
 }
 .center
 {

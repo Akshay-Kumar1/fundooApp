@@ -1,0 +1,48 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+[contenteditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+.space
+{
+    padding-left: 8px;
+}
+.fonts
+{
+    font-size: 13px;
+    color:rgb(143, 135, 135);
+}
+.padding
+{
+    padding-top: 40px;
+}
+.border
+{
+   border-radius: 100%;
+}
+.column-gap
+{
+    padding-top:10px;
+}
+.fields
+{
+    @include noBorder();
+}
+.spacing
+{
+    padding-left: 8px;
+    padding-top: 10px;
+}
+// ::ng-deep.mat-dialog-container {
+//     display: block;
+//     padding: 24px;
+//     border-radius: 8px;
+//     box-sizing: border-box;
+//     overflow: auto;
+//     outline: 0;
+//     width: $width;
+//     height: 100%;
+//     min-height: inherit;
+//     max-height: inherit;
+// }

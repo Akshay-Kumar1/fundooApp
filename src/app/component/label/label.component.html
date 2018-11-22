@@ -11,7 +11,7 @@
             <div fxLayout="row">
                 <mat-icon style="cursor: pointer" matTooltip="Delete" 
                 (click)="deleteLabel(labels.id)">delete</mat-icon>
-                <div contenteditable="false" class="fields" [innerHTML]="labels.label">
+                <div contenteditable="false" class="title" [innerHTML]="labels.label">
                 </div>
                 <mat-icon style="cursor: pointer" (click)="editToggle(labels.id)"
                  matTooltip="Edit">edit</mat-icon>

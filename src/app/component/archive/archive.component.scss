@@ -1,10 +1,12 @@
+@import '../../../scss/variables.scss';
+
 .action
 {
-    opacity: 0;
+    opacity: $zeroOpacity;
 }
 .action:hover
 {
-    opacity: 0.7;
+    opacity: $oneOpacity;
 }
 mat-card
 {

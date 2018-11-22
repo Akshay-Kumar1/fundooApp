@@ -1,6 +1,6 @@
 <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center center" style="margin-top:100px">
   <!-- ******************* Note Card ******************* -->
-  <mat-card class="card" *ngIf="show">
+  <mat-card class="card" fxFlex fxFlex.sm='row' *ngIf="show">
     <div style="float:left" (click)="toggle()">Take a note...</div>
     <div style="float:right" fxLayout="row" fxLayoutAlign="space-between">
       <mat-icon style="cursor:pointer" matTooltip="List" aria-label="list" 
@@ -72,24 +72,12 @@
       </div>
 <!-- ********************* Icons Selectors for Adding Notes Component ******************* -->
       <div fxLayout="row" fxLayoutAlign="space-between start">
-        <div>
           <app-remindme [noteDetails]='id' (todayEventDateInfo)="reminderEvent($event)"></app-remindme>
-        </div>
-        <div>
           <app-collaborator></app-collaborator>
-        </div>
-        <div >
           <app-colorpalette [colorChange]="content" (colorEmit)=colorEntry($event)></app-colorpalette>
-        </div>
-        <div>
           <app-image></app-image>
-        </div>
-        <div>
           <app-more (labelEvent) = eventOfLabels($event)></app-more>
-        </div>
-        <div>
           <button mat-button (click)="addNotes()">close</button> 
-        </div>
       </div>
     </mat-card-content>
   </mat-card>

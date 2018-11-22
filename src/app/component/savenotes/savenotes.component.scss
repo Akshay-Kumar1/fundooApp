@@ -1,3 +1,5 @@
+@import "../../../scss/mixins.scss";
+
 .card
 {
     border-radius: 8px;
@@ -41,10 +43,7 @@
 }
 .note
 {
-    border:none;
-    outline: none !important;
-    word-wrap: break-word;
-    background:transparent;
+    @include noBorder;
 }
 .paddingTop
 {

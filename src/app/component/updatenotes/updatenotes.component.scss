@@ -1,13 +1,12 @@
+@import "../../../scss/mixins.scss";
+
 [contenteditable=true]:empty:not(:focus):before{
     content:attr(data-text)
 }
 
 .fields
 {
-    border:none;
-    outline: none;
-    word-wrap: break-word;
-    background:transparent;
+    @include noBorder();
     word-break: break-all
 }
 ::ng-deep.mat-dialog-container {
@@ -32,10 +31,7 @@
 
 .note
 {
-    border:none;
-    outline: none;
-    word-wrap: break-word;
-    background:transparent;
+    @include noBorder();
 }
 .hider
 {

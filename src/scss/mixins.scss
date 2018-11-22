@@ -1,0 +1,7 @@
+@mixin noBorder()
+{
+    border:none;
+    outline: none !important;
+    word-wrap: break-word;
+    background:transparent;
+}

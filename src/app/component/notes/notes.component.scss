@@ -15,11 +15,11 @@
 
 .fullWidth
 {
-    width: 100%;
+    width: $width;
 }
 .fields
 {
-    @include noBorder();
+    @include noBorder;
 }
 [contenteditable=true]:empty:not(:focus):before{
     content:attr(data-text)
@@ -29,9 +29,10 @@
 {
     padding:6px;
     border-radius: 4px;
-    width:45%;
-    // margin-left:30%;
-    // margin-right:33%;
+    width: 45%;
+    // width: stretch;
+    // margin-left:25%;
+    // margin-right:25%;
     // flex : 1 1 auto;
 }
 .hider

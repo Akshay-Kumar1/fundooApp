@@ -1,4 +1,5 @@
+@import '../../../scss/mixins.scss';
 .pointer
 {
-    cursor: pointer;
+    @include cursor;
 }

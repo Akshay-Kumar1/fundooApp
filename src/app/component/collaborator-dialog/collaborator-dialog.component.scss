@@ -27,22 +27,10 @@
 }
 .fields
 {
-    @include noBorder();
+    @include noBorder;
 }
 .spacing
 {
     padding-left: 8px;
     padding-top: 10px;
 }
-// ::ng-deep.mat-dialog-container {
-//     display: block;
-//     padding: 24px;
-//     border-radius: 8px;
-//     box-sizing: border-box;
-//     overflow: auto;
-//     outline: 0;
-//     width: $width;
-//     height: 100%;
-//     min-height: inherit;
-//     max-height: inherit;
-// }

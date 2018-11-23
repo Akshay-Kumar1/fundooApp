@@ -1,5 +1,5 @@
 @import '../../../scss/variables.scss';
-
+@import '../../../scss/mixins.scss';
 .fields
 {
     width:$width;
@@ -11,9 +11,7 @@
 
 .title
 {
-  overflow: hidden !important;
-  white-space: nowrap;
-  text-overflow:ellipsis;
-  width: 100%;
+  @include noBorder();
+  width: $width;
 }
 

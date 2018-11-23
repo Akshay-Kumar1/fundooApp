@@ -1,9 +1,9 @@
 <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center center" style="margin-top:100px">
   <!-- ******************* Note Card ******************* -->
-  <mat-card class="card" fxFlex fxFlex.sm='row' *ngIf="show">
+  <mat-card class="card" fxFlex *ngIf="show">
     <div style="float:left" (click)="toggle()">Take a note...</div>
     <div style="float:right" fxLayout="row" fxLayoutAlign="space-between">
-      <mat-icon style="cursor:pointer" matTooltip="List" aria-label="list" 
+      <mat-icon style="cursor:pointer" matTooltip="List" 
       (click)="togg()">list</mat-icon>
       <div class="spaceTitle"></div>
     </div>
@@ -28,7 +28,7 @@
     <div class="check" fxLayout="row" id="title" id="note" autofocus #description>
     <mat-icon fxFlex="5%">add</mat-icon>
     <input id="note" [(ngModel)]=data fxFlex="95%" class="inputNote" [(ngModel)]=data.data 
-    (click)="checked=true" placeholder="list item" (keydown.enter)="enter()">
+    (click)="checked=true" class="fields" placeholder="list item" (keydown.enter)="enter()">
     </div>
     <mat-divider></mat-divider> 
     </div>
@@ -71,13 +71,25 @@
         </mat-chip-list>
       </div>
 <!-- ********************* Icons Selectors for Adding Notes Component ******************* -->
-      <div fxLayout="row" fxLayoutAlign="space-between start">
-          <app-remindme [noteDetails]='id' (todayEventDateInfo)="reminderEvent($event)"></app-remindme>
-          <app-collaborator></app-collaborator>
-          <app-colorpalette [colorChange]="content" (colorEmit)=colorEntry($event)></app-colorpalette>
-          <app-image></app-image>
-          <app-more (labelEvent) = eventOfLabels($event)></app-more>
-          <button mat-button (click)="addNotes()">close</button> 
+      <div fxLayout="row wrap" fxLayout.xs='row' fxLayoutAlign="space-around center">
+         <div>
+            <app-remindme [noteDetails]='id' (todayEventDateInfo)="reminderEvent($event)"></app-remindme>
+         </div>
+         <div>
+            <app-collaborator></app-collaborator>
+         </div> 
+          <div>
+              <app-colorpalette [colorChange]="content" (colorEmit)=colorEntry($event)></app-colorpalette>
+          </div>
+          <div>
+              <app-image></app-image>
+          </div>
+          <div>
+              <app-more (labelEvent) = eventOfLabels($event)></app-more>
+          </div>
+          <div>
+              <button mat-button (click)="addNotes()">close</button>
+          </div>
       </div>
     </mat-card-content>
   </mat-card>

@@ -1,21 +1,26 @@
-import { Component, OnInit , ViewChild , ElementRef, Inject, Input } from '@angular/core';
+import { Component, OnInit , ViewChild , ElementRef, Inject, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UpdatenotesComponent, DialogData } from '../updatenotes/updatenotes.component';
 import { UserserviceService } from 'src/app/core/services/userService/userservice.service';
 import { LoggerService } from 'src/app/core/services/logger/logger.service';
-
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators'
+import { NoteserviceService } from 'src/app/core/services/noteService/noteservice.service';
 @Component({
   selector: 'app-collaborator-dialog',
   templateUrl: './collaborator-dialog.component.html',
   styleUrls: ['./collaborator-dialog.component.scss']
 })
-export class CollaboratorDialogComponent implements OnInit { 
+export class CollaboratorDialogComponent implements OnInit , OnDestroy { 
   constructor(public dialogRef: MatDialogRef<CollaboratorDialogComponent>,public dialog:MatDialog,
-    private userService: UserserviceService,
+    private userService: UserserviceService,private notesService:NoteserviceService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
-  @ViewChild ('search') titleId:ElementRef
+
+  collaboratorArray:any=[]
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
   firstName = localStorage.getItem('firstName')
   email = localStorage.getItem('email')
   lastName = localStorage.getItem('lastName')
@@ -34,19 +39,47 @@ export class CollaboratorDialogComponent implements OnInit {
       data:this.data
     });
     dialogRef.afterClosed().subscribe(result => {
-      // this.trashEvent.emit({})
+
     });
+  }
+
+  collaborate(require)
+  {
+    this.notesService.collaboratorPost(this.data.id,
+    {
+      "firstName":require.firstName,
+      "lastName":require.lastName,
+      "email":require.email,
+      "userId":require.userId
+    })
+      .pipe(takeUntil(this.destroy$)).subscribe(data=>{
+        LoggerService.log('data',data)
+        error=>
+        {
+          LoggerService.error('error',error)
+        }
+    })
   }
   search()
   {
-      this.userService.usersSearch({
+      this.userService.usersSearch(
+        {
         "searchWord":this.searchString
-        }).subscribe(data=>{
-          LoggerService.log('data',data)
+        }).pipe(takeUntil(this.destroy$)).subscribe(data=>{
+          // LoggerService.log('data',data)
+          this.collaboratorArray=data['data']['details']
           error=>{
             LoggerService.error('error',error)
           }
       })
+  }
+  // selectOption(email)
+  // {
+  //   this.searchString=email;
+  // }
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
   
 }

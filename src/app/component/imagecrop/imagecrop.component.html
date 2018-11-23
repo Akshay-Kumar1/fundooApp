@@ -1,6 +1,6 @@
 <!-- ********************* Image Cropper Dialog ******************* -->
 <image-cropper [imageChangedEvent]="data" [maintainAspectRatio]="true"
-[aspectRatio]="4 / 3" [resizeToWidth]="" format="png"
+[aspectRatio]="4 / 3" [resizeToWidth]="" format="png" class="crop"
 (imageCropped)="imageCropped($event)">
 </image-cropper>
 <button mat-button style="float:right" (click)="upload()">Upload</button>

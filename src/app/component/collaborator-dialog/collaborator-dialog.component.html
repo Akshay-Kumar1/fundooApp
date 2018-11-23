@@ -31,9 +31,16 @@
   </div>
  <div class="spacing">
     <input contenteditable="true" [(ngModel)]="searchString" (keyup)="search()" 
-    class="fields" 
+    class="fields" [matMenuTriggerFor]='menu'
     placeholder="Person or email to share with">
  </div>
+ <mat-menu #menu='matMenu' style="padding-top:20px">
+   <div *ngFor="let index of collaboratorArray">
+     <button mat-menu-item  (click)="collaborate(index)">
+        {{index.firstName}} <{{index.email}}>
+     </button>
+   </div>
+ </mat-menu>
 </div>
 </div>
 </div>
@@ -42,5 +49,7 @@
 
 <div fxLayout="row" fxLayoutAlign="end">
 <button mat-button (click)="close()">Cancel</button>
-<button mat-button>Save</button>
+<button mat-button (click)="close()">Save</button>
 </div>
+
+<!-- (click)="selectOption(index.email)" -->

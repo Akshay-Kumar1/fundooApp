@@ -123,4 +123,9 @@ removeCheck(data,removedList,body)
 {
   return this.http.jsonPost("/notes/" + data+ "/checklist/" + removedList + "/remove",body)
 }
+
+collaboratorPost(id,body)
+{
+  return this.http.jsonPost('/notes/'+ id +'/AddcollaboratorsNotes',body)
+}
 }

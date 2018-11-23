@@ -1,9 +1,10 @@
 @import "../../../scss/mixins.scss";
+@import "../../../scss/variables.scss";
 
 .card
 {
     border-radius: 8px;
-    flex: 1 1 auto;
+    // flex: 1 1 auto;
 }
 
 .words
@@ -12,11 +13,11 @@
 }
 
 .action{
-    opacity:0;
+    opacity:$zeroOpacity;
 }
 .action:hover
 {
-    opacity:1;
+    opacity:$oneOpacity;
 }
 
 .spacing
@@ -36,15 +37,15 @@
 .hider
 {
     margin-left: 24px;
-    opacity:0;
+    opacity:$zeroOpacity;
 }
 .hider:hover
 {
-    opacity:1;
+    opacity:$oneOpacity;
 }
 .note
 {
-    @include noBorder();
+    @include noBorder;
 }
 .paddingTop
 {
@@ -57,7 +58,13 @@
 .chipStyle
 {
     width: 100px;
-    overflow: hidden !important;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow:ellipsis;
+}
+
+.margin-left-top
+{
+    margin-left:12%;
+    margin-top:20px;
 }

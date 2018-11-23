@@ -1,8 +1,8 @@
 
 <!-- **************** Trash Notes ***************** -->
-<div fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap="30px" style="margin-top:10%">
-        <div *ngFor="let content of array trackBy:val?.id" fxFlex="0 1 calc(30% - 32px)" >
-            <mat-card style="margin-top:4%" [style.backgroundColor]="content.color">
+<div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="20px" style="margin-top:40px">
+        <div *ngFor="let content of array trackBy:val?.id" >
+            <mat-card style="margin-top:30px" [style.backgroundColor]="content.color">
                 <mat-card-title>
                     <div class="words" [innerHTML]="content.title"></div>
                 </mat-card-title>

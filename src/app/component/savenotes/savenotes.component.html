@@ -1,15 +1,17 @@
 <!-- ********************* Saved Cards ******************* -->
-<div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px" style="margin-left:12%" >
+<div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="12px"  fxFlex=100
+class="margin-left-top">
     <div *ngFor="let content of cardsArr | filterLabel:globalSearch trackBy:val?.id ">
         <div [ngClass]="{'grid':!toggle,'list':toggle}">
-            <mat-card style="margin-top:20%" class="card" fxFlex
+            <mat-card style="margin-top:10px" class="card" fxFlex
             [style.backgroundColor]="content.color">
             <div style="float:right">
             <!-- ********************* Pin / Unpin Notes ******************* -->
                 <app-pin [arrayPin]="content" (emitter)="refreshDelete($event)"></app-pin>
             </div>
                 <mat-card-title>
-                    <div class = "words" (click)="openDialog(content)" [innerHTML]="content.title"></div>
+                    <div class = "words" (click)="openDialog(content)" 
+                    [innerHTML]="content.title"></div>
                 </mat-card-title>
                 <mat-card-content>  
                     <div class="words" (click)="openDialog(content)" 
@@ -40,9 +42,10 @@
                         <mat-chip-list selected>
                         <mat-chip class="chipStyle" *ngIf="index.isDeleted==false">
                         <b style="float:left" routerLink="/homepage/labels/{{index.label}}">{{index.label}}</b>
-                        <mat-icon class="hider" 
-                        (click)="removeLabelTag(content.id,index.id)" 
+                        <div style="float:right">
+                        <mat-icon class="hider" (click)="removeLabelTag(content.id,index.id)" 
                         style="cursor:pointer">cancel</mat-icon>
+                        </div>
                         </mat-chip>
                         </mat-chip-list>
                     </div>
@@ -144,6 +147,7 @@
                     </app-more>
                     </div>
                 </div>
+                
             </mat-card>
         </div>
     </div>

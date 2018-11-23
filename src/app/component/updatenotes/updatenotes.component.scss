@@ -7,23 +7,15 @@
 
 .fields
 {
-    @include noBorder();
+    @include noBorder;
     word-break: break-all
 }
 ::ng-deep.mat-dialog-container {
-    display: contents;
-    padding: 0px;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    box-sizing: border-box;
-    overflow: auto;
-    outline: 0;
-    width: $width;
-    height: 100%;
-    min-height: inherit;
-    max-height: inherit;
+    padding: 0px ;
+    // border-top-left-radius: 12px;
+    // border-bottom-left-radius: 12px;
+    // border-top-right-radius: 12px;
+    // border-bottom-right-radius: 12px;
 }
 .spacing
 {
@@ -32,13 +24,13 @@
 
 .note
 {
-    @include noBorder();
+    @include noBorder;
 }
 .hider
 {
-    opacity: 0;
+    opacity: $zeroOpacity;
 }
 .hider:hover
 {
-    opacity: 1;
+    opacity: $oneOpacity;
 }

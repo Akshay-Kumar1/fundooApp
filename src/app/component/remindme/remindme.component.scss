@@ -1,9 +1,12 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
 .mat-menu-item {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    cursor: pointer;
+    @include cursor;
     outline: 0;
     border: none;
     -webkit-tap-highlight-color: transparent;
@@ -22,5 +25,5 @@
 
 .timeSet
 {
-    cursor: pointer
+    @include cursor;
 }

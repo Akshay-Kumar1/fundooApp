@@ -10,7 +10,7 @@
 .sidenav 
 {
   width: 190px;
-  margin: 50px 0px 0px 0px;
+  margin: 55px 0px 0px 0px;
 }
 
 .tool
@@ -54,7 +54,7 @@
 
 .background
 {
-  background-color: black
+  background-color: rgb(5, 5, 5)
 }
 .space1 {
   padding-left: 30px;
@@ -67,12 +67,12 @@
 
 input:focus 
 {
-  background-color:whitesmoke;
+  background-color:rgb(245, 245, 245);
 } 
 
 .icon
 {
-  cursor: pointer;
+ @include cursor;
   margin-left: 5%;
 }
 .mat-nav-list
@@ -86,7 +86,7 @@ input:focus
 }
 .pointer
 {
-  cursor:pointer;
+  @include cursor;
 }
 .profilebutton
 {
@@ -145,8 +145,7 @@ color: rgb(255, 250, 250);
 }
 .title
 {
-  overflow: hidden !important;
-  white-space: nowrap;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
   width: 150px;
 }

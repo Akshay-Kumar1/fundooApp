@@ -12,12 +12,12 @@ mat-card
 
 .color1
 {
-  color:$colors;
-  font-size: $fontSize();
+  color:$redColor;
+  font-size: $fontSize;
 }
 .color2
 {
-  color:$color;
+  color:$blueColor;
   font-size: $fontSize;
 }
 .color3

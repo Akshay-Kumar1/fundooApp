@@ -1,9 +1,22 @@
-@mixin noBorder()
+@mixin noBorder
 {
     border:none;
     outline: none !important;
     word-wrap: break-word;
     background:transparent;
+}
+@mixin paddingLeft
+{
+    padding-left: 100px;
+}
+
+@mixin paddingTop
+{
+    padding-top: 50px;
+}
+@mixin cursor
+{
+    cursor: pointer;
 }
 
 

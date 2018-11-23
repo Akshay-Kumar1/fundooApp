@@ -1,15 +1,15 @@
-
+@import '../../../scss/mixins.scss';
 .pinnedCards
 {
-    padding-left: 100px;
+    @include paddingLeft;
     padding-top: 20px;
 }
 .otherCards
 {
-    padding-left: 100px;
-    padding-top: 50px;
+    @include paddingLeft;
+   @include paddingTop;
 }
 .spacing
 {
-    padding-top:50px;
+    @include paddingTop;
 }

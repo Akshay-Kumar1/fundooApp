@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter,OnDestroy } from '@angular/core';
 import { HttpService } from '../../core/services/httpService/http.service'
 import { FormControl } from '@angular/forms';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from 'src/app/core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -13,7 +12,7 @@ import { takeUntil } from 'rxjs/operators'
 export class RemindmeComponent implements OnInit,OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
   @Input() noteDetails;
-  @Output() todayEvent = new EventEmitter();
+  @Output() reminderEmit = new EventEmitter();
   @Output() todayEventDateInfo = new EventEmitter();
   private dateInfo:any;
   private dateInfoTomo:any;
@@ -52,12 +51,8 @@ export class RemindmeComponent implements OnInit,OnDestroy {
     }
     this.notesService.reminder(
     this.body).pipe(takeUntil(this.destroy$)).subscribe((result) => {
-      this.todayEvent.emit()
+      this.reminderEmit.emit()
     })
-    error=>
-    {
-      LoggerService.error('error',error);
-    }
   }
 
   /**
@@ -72,13 +67,8 @@ export class RemindmeComponent implements OnInit,OnDestroy {
       "reminder":this.dateInfoTomo 
         }
         this.notesService.reminder(this.body).pipe(takeUntil(this.destroy$)).subscribe((result) => {
-      this.todayEvent.emit()
+      this.reminderEmit.emit()
     })
-    error=>
-    {
-      LoggerService.error('error',error);
-    }
-    
   }
  /**
  * @description : Add Reminder Next Week API
@@ -93,14 +83,8 @@ export class RemindmeComponent implements OnInit,OnDestroy {
       "reminder":this.dateInfoNextWeek 
     }
     this.notesService.reminder(this.body).pipe(takeUntil(this.destroy$)).subscribe((result) => {
-      console.error(result)
-      this.todayEvent.emit()
+      this.reminderEmit.emit()
     })
-    error=>
-    {
-      LoggerService.error('error',error);
-    }
-    
   }
 
   show = true
@@ -131,12 +115,8 @@ export class RemindmeComponent implements OnInit,OnDestroy {
         "reminder": this.dateInfoCustom
       }
       this.notesService.reminder(this.body).pipe(takeUntil(this.destroy$)).subscribe((result) => {
-        this.todayEvent.emit()
+        this.reminderEmit.emit()
       })
-      error=>
-    {
-      LoggerService.error('error',error);
-    }
     
     }else if(timing=='1:00 PM'){
     this.dateInfoCustoms=new Date(date.getFullYear(), date.getMonth(),
@@ -147,12 +127,8 @@ export class RemindmeComponent implements OnInit,OnDestroy {
         "reminder": this.dateInfoCustoms
       }
       this.notesService.reminder(this.body).pipe(takeUntil(this.destroy$)).subscribe((result) => {
-        this.todayEvent.emit()
+        this.reminderEmit.emit()
       })
-      error=>
-    {
-      LoggerService.error('error',error);
-    }
     
     }else if(timing=='6:00 PM'){
     this.reminderInfoCustom=new Date(date.getFullYear(), 
@@ -164,12 +140,8 @@ export class RemindmeComponent implements OnInit,OnDestroy {
       }
       this.notesService.reminder(this.body).pipe(takeUntil(this.destroy$)).subscribe((result) => {
 
-        this.todayEvent.emit()
+        this.reminderEmit.emit()
       })
-      error=>
-    {
-      LoggerService.error('error',error);
-    }
     
     }else if(timing=='9:00 PM'){
     this.remindersInfoCustom=new Date(date.getFullYear(), 
@@ -180,12 +152,8 @@ export class RemindmeComponent implements OnInit,OnDestroy {
         "reminder": this.remindersInfoCustom
       }
       this.notesService.reminder(this.body).pipe(takeUntil(this.destroy$)).subscribe((result) => {
-        this.todayEvent.emit()
+        this.reminderEmit.emit()
       })
-      error=>
-      {
-        LoggerService.error('error',error);
-      }
       
     }else if(timing==this.reminderBody.time){
       var x;
@@ -203,13 +171,9 @@ export class RemindmeComponent implements OnInit,OnDestroy {
           "reminder": this.remindersInfoCustoms
         }
         this.notesService.reminder(this.body).pipe(takeUntil(this.destroy$)).subscribe((result) => {
-          this.todayEvent.emit()
+          this.reminderEmit.emit()
         })
-        error=>
-    {
-      LoggerService.error('error',error);
-    }
-    
+
       }else if(ampm=='PM' || ampm=='pm'){
         this.remindersInfosCustoms=new Date(date.getFullYear(), 
         date.getMonth(), date.getDate(), hour+12, minute, 0, 0)   
@@ -219,12 +183,8 @@ export class RemindmeComponent implements OnInit,OnDestroy {
           "reminder": this.remindersInfosCustoms
         }
         this.notesService.reminder(this.body).pipe(takeUntil(this.destroy$)).subscribe((result) => {
-          this.todayEvent.emit()
+          this.reminderEmit.emit()
         })
-        error=>
-    {
-      LoggerService.error('error',error);
-    }
       }
     }
   }

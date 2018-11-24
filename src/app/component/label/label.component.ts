@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { DataserviceService } from '../../core/services/dataservice/dataservice.service';
 import { MatDialog } from '@angular/material';
 import { DeletedialogComponent } from '../deletedialog/deletedialog.component';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -60,9 +59,6 @@ export class LabelComponent implements OnInit , OnDestroy
         this.labelsEmit.emit({ 
         })
       })
-    error => {
-      LoggerService.error('error',error);
-    }
   }
  /**
  * @description : Create Label API
@@ -83,9 +79,6 @@ export class LabelComponent implements OnInit , OnDestroy
         this.labelsEmit.emit({
         })
       })
-    error => {
-      LoggerService.error('error',error);
-    }
   }
   else alert('Warning..! Duplicate Label') 
 }
@@ -104,9 +97,6 @@ export class LabelComponent implements OnInit , OnDestroy
       this.dataService.observeLabel(true);
       this.getLabels()
     })
-    error => {
-      LoggerService.error('error',error);
-    }
    }
   });
   }
@@ -126,10 +116,6 @@ export class LabelComponent implements OnInit , OnDestroy
       {
         this.getLabels()
      })
-    error => 
-    {
-      LoggerService.error('error',error);
-    }
   }
   edit:any;
   editToggle(id)

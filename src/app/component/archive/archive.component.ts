@@ -1,6 +1,18 @@
+/*********************************************************************************
+*  Execution       :   1. default node 
+*        
+*  Purpose         : Archived Notes
+* 
+*  Description    
+* 
+*  @description    : details about code
+*  @author         : Akshay Kumar <akshayk24396@gmail.com>
+*  @since          : 20-10-2018
+*
+**************************************************************************************/
+
 import { Component, OnInit, Input,OnDestroy} from '@angular/core';
 import { HttpService } from '../../core/services/httpService/http.service';
-import {LoggerService} from '../../core/services/logger/logger.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -36,10 +48,7 @@ export class ArchiveComponent implements OnInit , OnDestroy {
         }
         this.array=this.newArray
       })
-      error=>
-      {
-        LoggerService.error('error',error);
-      }
+     
   }
   /**
  * @description : Get Archives Event Emitter

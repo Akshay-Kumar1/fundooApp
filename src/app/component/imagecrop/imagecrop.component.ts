@@ -4,7 +4,6 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { HttpService } from '../../core/services/httpService/http.service';
 import { DataserviceService } from '../../core/services/dataservice/dataservice.service';
 import { environment } from '../../../environments/environment'
-import { LoggerService } from '../../core/services/logger/logger.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
 @Component({
@@ -46,9 +45,6 @@ export class ImagecropComponent implements OnInit , OnDestroy{
   localStorage.setItem("imageUrl", res['status'].imageUrl);
   this.dialogRefPic.close()
   this.dataService.changeMsg(true);
-  }, error => { 
-    LoggerService.error('error',error);
-  
   }) 
   }
   ngOnDestroy() {

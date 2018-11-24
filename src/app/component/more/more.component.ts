@@ -1,7 +1,6 @@
 import { Component, OnInit ,Input, EventEmitter,Output,OnDestroy} from '@angular/core';
 import { HttpService } from '../../core/services/httpService/http.service'
 import { MatSnackBar } from '@angular/material';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -39,10 +38,7 @@ export class MoreComponent implements OnInit , OnDestroy{
           this.trash.emit({
     
           })
-    })
-    error=>{
-      LoggerService.error('error',error);
-    } 
+    }) 
     }
       ngOnInit() 
       {
@@ -59,10 +55,6 @@ export class MoreComponent implements OnInit , OnDestroy{
               }
               this.labelArray=array; 
               })
-              error => 
-              {
-                LoggerService.error('error',error);
-              }
       }
   
  /**
@@ -83,10 +75,7 @@ export class MoreComponent implements OnInit , OnDestroy{
 
       })
     })
-    error=>
-    {
-      LoggerService.error('error',error);
-    }
+
   }
   ngOnDestroy() {
     this.destroy$.next(true);

@@ -3,7 +3,6 @@ import { FormControl, Validators } from '@angular/forms'
 import { HttpService } from '../../core/services/httpService/http.service'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { UserserviceService } from '../../core/services/userService/userservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -79,12 +78,9 @@ export class LoginComponent implements OnInit , OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(data=>
         {
-            LoggerService.log('data',data)
         })
-
       },
         error => {
-          LoggerService.error('error',error);
           this.snackBar.open("Email/Password Incorrect", 'Failed', {
             duration: 1500
           })

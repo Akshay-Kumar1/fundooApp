@@ -2,7 +2,6 @@ import { Component, OnInit , OnDestroy} from '@angular/core';
 import { HttpService } from '../../core/services/httpService/http.service' 
 import { DeletenoteComponent } from '../deletenote/deletenote.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -39,9 +38,7 @@ export class BinComponent implements OnInit , OnDestroy{
       this.array=newArr
 
     })
-    error => {
-      LoggerService.error('error',error);
-    }
+   
   }
   /**
  * @description : Delete Forever API
@@ -62,9 +59,6 @@ export class BinComponent implements OnInit , OnDestroy{
     }).subscribe(data => {  
       this.getDeleted()
     })
-    error => {
-      LoggerService.error('error',error);
-    }
   }
   })
   }
@@ -87,9 +81,7 @@ this.notesServices.restoreNotes(body)
       })
       this.getDeleted()
 })
-error=>{
-  LoggerService.error('error',error);
-} 
+
 }
 ngOnDestroy() {
   this.destroy$.next(true);

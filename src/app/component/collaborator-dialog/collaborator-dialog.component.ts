@@ -3,7 +3,6 @@ import { environment } from 'src/environments/environment';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { UpdatenotesComponent, DialogData } from '../updatenotes/updatenotes.component';
 import { UserserviceService } from 'src/app/core/services/userService/userservice.service';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
 import { NoteserviceService } from 'src/app/core/services/noteService/noteservice.service';
@@ -13,7 +12,8 @@ import { NoteserviceService } from 'src/app/core/services/noteService/noteservic
   styleUrls: ['./collaborator-dialog.component.scss']
 })
 export class CollaboratorDialogComponent implements OnInit , OnDestroy { 
-  constructor(public dialogRef: MatDialogRef<CollaboratorDialogComponent>,public dialog:MatDialog,
+  constructor(public dialogRef: MatDialogRef<CollaboratorDialogComponent>,
+    public dialog:MatDialog,
     private userService: UserserviceService,private notesService:NoteserviceService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
@@ -31,6 +31,9 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   {
 
   }
+  /**
+ * @description : Close Dialog
+ */
   close()
   {
     this.dialogRef.close()
@@ -43,6 +46,9 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
     });
   }
 
+  /**
+ * @description : Collaborator API
+ */
   collaborate(require)
   {
     this.notesService.collaboratorPost(this.data.id,
@@ -53,30 +59,22 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
       "userId":require.userId
     })
       .pipe(takeUntil(this.destroy$)).subscribe(data=>{
-        LoggerService.log('data',data)
-        error=>
-        {
-          LoggerService.error('error',error)
-        }
     })
   }
+
+ /**
+ * @description : Search Users List API
+ */
+
   search()
   {
       this.userService.usersSearch(
         {
         "searchWord":this.searchString
         }).pipe(takeUntil(this.destroy$)).subscribe(data=>{
-          // LoggerService.log('data',data)
           this.collaboratorArray=data['data']['details']
-          error=>{
-            LoggerService.error('error',error)
-          }
       })
   }
-  // selectOption(email)
-  // {
-  //   this.searchString=email;
-  // }
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

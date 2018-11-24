@@ -3,7 +3,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { HttpService } from '../../core/services/httpService/http.service'
 import { FormControl, FormGroup , Validators} from '@angular/forms'
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { LoggerService} from '../../core/services/logger/logger.service';
 import { UserserviceService } from '../../core/services/userService/userservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -125,9 +124,7 @@ private hide=true;
             duration:1500
           })
         })
-        error => {
-          LoggerService.error('error',error);
-      }
+       
       }
     
     /**

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input ,Output,EventEmitter,OnDestroy} from '@angular/core';
 import { HttpService } from '../../core/services/httpService/http.service'
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -60,9 +59,6 @@ export class ColorpaletteComponent implements OnInit , OnDestroy{
         (data) => {
           this.colorRefresh.emit({
           })
-        },
-        error => {
-          LoggerService.error('error',error);
         })
      }
  }

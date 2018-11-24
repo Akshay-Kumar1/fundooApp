@@ -46,6 +46,9 @@
 </div>
 <div class="padding">
 </div>
+<div *ngFor="let index of collaboratorArray">
+    {{index.firstName}}
+</div>
 
 <div fxLayout="row" fxLayoutAlign="end">
 <button mat-button (click)="close()">Cancel</button>

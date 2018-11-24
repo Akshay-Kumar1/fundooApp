@@ -2,7 +2,6 @@ import { Component, OnInit , OnDestroy } from '@angular/core';
 import { FormControl , Validators} from '@angular/forms'
 import { HttpService } from '../../core/services/httpService/http.service'
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { UserserviceService } from '../../core/services/userService/userservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -39,9 +38,6 @@ export class ForgotPasswordComponent implements OnInit , OnDestroy{
               duration:1500
             })
           })
-          error => {
-            LoggerService.error('error',error);
-        }
         }
   ngOnInit() {}
   ngOnDestroy() {

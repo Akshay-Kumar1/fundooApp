@@ -1,6 +1,5 @@
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { HttpService } from '../../core/services/httpService/http.service'
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NotesInfo } from 'src/app/core/models/notes-info';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
@@ -39,12 +38,8 @@ export class CardtemplateComponent implements OnInit , OnDestroy
             this.array.push(noteArray[i])
           }
         }
-        // console.error(this.array)
        
       })
-    error => {
-      LoggerService.error('error',error)
-    }
   }
     /**
  * @description : Get Pinned Notes API
@@ -63,12 +58,9 @@ export class CardtemplateComponent implements OnInit , OnDestroy
           }
         }
       })
-    error => {
-      LoggerService.error('error',error);
-    }
   }
   /**
- * @description : Emitter
+ * @description :Event Emitter
  */
   cardsList() 
   {

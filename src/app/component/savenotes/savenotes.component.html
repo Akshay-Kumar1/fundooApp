@@ -133,7 +133,7 @@ class="margin-left-top">
                 <div class="action">
                     <div fxLayout="row" fxLayoutAlign="space-between start">
                     <app-remindme [noteDetails]="content" 
-                        (todayEvent)="refreshDelete($event)"></app-remindme>
+                        (reminderEmit)="refreshDelete($event)"></app-remindme>
                     <app-collaborator [collaboratorData]="content"></app-collaborator>
                     <app-colorpalette [colorChange]="content" 
                         (colorRefresh)="refreshDelete($event)">

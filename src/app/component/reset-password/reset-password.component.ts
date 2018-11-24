@@ -3,7 +3,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, Validators } from '@angular/forms'
 import { HttpService } from '../../core/services/httpService/http.service'
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { UserserviceService } from '../../core/services/userService/userservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -38,7 +37,6 @@ export class ResetPasswordComponent implements OnInit,OnDestroy {
         duration:1500
       })
     }, error => {
-      LoggerService.error('error',error);
       this.snackBar.open("Error",'Retry',{
         duration:1500
       })

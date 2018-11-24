@@ -15,6 +15,10 @@ export class CollaboratorComponent implements OnInit {
   {
 
   }
+
+  /**
+ * @description : Dialog Popup for Collaborator
+ */
   dialogOpen()
   {
       const dialogRef = this.dialog.open(CollaboratorDialogComponent, {

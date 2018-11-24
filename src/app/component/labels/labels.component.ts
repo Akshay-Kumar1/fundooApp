@@ -1,7 +1,6 @@
 import { Component, OnInit, Input , OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpService } from '../../core/services/httpService/http.service'
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -36,10 +35,6 @@ export class LabelsComponent implements OnInit , OnDestroy {
         this.labelList=data['data']['data']
       
       })
-      error => 
-      {
-        LoggerService.error('error',error);
-      }
   }
   ngOnDestroy() {
     this.destroy$.next(true);

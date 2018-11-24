@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild , OnDestroy, ElementRef,Input} from '@angular/core';
 import { HttpService } from '../../core/services/httpService/http.service'
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -54,10 +53,6 @@ export class NotesComponent implements OnInit , OnDestroy {
     this.labelArray=array; 
     this.eventEmit.emit()
     })
-    error => 
-    {
-      LoggerService.error('error',error);
-    }
   }
   /**
  * @description : Toggles for hide and show
@@ -107,7 +102,6 @@ export class NotesComponent implements OnInit , OnDestroy {
         this.move = false;
         this.rem='';
         this.notesEmit.emit(data['status'].details)
-        LoggerService.log('data',data);
         this.remVar=''
       },error => {
         this.labelId=[]

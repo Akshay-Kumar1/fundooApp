@@ -1,7 +1,6 @@
 import { Component, OnInit , OnDestroy} from '@angular/core';
 import { HttpService } from '../../core/services/httpService/http.service'
 import { DataserviceService } from '../../core/services/dataservice/dataservice.service';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -38,9 +37,6 @@ export class SearchcomponentComponent implements OnInit , OnDestroy {
           }
         }
       })
-    error => {
-      LoggerService.error('error',error);
-    }
   }
   ngOnDestroy() {
     this.destroy$.next(true);

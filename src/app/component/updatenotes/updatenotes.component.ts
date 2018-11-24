@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject, Output ,EventEmitter,ViewChild,ElementRef,OnDestroy} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 import { SavenotesComponent } from '../savenotes/savenotes.component';
-import { HttpService } from '../../core/services/httpService/http.service'
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
+import { HttpService } from '../../core/services/httpService/http.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
@@ -43,10 +42,6 @@ export class UpdatenotesComponent implements OnInit , OnInit {
     .subscribe(data=>{
       this.remList=data['data']['data']
     })
-    error=>
-    {
-      LoggerService.error('error',error);
-    }
 
     if (this.data['noteCheckLists'].length>0){
       this.checklist=true;
@@ -77,7 +72,7 @@ export class UpdatenotesComponent implements OnInit , OnInit {
 
         })
       error => {
-        LoggerService.error('error',error);
+        
         this.dialogRef.close();
       }
       this.dialogRef.close();
@@ -97,7 +92,7 @@ export class UpdatenotesComponent implements OnInit , OnInit {
 
       }
       error => {
-        LoggerService.error(error);
+        
         this.dialogRef.close();
 
       }
@@ -117,10 +112,6 @@ export class UpdatenotesComponent implements OnInit , OnInit {
     .pipe(takeUntil(this.destroy$))
     .subscribe(data=>{
     })
-    error=>
-    {
-      LoggerService.error('error',error);
-    }
   }
   /**
  * @description : Remove Reminders for update Notes API
@@ -135,10 +126,7 @@ export class UpdatenotesComponent implements OnInit , OnInit {
     .subscribe(data=>{
       
     })
-    error=>
-    {
-      LoggerService.error('error',error);
-    }
+
   } 
   /**
  * @description : checking staus of checkList

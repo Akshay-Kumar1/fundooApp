@@ -9,7 +9,6 @@ import { MatDialog } from '@angular/material'
 import { DataserviceService } from '../../core/services/dataservice/dataservice.service';
 import { environment } from 'src/environments/environment';
 import { ImagecropComponent } from 'src/app/component/imagecrop/imagecrop.component'; 
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from 'src/app/core/services/noteService/noteservice.service';
 import { UserserviceService } from '../../core/services/userService/userservice.service';
 import { Subject } from 'rxjs';
@@ -53,9 +52,6 @@ removeToken() {
         localStorage.removeItem('userId')
         this.router.navigateByUrl('/login')
       })
-    error => {
-      LoggerService.error('error',error);
-    }
   }
   email: any;
   firstName: any;
@@ -124,9 +120,6 @@ removeToken() {
         this.labelsEmit.emit({
         })
       })
-    error => {
-      LoggerService.error('error',error);
-    }
   }
   /**
  * @description : Routing to labelByName

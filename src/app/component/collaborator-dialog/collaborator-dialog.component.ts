@@ -40,13 +40,13 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   close()
   {
     this.dialogRef.close()
-    const dialogRef = this.dialog.open(UpdatenotesComponent, {
-      width:'450px',height:'auto',
-      data:this.data
-    });
-    dialogRef.afterClosed().subscribe(result => {
+    // const dialogRef = this.dialog.open(UpdatenotesComponent, {
+    //   width:'450px',height:'auto',
+    //   data:this.data
+    // });
+    // dialogRef.afterClosed().subscribe(result => {
 
-    });
+    // });
   }
 
   /**

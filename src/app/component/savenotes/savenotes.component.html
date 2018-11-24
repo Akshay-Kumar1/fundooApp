@@ -1,5 +1,5 @@
 <!-- ********************* Saved Cards ******************* -->
-<div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="12px"  fxFlex=100
+<div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="12px"
 class="margin-left-top">
     <div *ngFor="let content of cardsArr | filterLabel:globalSearch trackBy:val?.id ">
         <div [ngClass]="{'grid':!toggle,'list':toggle}">
@@ -132,7 +132,6 @@ class="margin-left-top">
                 <div fxLayout="row wrap" fxLayoutAlign="start">
                 <div *ngFor="let index of content.collaborators" class="collaborators">
                     <button mat-mini-fab matTooltip="{{index.firstName}}" color="basic">{{index.firstName | slice:0:1 }}
-                        
                     </button>
                 </div>
             </div>

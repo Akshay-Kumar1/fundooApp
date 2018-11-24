@@ -1,5 +1,6 @@
-<div fxLayout="column" fxLayoutWrap fxLayoutAlign="center center" style="margin-top:100px">
+<div *ngIf='display' fxLayout="column" fxLayoutWrap fxLayoutAlign="center center" style="margin-top:100px">
   <!-- ******************* Note Card ******************* -->
+  
   <mat-card class="card" fxFlex *ngIf="show">
     <div style="float:left" (click)="toggle()">Take a note...</div>
     <div style="float:right" fxLayout="row" fxLayoutAlign="space-between">
@@ -75,9 +76,10 @@
          <div>
             <app-remindme [noteDetails]='id' (todayEventDateInfo)="reminderEvent($event)"></app-remindme>
          </div>
-         <div>
+         <div *ngIf="display" (click)="collaboratorToggle()">
             <mat-icon style="cursor:pointer" matTooltip="Collaborator">person_add</mat-icon>
-         </div> 
+         </div>
+
           <div>
               <app-colorpalette [colorChange]="content" (colorEmit)=colorEntry($event)></app-colorpalette>
           </div>
@@ -94,6 +96,76 @@
     </mat-card-content>
   </mat-card>
 </div>
-
-
+<div *ngIf='!display' fxLayout="column" fxLayoutWrap fxLayoutAlign="center center" style="margin-top:100px">
+<mat-card class="collaboratorCard">
+    <b>Collaborators</b>
+    <hr>
+    <div fxLayout="column">
+    <div >
+    <div fxLayout="row" fxLayoutAlign="start end">
+    <div>
+    <button mat-mini-fab [ngStyle]="{'background-image':'url(' +profilePic+ ')',
+    'background-size':'cover'}">
+    </button>
+    </div>
+    <div>
+      <div fxLayout="column">
+      <div class="space">
+          {{firstName}} {{lastName}} (owner)
+      </div>
+      <div class="space">
+        <div class="fonts">{{email}}</div>
+      </div>
+    
+      </div>
+    </div>
+    
+    </div>
+    </div>
+    <div class="column-gap">
+      <div style="margin-top:15px" *ngFor="let index of collabArray">
+      <div fxLayout="row">
+      <div fxFlex=10>
+          <button mat-mini-fab color="primary">{{index.firstName | slice :0:1}} </button>
+      </div>
+      <div fxFlex=80 fxLayout="column" class="space">
+        <div>{{index.firstName}} {{index.lastName}}</div>
+        <div class="fonts">{{index.email}}</div>
+      </div>
+     <div fxFlex=10 fxLayout="row" fxLayoutAlign="end"> 
+       <mat-icon style="cursor:pointer" matTooltip="remove"
+       (click)="removeCollaborator(index.userId)">cancel</mat-icon></div>
+    </div>
+    </div>
+    <div style="padding-top:15px">
+      </div>
+    <button mat-mini-fab disabled> <mat-icon>person_add</mat-icon> </button>
+    <span class="spacing">
+        <input contenteditable="true" [(ngModel)]="searchString" (keyup)="search()" 
+        class="fields" [matMenuTriggerFor]='menu'
+        placeholder="Person or email to share with">
+    </span>
+    <span style="float:right;cursor:pointer" matTooltip="Save" >
+      <mat-icon>done</mat-icon></span>
+    
+     <mat-menu #menu='matMenu' style="padding-top:20px">
+       <div *ngFor="let index of collaboratorArray">
+         <button mat-menu-item  (click)="collaborate(index)" (click)="select(index.email)">
+            {{index.firstName}} <{{index.email}}>
+         </button>
+       </div>
+     </mat-menu>
+    
+    </div>
+    </div>
+    <div class="padding">
+    </div>
+    
+    <div fxLayout="row" fxLayoutAlign="end">
+    <button mat-button (click)="collaboratorToggle()">Cancel</button>
+    <button mat-button >Save</button>
+    </div>
+    
+  </mat-card> 
+</div>
 

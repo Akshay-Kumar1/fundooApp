@@ -11,12 +11,12 @@ export class HttpService {
 
   // <<<----------------------Notes Services---------------------->>>
   formEncoded(url,body){
-    // let access_token=localStorage.getItem('token')
+    
     url = environment.baseUrl+url;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
-        // 'Authorization': access_token
+   
       })
     };
     return this.http.post(url,this.getFormUrlEncoded(body),httpOptions)
@@ -25,11 +25,11 @@ export class HttpService {
   jsonGet(url)
   {
     url = environment.baseUrl + url;
-    // let access_token=localStorage.getItem('token')
+  
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // 'Authorization': access_token
+        
       })
     };
     return this.http.get(url,httpOptions);
@@ -37,11 +37,11 @@ export class HttpService {
   jsonDelete(url)
   {
     url = environment.baseUrl + url;
-    // let access_token=localStorage.getItem('token')
+    
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        // 'Authorization': access_token
+        
       })
     };
     return this.http.delete(url);
@@ -61,11 +61,11 @@ getService(url) {
 jsonPost(url,body)
 {
   url = environment.baseUrl + url;
-  // let access_token=localStorage.getItem('token')
+
   const httpOptions = {
     headers: new HttpHeaders({ 
       'Content-Type': 'application/json',
-      // 'Authorization': access_token
+     
     })
   };
   return this.http.post(url,body,httpOptions);
@@ -73,23 +73,23 @@ jsonPost(url,body)
 
 postLogout(url) {
   url = environment.baseUrl + url;
-  // let token=localStorage.getItem('token')
+  
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      // 'Authorization': token
+    
     })
   };
   return this.http.post(url, {}, httpOptions)
 }
 
 resetConfig(url, body) {
-  // let accessToken = localStorage.getItem('token');
+  
   url = environment.baseUrl + url;
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
-      // 'Authorization': accessToken
+    
     })
   }
   return this.http.post(url, this.getFormUrlEncoded(body), httpOptions)
@@ -97,11 +97,11 @@ resetConfig(url, body) {
 
 postReset(url,body) {
   url = environment.baseUrl+url;
-  // let access_token=localStorage.getItem('token')
+
   const httpOptions = {
     headers: new HttpHeaders({
       "content-type": "application/json",
-      // 'Authorization': access_token
+     
     })
   }
   return this.http.post(url,body,httpOptions);
@@ -113,7 +113,6 @@ httpAddImage(url,body,token){
   var httpOptions={
     headers:new HttpHeaders({
 
-    //  'Authorization':token
     })
   };
   return this.http.post(url,body,httpOptions)

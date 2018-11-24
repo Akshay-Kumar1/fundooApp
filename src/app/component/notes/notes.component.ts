@@ -3,6 +3,7 @@ import { HttpService } from '../../core/services/httpService/http.service'
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -33,10 +34,14 @@ export class NotesComponent implements OnInit , OnDestroy {
   data: any;
   rem:any;
   constructor(private myHttpService: HttpService,private notesService:NoteserviceService) { }
-
   /**
  * @description : Get Labels API
  */
+firstName = localStorage.getItem('firstName')
+email = localStorage.getItem('email')
+lastName = localStorage.getItem('lastName')
+image = localStorage.getItem('imageUrl')
+profilePic = environment.profilePicUrl + this.image;
   ngOnInit() 
   {
     this.notesService.labelsPrint()
@@ -54,12 +59,18 @@ export class NotesComponent implements OnInit , OnDestroy {
     this.eventEmit.emit()
     })
   }
+
   /**
  * @description : Toggles for hide and show
  */
   toggle() 
   {
     this.show = !this.show
+  }
+  public display: boolean = true;
+  collaboratorToggle()
+  {
+    this.display=!this.display
   }
   togg() 
   {

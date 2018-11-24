@@ -53,7 +53,7 @@ export class LabelComponent implements OnInit , OnDestroy
           var A=a.label.toLowerCase(),B=b.label.toLowerCase()
           if(A < B) return -1;
           if(A > B ) return 1; 
-           return 0;
+           
         })
         this.labelArray=array;
         this.labelsEmit.emit({ 

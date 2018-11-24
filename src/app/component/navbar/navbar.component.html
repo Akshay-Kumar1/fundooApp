@@ -46,9 +46,11 @@
     <div fxFlex.lg="10%" fxFlex.md="13%" fxFlex.sm="10%" fxFlex.xs="30%" fxLayout="row" fxLayoutAlign="space-around center">
     <div  fxFlex.lg="50%" fxFlex.xs="50%">
       <i class="material-icons" matTooltip="List View" style="cursor:pointer"
-       (click)="viewToggle()" *ngIf="gridObj == 0">view_stream</i>
+       (click)="viewToggle()" *ngIf="gridObj == 0" fxShow = "true" fxHide.sm = "true"
+       fxHide.xs = "true">view_stream</i>
       <i class="material-icons" matTooltip="Grid View" style="cursor:pointer"
-       (click)="view()" *ngIf="gridObj == 1">view_module</i>
+       (click)="view()" *ngIf="gridObj == 1" fxShow = "true" fxHide.sm = "true"
+       fxHide.xs = "true">view_module</i>
     </div>
 
 

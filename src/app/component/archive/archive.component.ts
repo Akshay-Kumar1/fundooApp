@@ -42,7 +42,6 @@ export class ArchiveComponent implements OnInit , OnDestroy {
     .pipe(takeUntil(this.destroy$))
     .subscribe(data=>{
       this.newArray=[]
-
         for (let i = 0; i < data['data']['data'].length ; i++) {  
           this.newArray.push(data['data']['data'][i])
         }

@@ -6,6 +6,7 @@ import { UserserviceService } from 'src/app/core/services/userService/userservic
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
 import { NoteserviceService } from 'src/app/core/services/noteService/noteservice.service';
+import { LoggerService } from 'src/app/core/services/logger/logger.service';
 @Component({
   selector: 'app-collaborator-dialog',
   templateUrl: './collaborator-dialog.component.html',
@@ -17,7 +18,7 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
     private userService: UserserviceService,private notesService:NoteserviceService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
-
+  @Output() collabEmit=new EventEmitter()
   collaboratorArray:any=[]
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -27,9 +28,11 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   image = localStorage.getItem('imageUrl')
   profilePic = environment.profilePicUrl + this.image;
   searchString:any=[]
+  collabArray:any=[]
   ngOnInit() 
   {
-
+     for(let i=0 ; i < this.data['collaborators'].length; i++)
+      this.collabArray.push(this.data['collaborators'][i])
   }
   /**
  * @description : Close Dialog
@@ -51,6 +54,7 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
  */
   collaborate(require)
   {
+
     this.notesService.collaboratorPost(this.data.id,
     {
       "firstName":require.firstName,
@@ -75,6 +79,22 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
           this.collaboratorArray=data['data']['details']
       })
   }
+
+  removeCollaborator(userId)
+  {
+      this.notesService.deleteCollaborator(this.data.id,userId).subscribe(data=>{
+        LoggerService.log('data',data),
+        error=>
+        {
+            LoggerService.error('error',error)
+        }
+      })
+  }
+  select(email)
+  {
+    this.searchString=email;
+  }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

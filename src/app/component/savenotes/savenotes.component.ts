@@ -24,6 +24,7 @@ private body:any={}
 private  newArray=[]
 private  labelName:any;
 private  today=new Date();
+private  collabArray=[];
 private  tomorrow=new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate()+1);
 
   constructor(private dialog:MatDialog,private myHttpService:HttpService , private notesService:NoteserviceService

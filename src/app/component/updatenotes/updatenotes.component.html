@@ -59,6 +59,12 @@
     </mat-chip-list>
 </div>
 </div>
+<div fxLayout="row wrap" fxLayoutAlign="start">
+    <div *ngFor="let index of data.collaborators">
+        <button mat-mini-fab color="basic">{{index.firstName | slice:0:1 }}
+        </button>
+    </div>
+</div>
 <!-- ********************* Selector Icons for Update Notes ******************* -->
 <div fxLayout="row" fxLayoutAlign="space-between start">
     <app-remindme [noteDetails]="data"></app-remindme>

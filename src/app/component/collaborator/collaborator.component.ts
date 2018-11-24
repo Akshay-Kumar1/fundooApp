@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 import { MatDialog } from '@angular/material';
 
@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material';
 export class CollaboratorComponent implements OnInit {
   @Input() collaboratorData
   constructor(private dialog:MatDialog) { }
-
+  @Output() collabEvent = new EventEmitter();
   ngOnInit() 
   {
 
@@ -26,6 +26,7 @@ export class CollaboratorComponent implements OnInit {
         data:this.collaboratorData
       });
       dialogRef.afterClosed().subscribe(result => {
+        this.collabEvent.emit();
       });
   }
 

@@ -20,34 +20,46 @@
 
   </div>
 </div>
-<div>
-</div>
+
 </div>
 </div>
 <div class="column-gap">
+  <div style="margin-top:15px" *ngFor="let index of collabArray">
   <div fxLayout="row">
-  <div>
-      <button mat-mini-fab disabled> <mat-icon>person_add</mat-icon> </button>
+  <div fxFlex=10>
+      <button mat-mini-fab color="primary">{{index.firstName | slice :0:1}} </button>
   </div>
- <div class="spacing">
+  <div fxFlex=80 fxLayout="column" class="space">
+    <div>{{index.firstName}} {{index.lastName}}</div>
+    <div class="fonts">{{index.email}}</div>
+  </div>
+ <div fxFlex=10 fxLayout="row" fxLayoutAlign="end"> 
+   <mat-icon style="cursor:pointer" matTooltip="remove"
+   (click)="removeCollaborator(index.userId)">cancel</mat-icon></div>
+</div>
+</div>
+<div style="padding-top:15px">
+  </div>
+<button mat-mini-fab disabled> <mat-icon>person_add</mat-icon> </button>
+<span class="spacing">
     <input contenteditable="true" [(ngModel)]="searchString" (keyup)="search()" 
     class="fields" [matMenuTriggerFor]='menu'
     placeholder="Person or email to share with">
- </div>
+</span>
+<span style="float:right;cursor:pointer" matTooltip="Save" >
+  <mat-icon>done</mat-icon></span>
+
  <mat-menu #menu='matMenu' style="padding-top:20px">
    <div *ngFor="let index of collaboratorArray">
-     <button mat-menu-item  (click)="collaborate(index)">
+     <button mat-menu-item  (click)="collaborate(index)" (click)="select(index.email)">
         {{index.firstName}} <{{index.email}}>
      </button>
    </div>
  </mat-menu>
-</div>
+
 </div>
 </div>
 <div class="padding">
-</div>
-<div *ngFor="let index of collaboratorArray">
-    {{index.firstName}}
 </div>
 
 <div fxLayout="row" fxLayoutAlign="end">
@@ -56,3 +68,4 @@
 </div>
 
 <!-- (click)="selectOption(index.email)" -->
+

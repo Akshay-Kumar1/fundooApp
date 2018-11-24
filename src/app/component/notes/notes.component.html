@@ -76,7 +76,7 @@
             <app-remindme [noteDetails]='id' (todayEventDateInfo)="reminderEvent($event)"></app-remindme>
          </div>
          <div>
-            <app-collaborator></app-collaborator>
+            <mat-icon style="cursor:pointer" matTooltip="Collaborator">person_add</mat-icon>
          </div> 
           <div>
               <app-colorpalette [colorChange]="content" (colorEmit)=colorEntry($event)></app-colorpalette>

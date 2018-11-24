@@ -129,12 +129,20 @@ class="margin-left-top">
                         </mat-chip-list>
                     </div>
                 </div>
+                <div fxLayout="row wrap" fxLayoutAlign="start">
+                <div *ngFor="let index of content.collaborators" class="collaborators">
+                    <button mat-mini-fab matTooltip="{{index.firstName}}" color="basic">{{index.firstName | slice:0:1 }}
+                        
+                    </button>
+                </div>
+            </div>
                 <!-- ********************* Selector icons for Notes ******************* -->
                 <div class="action">
                     <div fxLayout="row" fxLayoutAlign="space-between start">
                     <app-remindme [noteDetails]="content" 
                         (reminderEmit)="refreshDelete($event)"></app-remindme>
-                    <app-collaborator [collaboratorData]="content"></app-collaborator>
+                    <app-collaborator [collaboratorData]="content" (collabEvent)="refreshDelete($event)">
+                    </app-collaborator>
                     <app-colorpalette [colorChange]="content" 
                         (colorRefresh)="refreshDelete($event)">
                     </app-colorpalette>

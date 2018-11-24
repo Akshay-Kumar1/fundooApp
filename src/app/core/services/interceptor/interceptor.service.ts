@@ -28,11 +28,11 @@ export class InterceptService  implements HttpInterceptor {
 	      }
 	    });
 	   
-	   	LoggerService.log("----request start----");
+	  //  	LoggerService.log("----request start----");
 
-	 	LoggerService.log('request',request);
+	 	// LoggerService.log('request',request);
 
-	 	LoggerService.log("--- request end---");
+	 	// LoggerService.log("--- request end---");
  
 
 	    return next.handle(request)
@@ -40,17 +40,17 @@ export class InterceptService  implements HttpInterceptor {
 	        tap(event => {
 	          if (event instanceof HttpResponse) {
 	             
-	            LoggerService.log(" status : OK");
+	            // LoggerService.log(" status : OK");
 	            // http response status code
-	            LoggerService.log('Event',event.status);
+	            // LoggerService.log('Event',event.status);
 	          }
 	        }, error => {
 	   			// http response status code
-	          	LoggerService.log("----response start----");
-	          	LoggerService.error("status code:");
-	          	LoggerService.error(error.status);
-	          	LoggerService.error(error.message);
-	          	LoggerService.log("---response end---");
+	          	// LoggerService.log("----response start----");
+	          	// LoggerService.error("status code:");
+	          	// LoggerService.error(error.status);
+	          	// LoggerService.error(error.message);
+	          	// LoggerService.log("---response end---");
 
 	        })
 	      )

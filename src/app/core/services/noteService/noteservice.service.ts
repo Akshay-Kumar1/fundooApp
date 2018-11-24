@@ -128,4 +128,8 @@ collaboratorPost(id,body)
 {
   return this.http.jsonPost('/notes/'+ id +'/AddcollaboratorsNotes',body)
 }
+deleteCollaborator(id,userId)
+{
+  return this.http.jsonDelete('/notes/'+ id +'/removeCollaboratorsNotes/'+userId)
+}
 }

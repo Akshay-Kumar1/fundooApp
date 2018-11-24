@@ -1,100 +1,139 @@
 <!-- ********************* Navigaton Bar Components ************************* -->
-<div>
+<div fxLayout="row">
+
   <mat-toolbar class="tool">
+
+    <div fxFlex.lg="5%" fxFlex.md="5%" fxFlex.sm="10%" fxFlex.xs="15%">
     <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
       <mat-icon style="color:black" aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
-    <div class="title">{{name}}</div> 
-    
+  </div>
+
+
+
+    <div *ngIf="clickOnSearch" fxFlex.lg="10" fxFlex.md="10" fxFlex.sm="20" fxFlex.xs="30" >{{name}}</div>
+
     <!-- ********************* Search Bar ************************* -->
+    <div fxFlex.lg="75%" fxFlex.md="40%" fxFlex.sm="50%" class="searchBar" fxLayout="row" fxShow fxHide.xs="true">
+      <!-- <div fxFlex="100%"> -->
+        <div fxFlex.lg="5%" fxFlex.md="10%" fxFlex.sm="10" style="justify-content: center">
+          <i class="material-icons searchIcon">search </i></div>
+        <div fxFlex.lg="90%" fxFlex.md="90%" fxFlex.sm="90" >
+          <input class="search" type="input" [(ngModel)]="globalSearch"
+            (keydown)="keySearch()" (click)="navigate()" placeholder="Search">
+        </div>
+      <!-- </div> -->
+    </div>
+    <div fxFlex.xs="30%"></div>
+    <!------------------------------end of search bar ---------------------------->
+    <!---------------------------------Small search bar ---------------------------->
 
-    <mat-icon class="icon" (click)="navigate()">search</mat-icon>
-        <input class="searchBox" fxHide.xs=1  [(ngModel)]="globalSearch" 
-        (keydown)="keySearch()"  
-        placeholder="Search" autocomplete='on'>
-    <div class="aligns"> 
-      <i class="material-icons" matTooltip="List View" style="cursor:pointer" 
-      (click)="viewToggle()" 
-      *ngIf="gridObj == 0">view_stream</i>
-      <i class="material-icons" matTooltip="Grid View" style="cursor:pointer" 
-      (click)="view()" 
-      *ngIf="gridObj == 1">view_module</i> 
+    <div class="searchBar" fxHide fxHide.lg="true" fxShow.xs="true">
+      <div fxFlex="100%">
+        <div *ngIf="show">
+          <input fxFlex.xs="90%" class="searchSmallBarTry" type="input" [(ngModel)]="globalSearch" (keydown)="keySearch(); onEnterIcon($event) ; headerFundoo()"
+            (click)="navigate() " placeholder="search">
+        </div>
+        <div fxFlex.xs="10%" (click)="show = !show ;clickOnSearch = !clickOnSearch">
+          <i (click)="navigate()" class="material-icons smallerSearchIcon">search </i>
+        </div>
+
+      </div>
+    </div>
+    <!-----------------------------end of small search bar ------------------------------->
+    <!-- <div fxFlex.lg="30%" fxFlex.md="30%" fxFlex.xs="5%"></div> -->
+    <!----------------------------------------------------------------------->
+    <div fxFlex.lg="10%" fxFlex.md="13%" fxFlex.sm="10%" fxFlex.xs="30%" fxLayout="row" fxLayoutAlign="space-around center">
+    <div  fxFlex.lg="50%" fxFlex.xs="50%">
+      <i class="material-icons" matTooltip="List View" style="cursor:pointer"
+       (click)="viewToggle()" *ngIf="gridObj == 0">view_stream</i>
+      <i class="material-icons" matTooltip="Grid View" style="cursor:pointer"
+       (click)="view()" *ngIf="gridObj == 1">view_module</i>
     </div>
 
-<!----------------------------------------------------------------------->
-    <div>
+
+<!-- 
+    <div fxFlex.lg="13%" fxFlex.md="13%" fxFlex.sm="10%" fxFlex.xs="30%" fxLayout="row" fxLayoutAlign="space-around center">
+        <div fxFlex.lg="50%" fxFlex.xs="50%">
+          <div class="icons">
+            <button mat-icon-button matTooltip="listView" (click)="cardsInList()" *ngIf="grid == 0">
+              <mat-icon>view_stream</mat-icon>
+            </button>
+            <button mat-icon-button matTooltip="gridView" (click)="cardsInGrid()" *ngIf="grid == 1">
+              <mat-icon>apps</mat-icon>
+            </button>
+          </div>
+        </div> -->
 
 
 
-
-
-
-
-    </div>
-<!--------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------->
     <!-- ********************* Profile Pic Menu *********************** -->
-  <div class="align" fxLayout='row' fxLayout="end">
-    <button *ngIf="image2!=''" class="profilebutton" [matMenuTriggerFor]="appMenu" 
-    matTooltip="{{firstName}} {{lastName}}" 
-      style="background:#fb0"><img src="{{img}}" class="profileImage"></button>
-        <button *ngIf="image2==''" class="profilebutton" mat-mini-fab [matMenuTriggerFor]="appMenu" 
-        matTooltip="{{firstName}} {{lastName}}" 
+    <div fxFlex.lg="50%" fxFlex.xs="50%" >
+      <button *ngIf="image2!=''" class="profilebutton" [matMenuTriggerFor]="appMenu" matTooltip="{{firstName}} {{lastName}}"
+        style="background:#fb0"><img src="{{img}}" class="profileImage"></button>
+      <button *ngIf="image2==''" class="profilebutton" mat-mini-fab [matMenuTriggerFor]="appMenu" matTooltip="{{firstName}} {{lastName}}"
         style="background:white">
         {{firstName | slice:0:1}}
-        </button>
-  </div>
-        <mat-menu class="nameContent" #appMenu="matMenu" [overlapTrigger]="false">
-          <div fxLayout="row" fxLayoutAlign="space-evenly center"  >
-          <button *ngIf="image2!=''" (click) = "$event.stopPropagation()" 
-          [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover'}"
-           matTooltip="{{firstName}}"
-          mat-mini-fab class="profile-pic">
-          <div style="margin-top:70%">
-            <div style= "color:white" (click)="selectFile.click()">change</div>
-          </div>
-          </button>
+      </button>
+    </div>
+    </div>
 
-          <button *ngIf="image2==''" (click) = "$event.stopPropagation()" 
-          matTooltip="{{firstName}}"
-          mat-mini-fab class="profile-pic" style="background:white;color:black ">
+
+
+
+    <mat-menu class="nameContent" #appMenu="matMenu" [overlapTrigger]="false">
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <button *ngIf="image2!=''" (click)="$event.stopPropagation()" [ngStyle]="{'background-image':'url(' +img+ ')','background-size':'cover'}"
+          matTooltip="{{firstName}}" mat-mini-fab class="profile-pic">
+          <div style="margin-top:70%">
+            <div style="color:white" (click)="selectFile.click()">change</div>
+          </div>
+        </button>
+
+        <button *ngIf="image2==''" (click)="$event.stopPropagation()" matTooltip="{{firstName}}" mat-mini-fab class="profile-pic"
+          style="background:white;color:black ">
           {{firstName | slice:0:1}}
           <div style="margin-top:60%">
-            <div style= "color:black" (click)="selectFile.click()">change</div>
+            <div style="color:black" (click)="selectFile.click()">change</div>
           </div>
-          </button>
-          <input style="display:none" (click) = "$event.stopPropagation()" class="image"
-          type="file" (change)="onFileUpload($event)" #selectFile>
-           <div class="miniPanelMenu">
-          <mat-content  style="font-size: 14px">
-          {{firstName}} {{lastName}}
-          {{email}}</mat-content>
-          </div>
+        </button>
+        <input style="display:none" (click)="$event.stopPropagation()" class="image" type="file" (change)="onFileUpload($event)"
+          #selectFile>
+        <div class="miniPanelMenu">
+          <mat-content style="font-size: 14px">
+            {{firstName}} {{lastName}}
+            {{email}}</mat-content>
+        </div>
       </div>
-             <hr style="width:99%">
-            <div fxLayout="row" fxLayoutAlign="center center">
-              <button mat-button (click)="removeToken()"> Log out </button>
-            </div>
-          </mat-menu>
-
+      <hr style="width:99%">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <button mat-button (click)="removeToken()"> Log out </button>
+      </div>
+    </mat-menu>
   </mat-toolbar>
-  <mat-sidenav-container style="scroll-behavior: smooth" class="sidenav-container" 
-  fxLayout="column">
-  <!-- ********************* Side Navigation Contents ************************* -->
+</div>
 
-    <mat-sidenav style=" background-color:rgb(221,221,230)" #drawer class="sidenav"  
-    fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" 
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
+
+
+  <mat-sidenav-container style="scroll-behavior: smooth" class="sidenav-container" fxLayout="column">
+    <!-- ********************* Side Navigation Contents ************************* -->
+
+    <mat-sidenav style=" background-color:rgb(221,221,230)" #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
       <!-- ********************* Notes ************************* -->
-      <mat-nav-list >
+      <mat-nav-list>
         <a (click)='titles("FUNDOO")' mat-list-item routerLink='/homepage/cardtemplate'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" ><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6A4.997 4.997 0 0 1 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"></path>
+          </svg>
           <div class="gap">Notes</div>
         </a>
         <!-- ********************* Reminders  ************************* -->
         <a (click)='titles("Reminders")' mat-list-item routerLink='/homepage/reminder'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" ><path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"></path>
+          </svg>
           <div class="gap">Reminders</div>
         </a>
         <hr>
@@ -103,16 +142,15 @@
           <mat-icon>view</mat-icon>
           <div class="gap" style="font-size:15px">Labels</div>
         </a>
-        <div *ngFor=" let labels of labelArray trackBy:val?.id " 
-        (click)='titles(labels.label)'>
-          <a mat-list-item (click)="labelByName(labels)"> 
-            <mat-icon >label_outline</mat-icon>
+        <div *ngFor=" let labels of labelArray trackBy:val?.id " (click)='titles(labels.label)'>
+          <a mat-list-item (click)="labelByName(labels)">
+            <mat-icon>label_outline</mat-icon>
             <div class="gap" [innerHTML]="labels.label"></div>
           </a>
         </div>
         <!-- ********************* Creating Labels ************************* -->
         <a mat-list-item (click)="openDialog()">
-            <img src="../../../assets/images/outline-edit-24px.svg">
+          <img src="../../../assets/images/outline-edit-24px.svg">
           <div class="gap">Edit labels</div>
         </a>
         <hr>
@@ -125,7 +163,10 @@
         <!-- ********************* Trash ************************* -->
 
         <a (click)='titles("Trash")' mat-list-item routerLink='/homepage/bin'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" ><path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path><path d="M9 8h2v9H9zm4 0h2v9h-2z"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+            <path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>
+            <path d="M9 8h2v9H9zm4 0h2v9h-2z"></path>
+          </svg>
           <div class="gap">Trash</div>
         </a>
         <hr>
@@ -135,4 +176,24 @@
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>
+
+
+
+
+
+
+
+<!-----------------------------------small search bar ------------------------------------->
+
+<!-- <div>
+        <div>
+        <mat-icon class="icon" (click)="navigate()">search</mat-icon>
+        </div>
+        <div>
+            <input class="searchBox"  [(ngModel)]="globalSearch" 
+            (keydown)="keySearch()"  
+            placeholder="Search" autocomplete='on'>
+        </div>
+        </div> -->
+
+<!------------------------------small search bar ------------------------------------------>

@@ -18,6 +18,21 @@
 {
     cursor: pointer;
 }
+@mixin search() { 
+    align-items: center;
+    height:41px;
+    border-radius: 5px; 
+  }
+
+@mixin searchBar(){
+    color:rgb(34, 34, 37);
+    height:40px;
+    border-radius: 5px;
+    font-size: 18px;
+    width:90%;
+    background: rgba(0,0,0,0.04);
+    border: 1px solid rgba(12, 12, 12, 0);
+}
 
 
 

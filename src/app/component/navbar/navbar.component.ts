@@ -32,7 +32,9 @@ export class NavbarComponent implements OnInit,OnDestroy
   private globalSearch:any;
   private params:any;
   private ProfilePath: any;
-  public name='FUNDOO'
+  public name='FUNDOO';
+  private show: boolean = false;
+  private clickOnSearch: boolean = true;
   constructor(private dataService:DataserviceService,public dialog: MatDialog, private notesService:NoteserviceService
     ,private breakpointObserver: BreakpointObserver,private myHttpService: HttpService, 
     private router: Router,public data:DataserviceService,private route:ActivatedRoute,private userService:UserserviceService) { }
@@ -179,4 +181,12 @@ ngOnDestroy() {
   this.destroy$.unsubscribe();
 }
 
+
+onEnterIcon(event){
+  if (event.key === "Enter") {
+    this.show = false;
+    this.clickOnSearch = true;
+  }
+
+}
 }

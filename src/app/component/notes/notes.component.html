@@ -1,7 +1,7 @@
 <div *ngIf='display' fxLayout="column" fxLayoutWrap fxLayoutAlign="center center" style="margin-top:100px">
   <!-- ******************* Note Card ******************* -->
   
-  <mat-card class="card" fxFlex *ngIf="show">
+  <mat-card class="card" *ngIf="show">
     <div style="float:left" (click)="toggle()">Take a note...</div>
     <div style="float:right" fxLayout="row" fxLayoutAlign="space-between">
       <mat-icon style="cursor:pointer" matTooltip="List" 
@@ -140,9 +140,8 @@
     <div style="padding-top:15px">
       </div>
     <button mat-mini-fab disabled> <mat-icon>person_add</mat-icon> </button>
-    <span class="spacing">
-        <input contenteditable="true" [(ngModel)]="searchString" (keyup)="search()" 
-        class="fields" [matMenuTriggerFor]='menu'
+    <span style="padding-left:10px">
+        <input contenteditable="true" class="fields"
         placeholder="Person or email to share with">
     </span>
     <span style="float:right;cursor:pointer" matTooltip="Save" >

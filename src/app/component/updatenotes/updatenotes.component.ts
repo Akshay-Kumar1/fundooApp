@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject, Output ,EventEmitter,ViewChild,ElementRef,OnDestroy} from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material'
 import { SavenotesComponent } from '../savenotes/savenotes.component';
 import { HttpService } from '../../core/services/httpService/http.service';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
+import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 export interface DialogData {
   title: string;
   description: string;
@@ -29,7 +30,7 @@ export class UpdatenotesComponent implements OnInit , OnInit {
   private newList;
   private newData;
   body:any={}
-  constructor(private myHttpService: HttpService, private notesService:NoteserviceService,
+  constructor(private myHttpService: HttpService, private dialog:MatDialog,private notesService:NoteserviceService,
     private dialogRef: MatDialogRef<SavenotesComponent>, @Inject(MAT_DIALOG_DATA) private data: DialogData) { }
 
   /**
@@ -201,6 +202,17 @@ removeCheckList(){
     }
   })
 }
+
+openDialogCollaborator(content): void {
+  const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+    width:'450px',height:'auto',
+    data:content
+  });
+  dialogRef.afterClosed().subscribe(result => {
+  });
+}
+
+
 ngOnDestroy() {
   this.destroy$.next(true);
   this.destroy$.unsubscribe();

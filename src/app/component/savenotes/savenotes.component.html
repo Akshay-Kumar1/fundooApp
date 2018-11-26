@@ -1,9 +1,13 @@
 <!-- ********************* Saved Cards ******************* -->
-<div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="12px"
-class="margin-left-top">
+<div fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="15px"
+class="topSpace">
+<div  fxLayout = "row wrap"  fxFlex.xl = 9 fxFlex.xs = 0 fxFlex.sm = 0 fxFlex.md = 4 
+fxFlex.lg = 4></div>
+<div fxLayout = "row wrap" fxFlex.xs = 100 fxFlex.sm = 100 fxFlex.md = 85
+   fxFlex.lg = 80 fxFlex.xl = 75 > 
     <div *ngFor="let content of cardsArr | filterLabel:globalSearch trackBy:val?.id ">
-        <div [ngClass]="{'grid':!toggle,'list':toggle}">
-            <mat-card style="margin-top:10px" class="card" fxFlex
+        <div [ngClass]="{'gridView':!toggle,'listView':toggle}">
+            <mat-card class="top-border"
             [style.backgroundColor]="content.color">
             <div style="float:right">
             <!-- ********************* Pin / Unpin Notes ******************* -->
@@ -41,7 +45,8 @@ class="margin-left-top">
                     <div *ngFor="let index of content.noteLabels trackBy:val?.id">
                         <mat-chip-list selected>
                         <mat-chip class="chipStyle" *ngIf="index.isDeleted==false">
-                        <b style="float:left" routerLink="/homepage/labels/{{index.label}}">{{index.label}}</b>
+                        <b style="float:left" 
+                        routerLink="/homepage/labels/{{index.label}}">{{index.label}}</b>
                         <div style="float:right">
                         <mat-icon class="hider" (click)="removeLabelTag(content.id,index.id)" 
                         style="cursor:pointer">cancel</mat-icon>
@@ -92,10 +97,12 @@ class="margin-left-top">
                             </mat-chip-list>
                     </div>
                 </div>
-                    <div class="spacing" fxLayout="row" *ngIf="!reminderOff(content.reminder[0])">
+                    <div class="spacing" fxLayout="row" 
+                    *ngIf="!reminderOff(content.reminder[0])">
                     <div *ngFor="let index of content.reminder trackBy:val?.id">
                         <mat-chip-list selected>
-                                <div *ngIf="(today | date:shortDate) == (index | date:shortDate)">
+                                <div *ngIf="(today | date:shortDate) == 
+                                (index | date:shortDate)">
                                 <mat-chip >
                                     <app-remindme [noteDetails]="content" 
                                     (todayEvent)="refreshDelete($event)"></app-remindme>
@@ -131,7 +138,8 @@ class="margin-left-top">
                 </div>
                 <div fxLayout="row wrap" fxLayoutAlign="start">
                 <div *ngFor="let index of content.collaborators" class="collaborators">
-                    <button mat-mini-fab matTooltip="{{index.firstName}}" color="basic">{{index.firstName | slice:0:1 }}
+                    <button (click)="openDialogCollaborator(content)" mat-mini-fab matTooltip="{{index.firstName}}" 
+                    color="basic">{{index.firstName | slice:0:1 }}
                     </button>
                 </div>
             </div>
@@ -140,7 +148,8 @@ class="margin-left-top">
                     <div fxLayout="row" fxLayoutAlign="space-between start">
                     <app-remindme [noteDetails]="content" 
                         (reminderEmit)="refreshDelete($event)"></app-remindme>
-                    <app-collaborator [collaboratorData]="content" (collabEvent)="refreshDelete($event)">
+                    <app-collaborator [collaboratorData]="content" 
+                    (collabEvent)="refreshDelete($event)">
                     </app-collaborator>
                     <app-colorpalette [colorChange]="content" 
                         (colorRefresh)="refreshDelete($event)">
@@ -154,8 +163,10 @@ class="margin-left-top">
                     </app-more>
                     </div>
                 </div>
-                
             </mat-card>
         </div>
     </div>
+</div>
+<div fxLayout = "row" fxFlex.xs = 0 fxFlex.sm = 0 fxFlex.md = 5 fxFlex.lg = 5 
+fxFlex.xl = 10 ></div>
 </div>

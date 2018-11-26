@@ -8,6 +8,7 @@ import { LoggerService } from 'src/app/core/services/logger/logger.service';
 import { NoteserviceService } from 'src/app/core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
+import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 @Component({
   selector: 'app-savenotes',
   templateUrl: './savenotes.component.html',
@@ -202,6 +203,17 @@ getLabels()
     LoggerService.error('error',error);
   }
 }
+
+openDialogCollaborator(content): void {
+  const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+    width:'450px',height:'auto',
+    data:content
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    this.trashEvent.emit({})
+  });
+}
+
 ngOnDestroy() {
   this.destroy$.next(true);
   this.destroy$.unsubscribe();

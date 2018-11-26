@@ -5,17 +5,17 @@
 <div >
 <div fxLayout="row" fxLayoutAlign="start end">
 <div>
-<button mat-mini-fab [ngStyle]="{'background-image':'url(' +profilePic+ ')',
+<button mat-mini-fab [ngStyle]="{'background-image':'url(' + ownerPhoto + ')',
 'background-size':'cover'}">
 </button>
 </div>
 <div>
   <div fxLayout="column">
   <div class="space">
-      {{firstName}} {{lastName}} (owner)
+      {{user.firstName}} {{user.lastName}} (owner)
   </div>
   <div class="space">
-    <div class="fonts">{{email}}</div>
+    <div class="fonts">{{user.email}}</div>
   </div>
 
   </div>
@@ -24,7 +24,7 @@
 </div>
 </div>
 <div class="column-gap">
-  <div style="margin-top:15px" *ngFor="let index of collabArray">
+  <div style="margin-top:15px" *ngFor="let index of collabArray trackBy:val?.id">
   <div fxLayout="row">
   <div fxFlex=10>
       <button mat-mini-fab color="primary">{{index.firstName | slice :0:1}} </button>
@@ -47,7 +47,7 @@
     placeholder="Person or email to share with">
 </span>
 <span style="float:right;cursor:pointer" matTooltip="Save" >
-  <mat-icon>done</mat-icon></span>
+  <mat-icon (click)="loadCollaborator(searchString)">done</mat-icon></span>
 
  <mat-menu #menu='matMenu' style="padding-top:20px">
    <div *ngFor="let index of collaboratorArray">
@@ -67,5 +67,4 @@
 <button mat-button (click)="close()">Save</button>
 </div>
 
-<!-- (click)="selectOption(index.email)" -->
 

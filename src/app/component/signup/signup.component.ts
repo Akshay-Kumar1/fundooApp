@@ -102,7 +102,7 @@ private hide=true;
   private advance : any;
   private basicset = true;
   private advanceset = true;
-  private user: any = {}
+  public user: any = {}
   private  cards=[];
   private service:any;
   /**

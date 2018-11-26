@@ -52,6 +52,7 @@ import { ImagecropComponent } from './component/imagecrop/imagecrop.component';
 import { DeletenoteComponent } from './component/deletenote/deletenote.component';
 import { PinComponent } from './component/pin/pin.component';
 import { CollaboratorDialogComponent } from './component/collaborator-dialog/collaborator-dialog.component';
+import { HttpClient } from 'selenium-webdriver/http';
 
 @NgModule({
   declarations: [

@@ -4,6 +4,8 @@ import { NoteserviceService } from '../../core/services/noteService/noteservice.
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
+import { UserserviceService } from 'src/app/core/services/userService/userservice.service';
+import { LoggerService } from 'src/app/core/services/logger/logger.service';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -20,6 +22,7 @@ export class NotesComponent implements OnInit , OnDestroy {
   @Output() labelEvent=new EventEmitter();
   @Output() notesEmit=new EventEmitter();
   private body : any = {}
+  searchString:any=[]
   private notesBody:any={}
   private color : any='#fafafa';
   private dataarray:any=[]
@@ -31,9 +34,12 @@ export class NotesComponent implements OnInit , OnDestroy {
   private dataArrayCheck=[];
   private status="open";
   private move: boolean = false;
+  private collaborator=[]
   data: any;
   rem:any;
-  constructor(private myHttpService: HttpService,private notesService:NoteserviceService) { }
+  collaboratorArray: any=[];
+  constructor(private myHttpService: HttpService,
+    private notesService:NoteserviceService,private userService:UserserviceService) { }
   /**
  * @description : Get Labels API
  */
@@ -102,7 +108,8 @@ profilePic = environment.profilePicUrl + this.image;
         'checklist': '',
         'isPined': 'false',
         'color' : this.color,
-        'reminder':this.rem
+        'reminder':this.rem,
+        'collaberators':JSON.stringify(this.collaborator)
     })
     .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
@@ -114,6 +121,8 @@ profilePic = environment.profilePicUrl + this.image;
         this.rem='';
         this.notesEmit.emit(data['status'].details)
         this.remVar=''
+        this.collaborator=[];
+        this.searchString=[]
       },error => {
         this.labelId=[]
         this.labelArray=[]
@@ -157,12 +166,12 @@ profilePic = environment.profilePicUrl + this.image;
       'checklist': JSON.stringify(this.dataArrayCheck),
       'isPined': 'false',
       'color' : this.color,
-      'reminder':this.rem
+      'reminder':this.rem,
+      'collaberators':JSON.stringify(this.collaborator)
     }).pipe(takeUntil(this.destroy$))
       .subscribe(data => {
         this.checked = false;
         this.labelId=[]
-        
         this.labelArray=[]
         this.remArray=[]
         this.name=[]
@@ -171,6 +180,8 @@ profilePic = environment.profilePicUrl + this.image;
         this.rem=''
         this.move = false;
         this.notesEmit.emit(data['status'].details)
+        this.collaborator=[];
+        this.searchString=[]
       },error => {
         this.labelId=[]
         this.labelArray=[]
@@ -179,7 +190,6 @@ profilePic = environment.profilePicUrl + this.image;
         this.dataArrayCheck=[]
         this.remVar=''
         this.rem=''
-    
     })
   }
 }
@@ -274,4 +284,33 @@ ngOnDestroy() {
   this.destroy$.next(true);
   this.destroy$.unsubscribe();
 }
+
+search()
+{
+    this.userService.usersSearch(
+      {
+      "searchWord":this.searchString
+      }).pipe(takeUntil(this.destroy$)).subscribe(data=>{
+        this.collaboratorArray=data['data']['details']
+    })
+}
+select(email)
+{
+  this.searchString=email;
+}
+loadCollaborator(searchString)
+{
+  for(let i =0 ; i< this.collaboratorArray.length ; i++)
+  {
+    if(this.collaboratorArray[i].email==searchString)
+    {
+      this.collaborator.push(this.collaboratorArray[i])
+    }
+  }
+}
+cancel()
+{
+  this.collaborator=[]
+}
+
 }

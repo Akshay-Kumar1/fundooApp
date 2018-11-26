@@ -31,6 +31,15 @@
 }
 // <-----------------Grid View @mediaQueries----------->
 
+@media only screen and (min-width: 509px) and (max-width: 1259px)
+{
+    .gridView
+{
+    margin-left: 30px;
+    width:250px;
+}
+}
+
 @media only screen and (min-width: 506px) and (max-width: 649px)
 {
     .gridView
@@ -79,6 +88,14 @@
     width:300px;
 }
 }
+@media only screen and (min-width: 500px) and (max-width: 1280px)
+{
+    .gridView
+{
+    width:250px;
+}
+}
+
 // <-----------end------------>
 
 
@@ -88,7 +105,8 @@
 }
 // <-----------------List View @mediaQueries----------->
 
-@media only screen and (min-width: 860px) and (max-width: 980px)
+
+@media only screen and (min-width: 860px) and (max-width: 960px)
 {
     .listView
 {

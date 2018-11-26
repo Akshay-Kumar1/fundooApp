@@ -25,8 +25,8 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   firstName = localStorage.getItem('firstName')
   email = localStorage.getItem('email')
   lastName = localStorage.getItem('lastName')
-  image = localStorage.getItem('imageUrl')
-  profilePic = environment.profilePicUrl + this.image;
+  user = this.data["user"];
+  ownerPhoto = environment.profilePicUrl+this.user.imageUrl
   searchString:any=[]
   collabArray:any=[]
   ngOnInit() 
@@ -40,13 +40,7 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   close()
   {
     this.dialogRef.close()
-    // const dialogRef = this.dialog.open(UpdatenotesComponent, {
-    //   width:'450px',height:'auto',
-    //   data:this.data
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
 
-    // });
   }
 
   /**
@@ -54,7 +48,6 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
  */
   collaborate(require)
   {
-
     this.notesService.collaboratorPost(this.data.id,
     {
       "firstName":require.firstName,
@@ -80,10 +73,14 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
       })
   }
 
-  removeCollaborator(userId)
+  removeCollaborator(user)
   {
-      this.notesService.deleteCollaborator(this.data.id,userId).subscribe(data=>{
-        LoggerService.log('data',data),
+      this.notesService.deleteCollaborator(this.data.id,user).subscribe(data=>{
+        for (var i = 0; i < this.collabArray.length; i++) {
+          if (user.userId == this.collabArray[i].userId) {
+            this.collabArray.splice(i,1)
+          }
+        }
         error=>
         {
             LoggerService.error('error',error)
@@ -93,6 +90,18 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   select(email)
   {
     this.searchString=email;
+  }
+  loadCollaborator(searchString)
+  {
+    for(let i =0 ; i< this.collaboratorArray.length ; i++)
+    {
+      if(this.collaboratorArray[i].email==searchString)
+      {
+        this.collabArray.push(this.collaboratorArray[i])
+      }
+    }
+    LoggerService.log(this.collabArray);
+    searchString=[];
   }
 
   ngOnDestroy() {

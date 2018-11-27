@@ -208,10 +208,11 @@ openDialogCollaborator(content): void {
     width:'450px',height:'auto',
     data:content
   });
-  dialogRef.afterClosed().subscribe(result => {
-  });
 }
-
+close()
+{
+  this.dialogRef.close();
+}
 
 ngOnDestroy() {
   this.destroy$.next(true);

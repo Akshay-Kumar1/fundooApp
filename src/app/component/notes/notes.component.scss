@@ -44,7 +44,6 @@
 {
     border-radius: 8px;
     width: 500px;
-    height: fit-content;
 }
 
 .space
@@ -112,6 +111,55 @@
 @media only screen and (min-width: 310px) and (max-width: 348px)
 {
     .card
+{
+    width:300px;
+}
+}
+
+// <--------------------collaborator Card---------------->
+
+@media only screen and (min-width: 506px) and (max-width: 649px)
+{
+    .collaboratorCard
+{
+    width:460px;
+}
+}
+@media only screen and (min-width: 435px) and (max-width: 505px)
+{
+    .collaboratorCard
+{
+   
+    width:420px;
+}
+}
+@media only screen and (min-width: 391px) and (max-width: 434px)
+{
+    .collaboratorCard
+{
+   
+    width:380px;
+}
+}
+@media only screen and (min-width: 391px) and (max-width: 434px)
+{
+    .collaboratorCard
+{
+    
+    width:380px;
+}
+}
+@media only screen and (min-width: 349px) and (max-width: 390px)
+{
+    .collaboratorCard
+{
+
+    width:330px;
+}
+}
+@media only screen and (min-width: 310px) and (max-width: 348px)
+{
+    .collaboratorCard
 {
     width:300px;
 }

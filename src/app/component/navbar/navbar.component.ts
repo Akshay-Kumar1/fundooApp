@@ -78,7 +78,7 @@ removeToken() {
   openDialog() 
   {
     const dialogRef = this.dialog.open(LabelComponent, {
-      width: '300px',
+      width: '350px',maxWidth:'auto'
     });
     dialogRef.afterClosed().subscribe(result => {
        this.getLabels()

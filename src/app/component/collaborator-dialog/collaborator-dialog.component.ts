@@ -1,6 +1,6 @@
 import { Component, OnInit , ViewChild , ElementRef, Inject, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { UpdatenotesComponent, DialogData } from '../updatenotes/updatenotes.component';
 import { UserserviceService } from 'src/app/core/services/userService/userservice.service';
 import { Subject } from 'rxjs';
@@ -16,7 +16,7 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   constructor(public dialogRef: MatDialogRef<CollaboratorDialogComponent>,
     public dialog:MatDialog,
     private userService: UserserviceService,private notesService:NoteserviceService,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: DialogData , private snackBar : MatSnackBar
   ) { }
   @Output() collabEmit=new EventEmitter()
   collaboratorArray:any=[]
@@ -31,7 +31,7 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   collabArray:any=[]
   ngOnInit() 
   {
-     for(let i=0 ; i < this.data['collaborators'].length; i++)
+     for(var i=0 ; i < this.data['collaborators'].length; i++)
       this.collabArray.push(this.data['collaborators'][i])
   }
   /**
@@ -40,7 +40,11 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   close()
   {
     this.dialogRef.close()
-
+      const dialogRef = this.dialog.open(UpdatenotesComponent, {
+        width:'500px',maxWidth:'auto',
+        data: this.data
+      });
+      dialogRef.afterClosed()
   }
 
   /**
@@ -93,6 +97,18 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
   }
   loadCollaborator(searchString)
   {
+    for(let k = 0; k < this.collabArray.length; k++)
+  {
+      if(this.searchString == this.collabArray[k].email)
+          { 
+            this.snackBar.open("Already Exists", "Retry", {
+            duration: 3000
+          }) 
+          this.searchString = null;
+          return false;
+          }
+  }
+
     for(let i =0 ; i< this.collaboratorArray.length ; i++)
     {
       if(this.collaboratorArray[i].email==searchString)
@@ -100,7 +116,6 @@ export class CollaboratorDialogComponent implements OnInit , OnDestroy {
         this.collabArray.push(this.collaboratorArray[i])
       }
     }
-    LoggerService.log(this.collabArray);
     searchString=[];
   }
 

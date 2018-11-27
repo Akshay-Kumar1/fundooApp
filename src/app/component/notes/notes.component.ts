@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
 import { UserserviceService } from 'src/app/core/services/userService/userservice.service';
-import { LoggerService } from 'src/app/core/services/logger/logger.service';
+import { MatSnackBar } from '@angular/material';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
@@ -38,7 +38,7 @@ export class NotesComponent implements OnInit , OnDestroy {
   data: any;
   rem:any;
   collaboratorArray: any=[];
-  constructor(private myHttpService: HttpService,
+  constructor(private myHttpService: HttpService, private snackBar:MatSnackBar,
     private notesService:NoteserviceService,private userService:UserserviceService) { }
   /**
  * @description : Get Labels API
@@ -300,6 +300,17 @@ select(email)
 }
 loadCollaborator(searchString)
 {
+  for(let i = 0; i < this.collaborator.length; i++)
+  {
+      if(this.searchString == this.collaborator[i].email)
+          { 
+            this.snackBar.open("Already Exists", "Retry", {
+            duration: 3000
+          }) 
+          this.searchString = null;
+          return false;
+          }
+  }
   for(let i =0 ; i< this.collaboratorArray.length ; i++)
   {
     if(this.collaboratorArray[i].email==searchString)

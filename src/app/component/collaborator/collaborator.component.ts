@@ -22,7 +22,7 @@ export class CollaboratorComponent implements OnInit {
   dialogOpen()
   {
       const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
-        width:'500px',
+        width:'500px', maxWidth:'auto',
         data:this.collaboratorData
       });
       dialogRef.afterClosed().subscribe(result => {

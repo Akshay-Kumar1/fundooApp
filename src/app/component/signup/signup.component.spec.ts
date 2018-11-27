@@ -23,7 +23,7 @@ describe('SignupComponent', () => {
     expect(component).toBeTruthy();
   });
   it('Form should be valid '),async(()=>{
-    expect(component.user.email.toEqual('akshay@gmail.com'));
+    expect(component.user.email.toEqual(''));
     expect(component.user.email).toBeTruthy();
     expect(component.user.password.toEqual('akshay'));
     expect(component.user.password).toBeTruthy();

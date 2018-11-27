@@ -10,10 +10,7 @@
     @include noBorder;
     word-break: break-all
 }
-::ng-deep.mat-dialog-container {
-    padding:0px !important;
-    
-}
+
 .spacing
 {
     margin-left: 5px;
@@ -30,4 +27,8 @@
 .hider:hover
 {
     opacity: $oneOpacity;
+}
+.collaborators
+{
+    margin-left: 3%;
 }

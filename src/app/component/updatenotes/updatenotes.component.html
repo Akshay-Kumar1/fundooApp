@@ -1,5 +1,5 @@
 <!-- ********************* Update Notes Dialog ******************* -->
-<mat-card class="padding:0px" [style.backgroundColor]="data.color">
+<mat-card [style.backgroundColor]="data.color">
   <div class="fields" #updateLabel contenteditable="true" data-text=" " 
   [innerHTML]="data.title"></div>
   <div style="padding-top:10px"></div>
@@ -60,7 +60,7 @@
 </div>
 </div>
 <div fxLayout="row wrap" fxLayoutAlign="start">
-    <div *ngFor="let index of data.collaborators">
+    <div *ngFor="let index of data.collaborators" class="collaborators">
         <button (click)="openDialogCollaborator(data)" mat-mini-fab color="basic">{{index.firstName | slice:0:1 }}
         </button>
     </div>
@@ -68,7 +68,7 @@
 <!-- ********************* Selector Icons for Update Notes ******************* -->
 <div fxLayout="row" fxLayoutAlign="space-between start">
     <app-remindme [noteDetails]="data"></app-remindme>
-    <app-collaborator></app-collaborator>
+    <app-collaborator [collaboratorData]="data" (click) = "close()"></app-collaborator>
     <app-colorpalette [colorChange]="data"></app-colorpalette>
     <app-image></app-image>
     <app-archivesub [archive]="data"></app-archivesub>

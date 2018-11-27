@@ -121,11 +121,12 @@ private  tomorrow=new Date(this.today.getFullYear(), this.today.getMonth(), this
  */
   openDialog(content): void {
     const dialogRef = this.dialog.open(UpdatenotesComponent, {
-      width:'auto',height:'auto',
+      width:'500px',maxWidth:'auto',
       data: content
     });
     dialogRef.afterClosed().subscribe(result => {
       this.trashEvent.emit({})
+      dialogRef.close();
     });
   }
   toggleView()

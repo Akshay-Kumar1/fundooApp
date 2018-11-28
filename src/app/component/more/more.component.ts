@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material';
 import { NoteserviceService } from '../../core/services/noteService/noteservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
+import { LoggerService } from 'src/app/core/services/logger/logger.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-more',
   templateUrl: './more.component.html',
@@ -18,7 +20,7 @@ export class MoreComponent implements OnInit , OnDestroy{
   @Output() labelEvent = new EventEmitter();
   token=localStorage.getItem('token')
   private labelArr:any=[]
-  constructor(private myHttpService:HttpService,public snackBar: MatSnackBar,
+  constructor(private myHttpService:HttpService,public snackBar: MatSnackBar,private router : Router,
   private notesService:NoteserviceService) { }
  /**
  * @description : Delete Notes API
@@ -75,11 +77,17 @@ export class MoreComponent implements OnInit , OnDestroy{
 
       })
     })
-
   }
+
+  questions()
+  {
+    this.router.navigate(['homepage/notes/'+ this.deleteCard.id+'/questions'])
+  }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
 
 }
+

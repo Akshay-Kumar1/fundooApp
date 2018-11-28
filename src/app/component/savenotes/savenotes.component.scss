@@ -29,6 +29,12 @@
     width: 280px;
     margin-left: 11px;
 }
+.fields
+{
+    @include noBorder;
+    cursor: pointer;
+}
+
 // <-----------------Grid View @mediaQueries----------->
 
 @media only screen and (min-width: 509px) and (max-width: 1259px)

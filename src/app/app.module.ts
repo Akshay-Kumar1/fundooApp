@@ -52,7 +52,8 @@ import { ImagecropComponent } from './component/imagecrop/imagecrop.component';
 import { DeletenoteComponent } from './component/deletenote/deletenote.component';
 import { PinComponent } from './component/pin/pin.component';
 import { CollaboratorDialogComponent } from './component/collaborator-dialog/collaborator-dialog.component';
-import { HttpClient } from 'selenium-webdriver/http';
+import { QuestionsComponent } from './component/questions/questions.component'
+import {RatingModule} from "ngx-rating"
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { HttpClient } from 'selenium-webdriver/http';
     ImagecropComponent,
     DeletenoteComponent,
     PinComponent,
-    CollaboratorDialogComponent
+    CollaboratorDialogComponent,
+    QuestionsComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +118,8 @@ import { HttpClient } from 'selenium-webdriver/http';
     MatChipsModule,
     MatNativeDateModule, 
     MatDatepickerModule,
-    ImageCropperModule
+    ImageCropperModule,
+    RatingModule
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   entryComponents:[DeletedialogComponent,ImagecropComponent,DeletenoteComponent,CollaboratorDialogComponent,UpdatenotesComponent], 

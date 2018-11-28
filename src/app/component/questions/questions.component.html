@@ -1,0 +1,38 @@
+
+<div fxLayout="column" fxLayoutAlign="start" fxLayoutWrap style="margin-top:50px;margin-left:125px;
+margin-right:50px;" class="card"> 
+  <div  >
+  <hr>
+  <div fxLayout="row" fxLayoutAlign="end"><button mat-button 
+  routerLink="/homepage/cardtemplate"> close </button></div>
+<div [innerHTML]="title"></div>
+<div [innerHTML]="description"></div>
+  <div style="margin-bottom:20px"></div>
+<div style="margin-top:10px"></div>
+<div *ngIf="hide==0">
+  <hr>
+        Ask A Question
+        <div style="margin-top:5px"></div>
+            <input [(ngModel)]="questionTag" class="fields" 
+             placeholder="Type Your Question Here" (keydown.enter)="postQuestion(questionTag)">
+    <div style="margin-bottom:20px"></div>
+  <div style="margin-top:5px"></div>
+</div>
+</div>
+</div>
+<div *ngIf="hide==1" >
+<div style="margin-top:50px;margin-left:125px">
+  Question Asked
+  <b>{{questionTag}}</b> 
+</div>
+</div>
+<div>
+
+</div>
+
+
+
+ 
+
+
+

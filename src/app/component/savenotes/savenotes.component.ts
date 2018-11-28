@@ -20,7 +20,6 @@ export class SavenotesComponent implements OnInit , OnDestroy {
  private labelArray:any=[]
  private toggle:true 
  private modifiedCheckList:any=[]
-  token=localStorage.getItem('token')
 private body:any={}
 private  newArray=[]
 private  labelName:any;

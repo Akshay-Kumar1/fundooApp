@@ -143,6 +143,17 @@ fxFlex.lg = 4></div>
                     </button>
                 </div>
             </div>
+            <div style="margin-top:5px">
+            </div>
+            <div *ngIf="questionAndAnswerNotes">
+            <p>Questions</p>
+            <hr>
+            </div>
+                    <div *ngFor="let index of content.questionAndAnswerNotes">
+                       <div matTooltip="Goto Question" class="fields"
+                       routerLink="/homepage/notes/{{content.id}}/questions"> {{index.message}}
+                     </div>
+            </div>
                 <!-- ********************* Selector icons for Notes ******************* -->
                 <div class="action">
                     <div fxLayout="row" fxLayoutAlign="space-between start">

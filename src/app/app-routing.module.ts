@@ -16,10 +16,12 @@ import { UpdatenotesComponent } from './component/updatenotes/updatenotes.compon
 import { LabelComponent } from './component/label/label.component';
 import { SearchcomponentComponent } from './component/searchcomponent/searchcomponent.component';
 import { LabelsComponent } from './component/labels/labels.component';
+import { QuestionsComponent } from './component/questions/questions.component';
 
 
 const routes: Routes = 
 [
+  { path: '', redirectTo:  '/login', pathMatch:  'full' },
   { path: 'signup',component: SignupComponent },
   { path: 'login',component:  LoginComponent },
   { path: 'forgot-password',component: ForgotPasswordComponent },
@@ -28,6 +30,7 @@ const routes: Routes =
   { path:'label/:id',component:LabelComponent },
   { path: 'homepage',component: HomepageComponent,canActivate:[AuthGuard],children:
   [ 
+    { path: '', redirectTo: 'cardtemplate', pathMatch:  'full' },
     { path:'cardtemplate',component:CardtemplateComponent },
     { path:'reminder',component:ReminderComponent },
     { path:'archive',component:ArchiveComponent }, 
@@ -35,10 +38,9 @@ const routes: Routes =
     { path:'labels/:labelName',component:LabelsComponent},
     { path:'notes',component:NotesComponent },
     { path:'searchcomponent',component:SearchcomponentComponent },
-    { path: '', redirectTo: 'cardtemplate', pathMatch:  'full' }
+    { path:'notes/:noteid/questions',component:QuestionsComponent }
   ] 
   },
-  { path: '', redirectTo:  '/signup', pathMatch:  'full' }
 
 ]
 @NgModule({

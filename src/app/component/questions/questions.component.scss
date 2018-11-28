@@ -1,0 +1,71 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.card
+{
+    // padding:10px;
+    border-radius: 8px;
+    width: 800px;
+    height:fit-content
+}
+.fields
+{
+    @include noBorder;
+    font-size: 16px;
+    color:gray;
+}
+
+[contenteditable=true]:empty:not(:focus):before{
+    content:attr(data-text)
+}
+.width
+{
+    width:$width;
+}
+
+@media only screen and (min-width: 506px) and (max-width: 649px)
+{
+    .card
+{
+    width:460px;
+}
+}
+@media only screen and (min-width: 435px) and (max-width: 505px)
+{
+    .card
+{
+   
+    width:420px;
+}
+}
+@media only screen and (min-width: 391px) and (max-width: 434px)
+{
+    .card
+{
+   
+    width:380px;
+}
+}
+@media only screen and (min-width: 391px) and (max-width: 434px)
+{
+    .card
+{
+    
+    width:380px;
+}
+}
+@media only screen and (min-width: 349px) and (max-width: 390px)
+{
+    .card
+{
+
+    width:330px;
+}
+}
+@media only screen and (min-width: 310px) and (max-width: 348px)
+{
+    .card
+{
+    width:300px;
+}
+}

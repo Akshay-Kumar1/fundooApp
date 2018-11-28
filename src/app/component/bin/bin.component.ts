@@ -46,7 +46,7 @@ export class BinComponent implements OnInit , OnDestroy{
   deleteForever(id)
   {
     const dialogRef = this.dialog.open(DeletenoteComponent, { 
-      width:'fit-content',height:'fit-content',
+      width:'300px',maxWidth:'auto',
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result)

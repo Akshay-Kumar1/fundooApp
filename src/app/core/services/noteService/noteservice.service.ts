@@ -132,4 +132,9 @@ deleteCollaborator(id,userId)
 {
   return this.http.jsonDelete('/notes/'+ id +'/removeCollaboratorsNotes/'+userId)
 }
+questionService(id)
+{
+  return this.http.jsonGet('/notes/getNotesDetail/'+id+'')
+}
+
 }

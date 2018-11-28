@@ -6,15 +6,18 @@ matTooltip="More">more_vert</mat-icon>
         <button mat-button (click)="delete(deleteCard)">Delete</button>
     </div>
     <div>
-        <button mat-menu-item [matMenuTriggerFor]="labelMenu">Add Label</button>
+        <button mat-menu-item [matMenuTriggerFor]="labelMenu"><b style="font-size:13px">
+            Add Label</b></button>
+        <button mat-button (click)="questions()"> Ask a question </button>
         <mat-menu #labelMenu="matMenu">
             <div (click)="$event.stopPropagation()">
             <input type="text" aria-hidden="false" placeholder="Search" [(ngModel)]="query">
             </div>
     <!-- ********************* Searching Labels ************************* -->
-            <div *ngFor="let labels of labelArray | filterLabel: query trackBy:val?.id" (click)="$event.stopPropagation()">
-            <button mat-menu-item (click)="$event.stopPropagation()">
-            <mat-checkbox (click)="$event.stopPropagation();addLabelTag(labels)" >{{labels.label}} 
+            <div *ngFor="let labels of labelArray | filterLabel: query trackBy:val?.id" 
+            (click)="$event.stopPropagation()">
+            <button mat-button (click)="$event.stopPropagation()">
+            <mat-checkbox (click)="$event.stopPropagation();addLabelTag(labels)">{{labels.label}} 
             </mat-checkbox></button>
           </div>
         </mat-menu> 

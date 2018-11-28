@@ -29,7 +29,6 @@ export class HttpService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        
       })
     };
     return this.http.get(url,httpOptions);

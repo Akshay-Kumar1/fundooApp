@@ -88,7 +88,7 @@ export class LabelComponent implements OnInit , OnDestroy
   deleteLabel(id) 
   {
       const dialogRef = this.dialog.open(DeletedialogComponent, { 
-        width:'fit-content',height:'fit-content',
+        width:'250px',maxWidth:'auto',
       });
       dialogRef.afterClosed().subscribe(result => {
         if(result)

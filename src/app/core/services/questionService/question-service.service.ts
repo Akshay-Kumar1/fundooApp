@@ -12,5 +12,13 @@ export class QuestionServiceService {
   {
     return this.http.jsonPost('/questionAndAnswerNotes/addQuestionAndAnswer',body)
   }
+  likes(id,body)
+  {
+    return this.http.jsonPost('/questionAndAnswerNotes/like/'+id+'',body)
+  }
+  replyQuestion(id,body)
+  {
+    return this.http.jsonPost('/questionAndAnswerNotes/reply/'+id+'',body)
+  }
 
 }

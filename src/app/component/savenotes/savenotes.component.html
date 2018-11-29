@@ -145,15 +145,6 @@ fxFlex.lg = 4></div>
             </div>
             <div style="margin-top:5px">
             </div>
-            <div *ngIf="questionAndAnswerNotes">
-            <p>Questions</p>
-            <hr>
-            </div>
-                    <div *ngFor="let index of content.questionAndAnswerNotes">
-                       <div matTooltip="Goto Question" class="fields"
-                       routerLink="/homepage/notes/{{content.id}}/questions"> {{index.message}}
-                     </div>
-            </div>
                 <!-- ********************* Selector icons for Notes ******************* -->
                 <div class="action">
                     <div fxLayout="row" fxLayoutAlign="space-between start">
@@ -173,6 +164,14 @@ fxFlex.lg = 4></div>
                     <app-more [deleteCard]="content" (trash)="refreshDelete($event)">
                     </app-more>
                     </div>
+                </div>
+                <div *ngIf="content.questionAndAnswerNotes.length !=0">
+                        Question Asked 
+                        <hr>
+                       <div matTooltip="Goto Question" class="fields"
+                       routerLink="/homepage/notes/{{content.id}}/questions">
+                        {{content.questionAndAnswerNotes[0].message}}
+                     </div>
                 </div>
             </mat-card>
         </div>

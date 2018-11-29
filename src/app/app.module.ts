@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BarRatingModule } from "ngx-bar-rating";
 
 import { InterceptService} from '../app/core/services/interceptor/interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -13,7 +14,7 @@ import { AuthGuard } from './core/services/authGuard/auth.guard';
 import { AuthServiceService } from './core/services/authGuard/auth-service.service';
 import { LoggerService } from './core/services/logger/logger.service';
 import { LabelSearchPipe } from './core/pipes/label-search.pipe';
-import { ErrorsHandler } from './core/services/errorHandling/errorHandler';
+// import { ErrorsHandler } from './core/services/errorHandling/errorHandler';
 
 import { MatInputModule ,MatCardModule, MatButtonModule,MatRadioModule,MatCheckboxModule,
          MatStepperModule,MatFormFieldModule,MatIconModule,MatSnackBarModule,MatToolbarModule,
@@ -53,7 +54,7 @@ import { DeletenoteComponent } from './component/deletenote/deletenote.component
 import { PinComponent } from './component/pin/pin.component';
 import { CollaboratorDialogComponent } from './component/collaborator-dialog/collaborator-dialog.component';
 import { QuestionsComponent } from './component/questions/questions.component'
-import {RatingModule} from "ngx-rating"
+import { RatingModule} from "ngx-rating"
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import {RatingModule} from "ngx-rating"
     DeletenoteComponent,
     PinComponent,
     CollaboratorDialogComponent,
-    QuestionsComponent
+    QuestionsComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -119,7 +121,8 @@ import {RatingModule} from "ngx-rating"
     MatNativeDateModule, 
     MatDatepickerModule,
     ImageCropperModule,
-    RatingModule
+    RatingModule,
+    BarRatingModule,
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   entryComponents:[DeletedialogComponent,ImagecropComponent,DeletenoteComponent,CollaboratorDialogComponent,UpdatenotesComponent], 
@@ -128,10 +131,6 @@ import {RatingModule} from "ngx-rating"
            provide: HTTP_INTERCEPTORS,
            useClass: InterceptService,
            multi: true
-         },
-         {
-         provide: ErrorHandler,
-         useClass: ErrorsHandler
          }
          ,HttpService,AuthGuard,AuthServiceService,LoggerService,MatDatepickerModule],  
   bootstrap: [AppComponent]

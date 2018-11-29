@@ -1,33 +1,137 @@
 
 <div fxLayout="column" fxLayoutAlign="start" fxLayoutWrap style="margin-top:50px;margin-left:125px;
 margin-right:50px;" class="card"> 
-  <div  >
+  <div class="fixed">
   <hr>
   <div fxLayout="row" fxLayoutAlign="end"><button mat-button 
   routerLink="/homepage/cardtemplate"> close </button></div>
-<div [innerHTML]="title"></div>
+<div class="font" [innerHTML]="title"></div>
+<div style="margin-top:10px"></div>
 <div [innerHTML]="description"></div>
   <div style="margin-bottom:20px"></div>
 <div style="margin-top:10px"></div>
-<div *ngIf="hide==0">
+<div>
   <hr>
-        Ask A Question
+        <div *ngIf="saveMessage != null">
+          Question Asked  
+         <div style="font-size:20px">{{saveMessage}}</div>
+        </div>
         <div style="margin-top:5px"></div>
+        <div *ngIf="saveMessage == null">
+        <div fxLayout="column">
+           <div>Ask A Question</div> 
+           <div style="margin-top:5px"></div>
+          <div>
             <input [(ngModel)]="questionTag" class="fields" 
              placeholder="Type Your Question Here" (keydown.enter)="postQuestion(questionTag)">
+          </div>
+        </div>
     <div style="margin-bottom:20px"></div>
   <div style="margin-top:5px"></div>
 </div>
 </div>
+
 </div>
-<div *ngIf="hide==1" >
-<div style="margin-top:50px;margin-left:125px">
-  Question Asked
-  <b>{{questionTag}}</b> 
+</div>
+<div fxLayout="column">
+<div *ngIf="saveMessage != null" >
+<div fxLayout="column" style="margin-top:50px;margin-left:125px">
+  <div fxLayout="row" fxLayoutGap="20px">
+    <button style="width:50px;height:50px" mat-mini-fab [ngStyle]="{'background-image':'url(' + ownerPhoto + ')',
+  'background-size':'cover'}"></button>
+  <div fxLayout="column">
+  <div ><sub>{{firstName}}</sub></div>
+  <div fxLayout="row">
+  <div style="font-size:20px;font-weight:bold">{{saveMessage}}</div> 
+  <div style="margin-left:60px">
+  <div *ngIf="likeHide==0" (click)="like()" matTooltip="Like" style="cursor:pointer">
+      <img src="../../../assets/images/outline-thumb_up-24px.svg">
+      {{likeCounter}}
+  </div>
+  <div *ngIf="likeHide==1" (click)="unLike()" matTooltip="Unlike" style="cursor:pointer"> 
+      <img src="../../../assets/images/baseline-thumb_up-24px.svg">
+      {{likeCounter}}
+</div>
+
+</div>
 </div>
 </div>
 <div>
+    <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
+</div>
+</div>
+  
+</div>
 
+</div>
+<hr>
+<div style="margin-top:20px;margin-left:180px">
+    <input *ngIf="display==0" [(ngModel)]="reply" class="fields" 
+    placeholder="Reply to Question" (keydown.enter)="postReply(reply)">
+</div>
+
+<div fxLayoutAlign="row" *ngIf="display==1">
+    <div style="margin-top:20px;margin-left:125px">
+        <div fxLayout="row">
+            <div>
+              <button style="width:50px;height:50px" mat-mini-fab [ngStyle]="{'background-image':'url(' + ownerPhoto + ')',
+              'background-size':'cover'}"></button>
+            </div>
+           <div style="margin-left:25px"></div>
+            <div>
+            <div fxLayout="column">
+            <div><sub>{{firstName}}</sub></div>
+            <div fxLayout="row">
+              <div>
+                  {{reply}}
+              </div>
+              <div style="margin-left:25px"></div>    
+                  <div style="margin-left:60px">
+                      <div *ngIf="likeHide==0" (click)="like()" matTooltip="Like" style="cursor:pointer">
+                          <img src="../../../assets/images/outline-thumb_up-24px.svg">
+                          {{likeCounter}}
+                      </div>
+                      <div *ngIf="likeHide==1" (click)="unLike()" matTooltip="Unlike" style="cursor:pointer"> 
+                          <img src="../../../assets/images/baseline-thumb_up-24px.svg">
+                          {{likeCounter}}
+                     </div>
+                    </div>    
+            </div>
+            </div>
+          </div>
+          </div>
+          <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
+    </div>
+</div>
+</div>
+<div *ngFor="let index of replyMessages">
+    <div *ngIf="saveMessage != null" >
+        <div fxLayout="column" style="margin-top:50px;margin-left:125px">
+          <div fxLayout="row" fxLayoutGap="20px">
+            <button style="width:50px;height:50px" mat-mini-fab [ngStyle]="{'background-image':'url(' + photo + ')',
+          'background-size':'cover'}"></button>
+          <div fxLayout="column">
+          <div ><sub>{{getUserEmail}}</sub></div>
+          <div fxLayout="row">
+          <div style="font-size:20px;font-weight:bold">{{index.message}}</div> 
+          <div style="margin-left:60px">
+          <div *ngIf="likeHide==0" (click)="like()" matTooltip="Like" style="cursor:pointer">
+              <img src="../../../assets/images/outline-thumb_up-24px.svg">
+              {{likeCounter}}
+          </div>
+          <div *ngIf="likeHide==1" (click)="unLike()" matTooltip="Unlike" style="cursor:pointer"> 
+              <img src="../../../assets/images/baseline-thumb_up-24px.svg">
+              {{likeCounter}}
+        </div>
+        </div>
+        </div>
+        </div>
+        <div>
+            <bar-rating [(rate)]="rate" [max]="5"></bar-rating>
+        </div>
+        </div>
+        </div>
+        </div>
 </div>
 
 

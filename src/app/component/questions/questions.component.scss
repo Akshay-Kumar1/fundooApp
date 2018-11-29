@@ -14,6 +14,12 @@
     font-size: 16px;
     color:gray;
 }
+.font
+{
+    font-weight: bold;
+    font-size:20px;
+    font-style: italic;
+}
 
 [contenteditable=true]:empty:not(:focus):before{
     content:attr(data-text)
@@ -22,6 +28,11 @@
 {
     width:$width;
 }
+// .fixed
+// {
+//     z-index: 2;
+//     position: fixed;
+// }
 
 @media only screen and (min-width: 506px) and (max-width: 649px)
 {

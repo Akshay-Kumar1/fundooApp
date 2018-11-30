@@ -163,7 +163,7 @@ public pic;
  */
 profileCropOpen(data): void {
 const dialogRefPic = this.dialog.open(ImagecropComponent, { 
-width: '450px',
+width: '500px',maxWidth:'auto',
 data: data
 });
 

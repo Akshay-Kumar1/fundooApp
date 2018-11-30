@@ -20,5 +20,9 @@ export class QuestionServiceService {
   {
     return this.http.jsonPost('/questionAndAnswerNotes/reply/'+id+'',body)
   }
+  rate(id,body)
+  {
+    return this.http.jsonPost('/questionAndAnswerNotes/rate/'+id+'',body) 
+  }
 
 }

@@ -169,8 +169,8 @@ fxFlex.lg = 4></div>
                         Question Asked 
                         <hr>
                        <div matTooltip="Goto Question" class="fields"
-                       routerLink="/homepage/notes/{{content.id}}/questions">
-                        {{content.questionAndAnswerNotes[0].message}}
+                       routerLink="/homepage/notes/{{content.id}}/questions" 
+                       [innerHTML]="content.questionAndAnswerNotes[0].message">
                      </div>
                 </div>
             </mat-card>

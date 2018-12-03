@@ -54,6 +54,7 @@ import { DeletenoteComponent } from './component/deletenote/deletenote.component
 import { PinComponent } from './component/pin/pin.component';
 import { CollaboratorDialogComponent } from './component/collaborator-dialog/collaborator-dialog.component';
 import { QuestionsComponent } from './component/questions/questions.component'
+import { ProductcartComponent } from './component/productcart/productcart.component';
 import { RatingModule} from "ngx-rating"
 
 @NgModule({
@@ -89,7 +90,7 @@ import { RatingModule} from "ngx-rating"
     PinComponent,
     CollaboratorDialogComponent,
     QuestionsComponent,
-   
+    ProductcartComponent
   ],
   imports: [
     BrowserModule,

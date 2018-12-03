@@ -17,6 +17,7 @@ import { LabelComponent } from './component/label/label.component';
 import { SearchcomponentComponent } from './component/searchcomponent/searchcomponent.component';
 import { LabelsComponent } from './component/labels/labels.component';
 import { QuestionsComponent } from './component/questions/questions.component';
+import { ProductcartComponent } from './component/productcart/productcart.component';
 
 
 const routes: Routes = 
@@ -38,7 +39,8 @@ const routes: Routes =
     { path:'labels/:labelName',component:LabelsComponent},
     { path:'notes',component:NotesComponent },
     { path:'searchcomponent',component:SearchcomponentComponent },
-    { path:'notes/:noteid/questions',component:QuestionsComponent }
+    { path:'notes/:noteid/questions',component:QuestionsComponent },
+    { path:'cart' , component:ProductcartComponent}
   ] 
   },
 

@@ -1,129 +1,150 @@
 import { Component, OnInit , OnDestroy, ViewChild, ElementRef} from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
 import { NoteserviceService } from 'src/app/core/services/noteService/noteservice.service';
 import { QuestionServiceService } from 'src/app/core/services/questionService/question-service.service';
 import { environment } from 'src/environments/environment';
+import { LoggerService } from 'src/app/core/services/logger/logger.service';
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit , OnDestroy {
-  private hide=0
   destroy$: Subject<boolean> = new Subject<boolean>();
-  newArray: any=[]
-  constructor(private router:ActivatedRoute, private notesService:NoteserviceService,
-  private questionService:QuestionServiceService) { }
-  @ViewChild('questionTag') questionTag:ElementRef
-  @ViewChild('reply') reply:ElementRef
-  private questionNotes;
-  private title;
-  private description;
-  private saveMessage;
-  private question;
-  private likeHide=0;
-  private likeCounter;
-  private likeId;
-  private replyArray=[];
-  private display=0;
-  private replyMessages=[];
-  private getUser
-  private getUserEmail=[]
-  private getProfile;
-  private getTime;
+  content: { "like": BooleanConstructor; };
+  RequestBody: any;
+  constructor(private route: ActivatedRoute, private notesService: NoteserviceService,
+    public router: Router, public questionService: QuestionServiceService) { }
+    @ViewChild('messageReply') public messageReply: ElementRef;
+    @ViewChild('askAQuestion') public askAQuestion: ElementRef;
+  
+  private checkList = [];
+  private noteColor;
+  private message;
+  private replyId;
+  private questionAnswerArray;
+  private show = false;
+  replyQuestion;
+  private ratingAverage;
+  private avgRate;
   private parentId;
-  firstName = localStorage.getItem('firstName')
-  email = localStorage.getItem('email')
-  lastName = localStorage.getItem('lastName')
-  image = localStorage.getItem('imageUrl')
-  private photo=environment.profilePicUrl;
-  private ownerPhoto=environment.profilePicUrl+this.image
-  ngOnInit() 
-  {
-    this.router.params.subscribe((params:Params)=>
-    {
-      this.questionNotes=params['noteid'];
-    })
-     this.notesService.questionService(this.questionNotes)
-    .pipe(takeUntil(this.destroy$))
-    .subscribe(data=>{
-      console.log(data)
-      this.getUser=data['data']['data'][0]['questionAndAnswerNotes']
-      // this.getTime = this.getUser[0].createdDate
-      // this.getUserEmail=this.getUser[0]['user'].firstName
-      this.title=data['data']['data'][0].title
-      this.description=data['data']['data'][0].description
-      this.replyArray=data['data']['data'][0]
-      this.replyMessages=this.replyArray['questionAndAnswerNotes']
-      this.question=data['data']['data'][0];
-      this.parentId=this.question['questionAndAnswerNotes'][0].id
-      if(this.question['questionAndAnswerNotes'][0]!=undefined)
-      {
-        this.saveMessage=this.question['questionAndAnswerNotes'][0].message
-
-
-      }
-    })
+  private userName;
+  private userDetails;
+  private img;
+  private profilePic;
+  private noteId;
+  private title;
+  private noteDescription;
+  private noteDetails;
+  ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      this.noteId = params['noteid'];
+      LoggerService.log('noteDetails', this.noteId);
+    });
+    this.getNoteDetails();
   }
-postQuestion()
-{
 
-  this.questionService.askQuestion({
-    "message": this.questionTag.nativeElement.innerHTML,
-    "notesId":this.questionNotes
-    }).pipe(takeUntil(this.destroy$))
-  .subscribe(data=>{
-    this.saveMessage=this.questionTag
-})
-}
+  getNoteDetails() {
+    this.notesService.questionService(this.noteId)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        LoggerService.log('getNoteDetail', data);
+        this.userDetails = data['data']['data'][0].user;
+        this.profilePic = environment.profilePicUrl;
+        this.noteDetails = data['data'].data[0];
+        this.title = this.noteDetails.title;
+        this.noteDescription = this.noteDetails.description;
 
-like(likeId)
-{
+        for (var i = 0; i < data['data']['data'][0].noteCheckLists.length; i++) {
+          if (data['data']['data'][0].noteCheckLists[i].isDeleted == false) {
+            this.checkList.push(data['data']['data'][0].noteCheckLists[i])
+          }
+        }
 
-  this.questionService.likes(likeId,{
-    "like":true
-  }).pipe(takeUntil(this.destroy$))
-  .subscribe(data=>{
-    this.likeHide=1;
-})
-}
+        if (this.noteDetails.questionAndAnswerNotes[0] != undefined) {
+          this.message = this.noteDetails.questionAndAnswerNotes[0].message;
+          this.questionAnswerArray = this.noteDetails.questionAndAnswerNotes;
+          this.img == environment.profilePicUrl + this.noteDetails.questionAndAnswerNotes[0].user.imageUrl;
+        }
 
-unLike(likeId)
-{
-  this.questionService.likes(likeId,{
-    "like":false
-  }).pipe(takeUntil(this.destroy$))
-  .subscribe(data=>{
-    this.likeHide=0;
-})
-}
+        if (this.noteDetails.questionAndAnswerNotes != undefined) {
+          this.questionAnswerArray = this.noteDetails.questionAndAnswerNotes;
+          LoggerService.log('data', this.questionAnswerArray)
+        }
 
-rating(index,event)
-{
-  this.questionService.rate(index.id,{
-    "rate":event
-  }).pipe(takeUntil(this.destroy$))
-  .subscribe(data=>{
-})
-}
+      })
+      
+  }
 
-postReply()
-{
-  this.likeId = this.question['questionAndAnswerNotes'][0].id
-  this.questionService.replyQuestion(this.likeId,{
-    "message":this.reply.nativeElement.innerHTML,
-  }).pipe(takeUntil(this.destroy$))
-  .subscribe(data=>{
-    let messages=this.reply.nativeElement.innerHTML;
-    this.display=1;
-})
-}
+  close() {
+    this.router.navigate(['homepage/notes']);
+  }
 
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
+  }
+
+  askFirstQuestion() {
+    var content = {
+      'message': this.askAQuestion.nativeElement.innerHTML,
+      'notesId': this.noteId
+    }
+    this.questionService.askQuestions(content).subscribe(data => {
+      this.getNoteDetails();
+      this.message = data['data']['details'].message;
+      this.getNoteDetails();
+    })
+  }
+
+  like(value) {
+    var content = {
+      'like': true,
+    }
+    this.questionService.likes(value, content)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.getNoteDetails();
+        
+      });
+    this.getNoteDetails();
+  }
+  ratingAnswer(value, event) {
+    var content = {
+      'rate': event
+    }
+    this.questionService.rate(value.id, content)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.getNoteDetails();
+    
+      })
+  }
+  leaveReply(value) {
+    let content = {
+      'message': this.messageReply.nativeElement.innerHTML
+    }
+    LoggerService.log(content.message);
+    LoggerService.log(value);
+    this.questionService.replyQuestion(value, content)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.getNoteDetails();
+      })
+  }
+
+  averageRating(rateArray) {
+    this.ratingAverage = 0;
+    if (rateArray.length != 0) {
+      for (let i = 0; i < rateArray.length; i++) 
+      {
+        this.ratingAverage += rateArray[i].rate
+      }
+      this.avgRate = this.ratingAverage / rateArray.length;
+      return this.avgRate;
+    }
   }
 
 }

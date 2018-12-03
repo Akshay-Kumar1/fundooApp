@@ -8,7 +8,7 @@ export class QuestionServiceService {
 
   constructor(private http:HttpService) { }
 
-  askQuestion(body)
+  askQuestions(body)
   {
     return this.http.jsonPost('/questionAndAnswerNotes/addQuestionAndAnswer',body)
   }

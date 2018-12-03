@@ -8,7 +8,6 @@
   <div style="padding-top:10px"></div>
 
   <!-- ********************* Add CheckList ******************* -->
-  
   <div class="note" *ngFor="let check of tempArray" fxLayout="row">
       <mat-checkbox fxFlex="10%" *ngIf="check.status=='open'&& !check.isDeleted" 
       (click)=checkBox(check)></mat-checkbox>
@@ -19,7 +18,6 @@
       <mat-icon fxFlex="10%" class="clearIcon" (click)=removeList(check) 
       *ngIf="!check.isDeleted && check.status=='open'">clear</mat-icon> 
   </div>
-  
       <mat-divider *ngIf="checklist"></mat-divider>
       <div fxLayout="row" *ngIf="checklist">
         <mat-icon fxFlex="5%" *ngIf="!adding">add</mat-icon>
@@ -38,7 +36,6 @@
         <mat-icon fxFlex="10%" class="clearIcon" (click)=removeList(check)
          *ngIf="!check.isDeleted && check.status=='close'">clear</mat-icon>
   </div>
-
   <div style="padding-top:10px"></div>
   <div fxLayout="row" class="spacing">
   <div *ngFor="let res of data.noteLabels trackBy:val?.id">
@@ -74,6 +71,14 @@
     <app-archivesub [archive]="data"></app-archivesub>
     <app-more [deleteCard]="data"></app-more>
     <button mat-button (click)="notesUpdate()">Close</button> 
+</div>
+<div *ngIf="data.questionAndAnswerNotes.length !=0">
+    Question Asked 
+    <hr>
+   <div matTooltip="Goto Question" class="fields"
+   routerLink="/homepage/notes/{{data.id}}/questions" 
+   [innerHTML]="data.questionAndAnswerNotes[0].message">
+ </div>
 </div>
 
 </mat-card>

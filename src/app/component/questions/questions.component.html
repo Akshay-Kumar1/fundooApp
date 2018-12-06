@@ -1,9 +1,9 @@
 
 <div  fxShow=1 fxShow.xs=0 fxShow.sm=0 fxFlex=5></div>
 
-<div fxFlex="99" ngStyle.xs="width:90%" class="questionCard">
+<div fxFlex="100" ngStyle.xs="width:90%" class="questionCard">
     <div fxLayout="row">
-        <div [innerHTML]="title" class="cardAlign" fxFlex></div>
+        <div [innerHTML]="title" class="cardAlign" fxFlex="95"></div>
         <button fxFlex="5" mat-button (click)="close()">close</button>
     </div>
     <div>
@@ -22,17 +22,14 @@
     </div>
     <div class="topBorder" *ngIf="message!=null">Question Asked
     </div>
-    <div *ngIf="message==null" fxLayout="row" fxLayoutAlign="start end">
-        <div fxFlex=50 class="fields" #askAQuestion contenteditable="true" data-text="Ask a Question">
-        </div>
-        <div fxFlex=50>
-            <mat-icon class="cursor" (click)="askFirstQuestion()" mat-button>done</mat-icon>
+    <div *ngIf="message==null" fxLayout="row">
+        <div fxFlex=85 [froalaEditor]="options" [(froalaModel)]="editorContent"></div>
+        <div  fxFlex=15 style="margin-top:120px" >
+            <button mat-button class="cursor" (click)="askFirstQuestion()">Send</button>
         </div>
     </div>
+  <div [innerHTML]="message"></div>
 
-    <div class="newMsg">
-        <div> {{message}}</div>
-    </div>
     <div class="scroll" *ngIf="message!=null">
         <div ngStyle.xs="width:100%" fxLayout="column" class="button ">
             <div fxLayout="row">
@@ -57,7 +54,7 @@
                 <div>
                     <mat-icon matTooltip="Reply" class="pointer" 
                     (click)="replyQuestion = questionAnswerArray[0].id "
-                        (click)="show = !show">reply</mat-icon>
+                    (click)="show = !show">reply</mat-icon>
                 </div>
                 <div>
                     <mat-icon matTooltip="Like" class="pointer" 
@@ -78,19 +75,24 @@
                     ,$event)" 
                     [max]="5"></bar-rating>
                 </div>
+                <div *ngIf="views==0" (click)="showReplies()">
+                        <mat-icon style="cursor:pointer" matTooltip="show replies">expand_more</mat-icon>
+                </div>
+                <div *ngIf="views==1" (click)="hideReplies()">
+                        <mat-icon style="cursor:pointer" matTooltip="Hide replies">expand_less</mat-icon>
+                </div>
             </div>
         </div>
         <div *ngIf="replyQuestion == questionAnswerArray[0].id && show==true" fxLayout="row">
-            <div class="textNew user" #messageReply contenteditable="true" 
-            data-text="Leave a reply">
-            </div>
-            <div fxLayoutAlign="end">
-                <mat-icon class="cursor" (click)="leaveReply(questionAnswerArray[0].id)" 
-                mat-button>done</mat-icon>
+            <div fxFlex=85 [froalaEditor]="options" [(froalaModel)]="editorContent"></div>
+            <div fxFlex=15 style="margin-top:120px">
+                <button (click)="leaveReply(questionAnswerArray[0].id)" 
+                mat-button>send</button>
             </div>
         </div>
+        <div *ngIf="hideReply==1">
         <div *ngFor=" let value of questionAnswerArray" style="margin-left:3%">
-            <div *ngIf="value.parentId == questionAnswerArray[0].id">
+            <div *ngIf="value.parentId == questionAnswerArray[0].id && value.isApproved==true">
                 <div ngStyle.xs="width:100%" fxLayout="row" class="button" fxLayout.xs="column">
                     <div fxLayout="row">
                         <button *ngIf="img!=''" mat-mini-fab [ngStyle]="{'background-image':'url('  
@@ -99,16 +101,13 @@
                         <button *ngIf="img==''" mat-mini-fab>
                             {{value.user.firstName}}
                         </button>
-
                         <div class="marginLeft"></div>
-
                         <div style="font-size:13px" fxFlex><span>{{value.user.firstName}}</span>
                             <span style="margin-left:10px">{{value.modifiedDate | date:short}}
                             </span>
                             <div style="font-size:18px" [innerHTML]="value.message"></div>
                         </div>
                     </div>
-
                     <div fxLayout="row" fxLayout.sm="row" fxLayout.xs="row" fxLayoutAlign="end" 
                     style="float: right;margin-left: auto">
                         <div>
@@ -135,17 +134,16 @@
                     </div>
                 </div>
                 <div *ngIf="replyQuestion == value.id && show==true" fxLayout="row">
-                    <div class="textNew user border" #messageReply contenteditable="true" 
-                    data-text="Leave a reply">
-                    </div>
-                    <div fxLayoutAlign="end">
-                        <mat-icon class="cursor" (click)="leaveReply(value.id)" 
-                        mat-button>done</mat-icon>
+                    
+                    <div fxFlex=80 [froalaEditor]="options" [(froalaModel)]="editorContent"></div>
+                    <div fxFlex=20 style="margin-top:120px">
+                        <button mat-button (click)="leaveReply(value.id)" 
+                        >Send</button>
                     </div>
                 </div>
 
                 <div *ngFor=" let value2 of questionAnswerArray" style="margin-left:6%">
-                    <div *ngIf="value2.parentId == value.id">
+                    <div *ngIf="value2.parentId == value.id && value2.isApproved==true">
                         <div ngStyle.xs="width:100%" fxLayout="row" fxLayout.xs="column" class="button ">
                             <div fxLayout="row">
                                 <button *ngIf="img!=''" mat-mini-fab 
@@ -195,16 +193,14 @@
                             </div>
                         </div>
                         <div *ngIf="replyQuestion == value.id && show==true" fxLayout="row">
-                            <div class="textNew user border" #messageReply contenteditable="true" 
-                            data-text="Leave a reply">
-                            </div>
-                            <div fxLayoutAlign="end">
-                                <mat-icon class="cursor" (click)="leaveReply(value.id)" 
-                                mat-button>send</mat-icon>
+                            <div fxFlex=80 [froalaEditor]="options" [(froalaModel)]="editorContent"></div> 
+                            <div fxFlex=20 style="margin-top:120px">
+                                <button class="cursor" (click)="leaveReply(value.id)" 
+                                >Send</button>
                             </div>
                         </div>
                         <div *ngFor=" let value3 of questionAnswerArray" style="margin-left:8%">
-                            <div *ngIf="value3.parentId == value2.id">
+                            <div *ngIf="value3.parentId == value2.id && value3.isApproved==true">
                                 <div ngStyle.xs="width:100%" fxLayout="row" class="button ">
                                    <div fxLayout="row" fxLayout.xs="column">
                                     <button *ngIf="img!=''" mat-mini-fab 
@@ -215,7 +211,6 @@
                                         {{value3.user.firstName | titlecase | slice : 0 : 1 }}
                                     </button>
                                     <div class="marginLeft"></div>
-    
                                         <div fxFlex class="user"><span>{{value3.user.firstName |
                                                 titlecase}} {{value3.user.lastName | titlecase}}
                                             </span>
@@ -235,7 +230,6 @@
                                             </div>
                                             <div>
                                                 <mat-icon matTooltip="Like" (click)="like(value3.id)">thumb_up_alt
-
                                                 </mat-icon>
                                             </div>
                                             <div class="count user">{{value3.like.length}}</div>
@@ -259,6 +253,7 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
 </div>
-<div fxFlex="1" fxShow=1 fxShow.xs=0 fxShow.sm=0></div>
+<div fxFlex="0" fxShow=1 fxShow.xs=0 fxShow.sm=0></div>

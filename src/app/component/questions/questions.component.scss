@@ -1,16 +1,16 @@
 @import '../../../scss/mixins.scss';
 @import '../../../scss/variables.scss';
 
-
-
 .fields
 {
     @include noBorder();
 }
 
+
 .questionCard{
     width:995px;
-    margin-top:30px;
+    margin-top:25px;
+
 }
 
 .topBorder{

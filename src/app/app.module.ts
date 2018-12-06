@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BarRatingModule } from "ngx-bar-rating";
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { InterceptService} from '../app/core/services/interceptor/interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -124,6 +125,7 @@ import { RatingModule} from "ngx-rating"
     ImageCropperModule,
     RatingModule,
     BarRatingModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   entryComponents:[DeletedialogComponent,ImagecropComponent,DeletenoteComponent,CollaboratorDialogComponent,UpdatenotesComponent], 

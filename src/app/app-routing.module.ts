@@ -28,7 +28,7 @@ const routes: Routes =
   { path: 'forgot-password',component: ForgotPasswordComponent },
   { path: 'resetpassword/:token',component: ResetPasswordComponent },
   { path: 'updatenotes',component: UpdatenotesComponent },
-  { path:'label/:id',component:LabelComponent },
+  { path: 'label/:id',component:LabelComponent },
   { path: 'homepage',component: HomepageComponent,canActivate:[AuthGuard],children:
   [ 
     { path: '', redirectTo: 'cardtemplate', pathMatch:  'full' },

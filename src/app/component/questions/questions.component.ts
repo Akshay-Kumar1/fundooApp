@@ -20,6 +20,7 @@ export class QuestionsComponent implements OnInit , OnDestroy {
     @ViewChild('messageReply') public messageReply: ElementRef;
     @ViewChild('askAQuestion') public askAQuestion: ElementRef;
   
+  private views=0  
   private checkList = [];
   private noteColor;
   private message;
@@ -38,12 +39,24 @@ export class QuestionsComponent implements OnInit , OnDestroy {
   private title;
   private noteDescription;
   private noteDetails;
+  private hideReply=0
+  public editorContent: string
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.noteId = params['noteid'];
       LoggerService.log('noteDetails', this.noteId);
     });
     this.getNoteDetails();
+  }
+  showReplies()
+  {
+    this.views=1;
+    this.hideReply=1;
+  }
+  hideReplies()
+  {
+    this.views=0;
+    this.hideReply=0;
   }
 
   getNoteDetails() {
@@ -79,7 +92,7 @@ export class QuestionsComponent implements OnInit , OnDestroy {
   }
 
   close() {
-    this.router.navigate(['homepage/notes']);
+    this.router.navigate(['homepage/cardtemplate']);
   }
 
   ngOnDestroy() {
@@ -89,9 +102,9 @@ export class QuestionsComponent implements OnInit , OnDestroy {
 
   askFirstQuestion() {
     var content = {
-      'message': this.askAQuestion.nativeElement.innerHTML,
+      'message': this.editorContent,
       'notesId': this.noteId
-    }
+    } 
     this.questionService.askQuestions(content).subscribe(data => {
       this.getNoteDetails();
       this.message = data['data']['details'].message;
@@ -122,18 +135,6 @@ export class QuestionsComponent implements OnInit , OnDestroy {
     
       })
   }
-  leaveReply(value) {
-    let content = {
-      'message': this.messageReply.nativeElement.innerHTML
-    }
-    LoggerService.log(content.message);
-    LoggerService.log(value);
-    this.questionService.replyQuestion(value, content)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(data => {
-        this.getNoteDetails();
-      })
-  }
 
   averageRating(rateArray) {
     this.ratingAverage = 0;
@@ -146,5 +147,26 @@ export class QuestionsComponent implements OnInit , OnDestroy {
       return this.avgRate;
     }
   }
+
+  leaveReply(value) {
+    let content = {
+      'message': this.editorContent
+    }
+    LoggerService.log(content.message);
+    LoggerService.log(value);
+    this.questionService.replyQuestion(value, content)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.getNoteDetails();
+      })
+  }
+  public options: Object = {
+    charCounterCount: false,
+    toolbarButtons:   ['fullscreen', 'bold', 'italic', 'underline', '|','fontSize', 'color', 'inlineClass', 'inlineStyle', 'paragraphStyle', 'lineHeight', '|',
+    'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '|', 'emoticons', 'fontAwesome',
+    'specialCharacters', 'selectAll', 'clearFormatting', '|', 'undo', 'redo'],
+    toolbarButtonsXS: ['undo', 'redo' , '-', 'bold', 'italic', 'underline'],
+    toolbarButtonsSM: ['undo', 'redo' , '-', 'bold', 'italic', 'underline']
+  };
 
 }

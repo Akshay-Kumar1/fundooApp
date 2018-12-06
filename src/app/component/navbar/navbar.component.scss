@@ -1,9 +1,10 @@
 @import "../../../scss/mixins.scss";
  .sidenav-container 
  {
-  height: stretch;
-  scroll-behavior: auto;
-  // background-color:rgb(221,221,230)  
+  height: 100%;
+  width: 100%;
+  // scroll-behavior: auto;
+  background-color:rgb(221,221,230)  
 }
 
 .sidenav 

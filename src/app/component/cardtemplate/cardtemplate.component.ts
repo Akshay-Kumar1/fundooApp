@@ -16,6 +16,7 @@ export class CardtemplateComponent implements OnInit , OnDestroy
   private array:NotesInfo []= []
   private pinned: any= []
   private newArray:any= [];
+  public loader:boolean=false;
   constructor(private myHttpService: HttpService,private notesService:NoteserviceService) { }
 
   ngOnInit() {
@@ -31,6 +32,7 @@ export class CardtemplateComponent implements OnInit , OnDestroy
     this.notesService.saveNotes()
     .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
+        this.loader=true;
         this.array = [];
         var noteArray:NotesInfo[]=data["data"]['data'];
         for (let i = noteArray.length - 1; i > 0; i--) {
@@ -49,6 +51,7 @@ export class CardtemplateComponent implements OnInit , OnDestroy
     this.notesService.saveNotes()
     .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
+        this.loader=true;
         this.newArray=[]
         for (let i = data['data']['data'].length - 1; i > 0; i--) {
           if(data['data']['data'][i].isDeleted == false && data['data']['data'][i].isArchived==false && data['data']['data'][i].isPined==true )

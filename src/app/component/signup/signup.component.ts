@@ -6,6 +6,8 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { UserserviceService } from '../../core/services/userService/userservice.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
+import { CartserviceService } from 'src/app/core/services/cartService/cartservice.service';
+import { LoggerService } from 'src/app/core/services/logger/logger.service';
 /**
  * @description : animation for login page in decorator
  */
@@ -53,11 +55,14 @@ export class SignupComponent implements OnInit , OnDestroy {
  * @description : Validations using custom Regex Patterns
  */
 constructor(private userService:UserserviceService ,private myHttpService : HttpService ,
-   private snackBar:MatSnackBar) { }
-
+   private snackBar:MatSnackBar,private cartSevice:CartserviceService) { }
+  selectService=0;
+  cartId=localStorage.getItem('cartId')
+  private product;
 ngOnInit() 
 {
   this.getMethod()
+  this.getCarts();
 }
 private hide=true;
   email= new FormControl('', [Validators.required,Validators.email]);
@@ -105,6 +110,15 @@ private hide=true;
   public user: any = {}
   private  cards=[];
   private service:any;
+  
+  getCarts()
+  {
+  this.cartSevice.getCart(this.cartId).pipe(takeUntil(this.destroy$))
+  .subscribe(data => {
+    LoggerService.log('data',data);
+    this.product=data['data'].productId;
+  })
+} 
   /**
  * @description : User Sign-up API
  */
@@ -131,6 +145,7 @@ private hide=true;
  * @description : Getting Service Cards
  */
       selectCards(card) {
+        this.selectService=1;
         this.service = card.name;
         card.select = true;
         for (var i = 0; i < this.cards.length; i++) {

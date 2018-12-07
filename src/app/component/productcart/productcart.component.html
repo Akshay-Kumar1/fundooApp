@@ -1,16 +1,31 @@
-<div style="height:500px">
-    <div style="margin-top:100px">
-        <div fxLayout="column">
-            <div fxFlex.lg="15" fxFlex.xs="15"></div>
-            <div fxFlex.lg="70" fxFlex.xs="70">
-                <div fxLayoutAlign="center center" fxLayoutGap="20px"> Which FundooNotes Service
-                    Pacakage Do you Want ? </div>
-                <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
-                    <mat-card class="break"> word-break:break-word </mat-card>
-                    <mat-card class="break"> word-break:break-word </mat-card>
-                </div>
+<div class="height">
+<mat-toolbar class="toolbar">
+    fundooNotes
+</mat-toolbar>
+<div class="margin-top">
+    <div fxFlex.lg="10" fxFlex.xs="10" fxFlex.sm="10" fxFlex.md="10"></div>
+    <div fxFlex.lg="80" fxFlex.xs="80" fxFlex.sm="80" fxFlex.md="80">
+        <div fxLayoutAlign="center center" fxLayoutGap="20px" class="fontSize"> Which FundooNotes Service
+            Pacakage Do you Want ? </div>
+        <div class="margins-top"></div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px" fxLayoutAlign="center" >
+            <div class="shadow" *ngFor="let card of cards"  (click)="selectCards(card)" 
+            [ngClass]="card.select ? 'select' : 'notSelect'" >
+                <mat-card class="break" >
+                    <mat-card-title>
+                        $ {{card.price}} per Month
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        <p class="fontColor">{{card.name | titlecase}}
+                    </mat-card-subtitle>
+                    <mat-card-content>
+                       <p class="gray">{{card.description}}
+                    </mat-card-content>
+                </mat-card>
+                <div class="whiteFont" (click)="openDialog(card)"> ADD TO CART</div>
             </div>
-            <div fxFlex.lg="15" fxFlex.xs="15"></div>
         </div>
     </div>
+    <div fxFlex.lg="10" fxFlex.xs="10" fxFlex.sm="10" fxFlex.md="10"></div>
+</div>
 </div>

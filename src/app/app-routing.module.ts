@@ -18,17 +18,19 @@ import { SearchcomponentComponent } from './component/searchcomponent/searchcomp
 import { LabelsComponent } from './component/labels/labels.component';
 import { QuestionsComponent } from './component/questions/questions.component';
 import { ProductcartComponent } from './component/productcart/productcart.component';
-
+import { PurchaseComponent } from './component/purchase/purchase.component';
 
 const routes: Routes = 
 [
-  { path: '', redirectTo:  '/login', pathMatch:  'full' },
+  { path: '', redirectTo: '/cart', pathMatch:  'full' },
   { path: 'signup',component: SignupComponent },
   { path: 'login',component:  LoginComponent },
   { path: 'forgot-password',component: ForgotPasswordComponent },
   { path: 'resetpassword/:token',component: ResetPasswordComponent },
   { path: 'updatenotes',component: UpdatenotesComponent },
   { path: 'label/:id',component:LabelComponent },
+  { path: 'cart', component:ProductcartComponent},
+  { path: 'purchase',component:PurchaseComponent},
   { path: 'homepage',component: HomepageComponent,canActivate:[AuthGuard],children:
   [ 
     { path: '', redirectTo: 'cardtemplate', pathMatch:  'full' },
@@ -40,7 +42,6 @@ const routes: Routes =
     { path:'notes',component:NotesComponent },
     { path:'searchcomponent',component:SearchcomponentComponent },
     { path:'notes/:noteid/questions',component:QuestionsComponent },
-    { path:'cart' , component:ProductcartComponent}
   ] 
   },
 

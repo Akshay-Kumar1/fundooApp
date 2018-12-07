@@ -20,8 +20,8 @@ import { LabelSearchPipe } from './core/pipes/label-search.pipe';
 import { MatInputModule ,MatCardModule, MatButtonModule,MatRadioModule,MatCheckboxModule,
          MatStepperModule,MatFormFieldModule,MatIconModule,MatSnackBarModule,MatToolbarModule,
          MatSidenavModule,MatListModule,MatMenuModule,MatExpansionModule,MatTooltipModule,
-         MatDialogModule,MatChipsModule,MatDatepickerModule, MatNativeDateModule} from '@angular/material';
-
+         MatDialogModule,MatChipsModule,MatDatepickerModule, MatNativeDateModule,MatTabsModule} from 
+         '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ReactiveFormsModule,FormsModule  } from '@angular/forms';
 
@@ -56,7 +56,9 @@ import { PinComponent } from './component/pin/pin.component';
 import { CollaboratorDialogComponent } from './component/collaborator-dialog/collaborator-dialog.component';
 import { QuestionsComponent } from './component/questions/questions.component'
 import { ProductcartComponent } from './component/productcart/productcart.component';
-import { RatingModule} from "ngx-rating"
+import { RatingModule} from "ngx-rating";
+import { CartdialogComponent } from './component/cartdialog/cartdialog.component';
+import { PurchaseComponent } from './component/purchase/purchase.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +93,9 @@ import { RatingModule} from "ngx-rating"
     PinComponent,
     CollaboratorDialogComponent,
     QuestionsComponent,
-    ProductcartComponent
+    ProductcartComponent,
+    CartdialogComponent,
+    PurchaseComponent
   ],
   imports: [
     BrowserModule,
@@ -124,11 +128,13 @@ import { RatingModule} from "ngx-rating"
     MatDatepickerModule,
     ImageCropperModule,
     RatingModule,
+    MatTabsModule,
     BarRatingModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents:[DeletedialogComponent,ImagecropComponent,DeletenoteComponent,CollaboratorDialogComponent,UpdatenotesComponent], 
+  entryComponents:[DeletedialogComponent,ImagecropComponent,DeletenoteComponent,
+    CollaboratorDialogComponent,UpdatenotesComponent,CartdialogComponent], 
   providers: [InterceptService,
          {
            provide: HTTP_INTERCEPTORS,

@@ -22,17 +22,18 @@
 .radius
 {
   border-radius: 1%;
+
 }
 
-.select
-{
-  background-color:rgb(43, 117, 114);
+// .select
+// {
+//   background-color:rgb(43, 117, 114);
   
-}
-.notSelect
-{
-  background-color:rgb(243, 137, 8);
-}
+// }
+// .notSelect
+// {
+//   background-color:rgb(243, 137, 8);
+// }
 .color1
 {
   color:$redColor;
@@ -52,4 +53,71 @@
 .color5
 {
   color:rgb(0, 128, 0);
+}
+
+.fontSize
+{
+    font-size: 15px;
+}
+
+.break
+{
+    word-break: break-word;
+    width:120px; 
+    height: 165px;
+    margin-top: -8%;
+    margin-left: -5%;
+    background-color:whitesmoke
+}
+
+.margin-top
+{
+    margin-top: 70px;
+    
+}
+.margins-top
+{
+    margin-top: 75px;
+}
+.fontColor
+{
+    color: rgb(58,58,221);
+    font-size:14px;
+}
+.fontSizes
+{
+  font-size: 15px;
+}
+
+.shadow
+{
+    height: 250px;
+    width: 180px;
+    background-color:gray
+}
+
+.whiteFont
+{
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+}
+.gray
+{
+    color:gray;
+    font-size: 13px;
+}
+.select
+{
+  height:250px;
+  background-color:#fb0;
+  
+}
+.notSelect
+{
+    background-color:gray;
+}
+.notSelect:hover
+{
+    background-color:#fb0;
 }

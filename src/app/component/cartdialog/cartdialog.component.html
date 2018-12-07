@@ -1,0 +1,28 @@
+
+<mat-toolbar class="toolbar">
+   <div fxLayout="row" fxFlex="100">
+      <div class="fontStyle" fxFlex="10">
+        {{data.name | titlecase}} Pack Details
+      </div> 
+      <div fxFlex="70">
+      </div>
+    <div class="fontStyle" fxFlex="20"> 
+      $ {{data.price}} / Month
+    </div>
+   </div> 
+</mat-toolbar>
+<div fxLayout="column" fxLayoutGap="125px" class="padding">
+<div>
+<mat-tab-group>
+    <mat-tab label="Feature I"> {{data.description}}</mat-tab>
+    <mat-tab label="Feature II"> {{data.description}} </mat-tab>
+    <mat-tab label="Feature III"> {{data.description}} </mat-tab>
+</mat-tab-group>
+</div>
+<div>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+<button mat-stroked-button (click)="close()">Remove</button>
+<button mat-stroked-button (click)="gotoSignup()">Proceed To Checkout</button>
+</div>
+</div>
+</div>

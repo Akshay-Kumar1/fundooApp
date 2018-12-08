@@ -1,8 +1,118 @@
-.height
-{
-    height: 100%;
-}
 .toolbar
 {
-    background-color:#fb0;
+    background-color: #fb0;
+    width: 100%;
+}
+.cursor
+{
+    cursor:pointer;
+}
+.margin-top
+{
+    margin-top: 20px;
+}
+.stepper
+{
+    margin-top:-1.5%;
+    width:auto
+}
+.cart
+{
+    background-color: white;
+    width: 700px;
+    height: 200px
+}
+.cart-card
+{
+    background-color: darkgray;
+    width: 50px;
+    height: 30px
+}
+.card-div
+{
+    background-color: white;
+    width: 80px;height: 80px;
+    margin-left: 400px
+}
+.card-div1
+{
+    background-color: white;
+    width: 80px;
+    height: 80px;
+    margin-left: 70px
+}
+.checkout
+{
+    background-color: whitesmoke;
+    width: 250px;
+    height: 50px;
+    margin-top: 25px;
+    margin-left: 30px;
+    display: flex
+}
+.fontOrder
+{
+    font-size:18px
+}
+.fontPay
+{
+    font-size:13px
+}
+.privacy
+{
+   color:blue;
+}
+.topMargin
+{
+    margin-top:50px
+}
+.marginLeft
+{
+    margin-left: 400px;
+}
+.marginLeftMore
+{
+    margin-left: 100px
+}
+.text
+{
+    height:100px;
+    width:800px
+}
+.cardDetails
+{
+    background-color: whitesmoke;
+    width: 250px;
+    height: 70px;
+    margin-top: 20px;
+    margin-left: 30px;
+    display: flex
+}
+.widthButton
+{
+    width:250px;
+}
+.lastCard
+{
+    background-color: darkgray;
+    width: 50px;
+    height: 30px
+}
+.lastCardDiv
+{
+    background-color: white;
+    width: 80px;
+    height: 80px;
+    margin-left: 400px
+}
+.red
+{
+    color:red;
+}
+.lastDivCard
+{
+    background-color: white;
+    width: 80px;
+    height: 80px;
+    margin-left: 70px
 }

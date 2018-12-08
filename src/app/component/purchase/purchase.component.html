@@ -1,5 +1,138 @@
-<div class="height">
-    <mat-toolbar class="toolbar">
-        fundooNotes
-    </mat-toolbar>
+<div fxLayout="column">
+    <div>
+<mat-toolbar class="toolbar">
+    <div fxFlex="10">fundooNotes</div>
+    <div fxFlex="85">
+    </div>
+    <div fxFlex="5">
+        <mat-icon class="cursor">shopping_cart</mat-icon>
+    </div>
+</mat-toolbar>
+</div>
+<div fxFlex="100" fxLayout="column">
+    <div  fxFlex.xl=10 fxFlex.lg="10" fxFlex.xs="0" fxFlex.sm="0" fxFlex.md="5"></div>
+    <div fxLayout="column" fxFlex.xl=80 fxFlex.lg="80" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="90">
+        <div class="margin-top"></div>
+        <div fxLayout="row">
+            <div>
+                <mat-chip-list>
+                    <mat-chip class="toolbar">fundooNotes</mat-chip>
+                </mat-chip-list>
+            </div>
+            <div class="stepper">
+                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="firstFormGroup">
+                        <form>
+                            <ng-template matStepLabel>Sign In</ng-template>
+                            <mat-form-field>
+                                <input matInput placeholder="Last name, First name" formControlName="firstCtrl"
+                                    required>
+                            </mat-form-field>
+                            <div>
+                                <button mat-button matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup">
+                        <form>
+                            <ng-template matStepLabel>Place Your Order</ng-template>
+
+                            <div fxLayout="row">
+                                <div class="cart">
+                                    <span fxLayout="row">
+                                        <span>Shopping cart</span>
+                                        <span style="margin-left: 400px">Price</span>
+                                        <span style="margin-left: 100px">Validty</span>
+                                    </span>
+                                    <hr>
+                                    <div fxLayout="row">
+                                        <mat-card class="cart-card">
+                                                Rs.{{product}}
+                                                {{productName | titlecase}}
+                                        </mat-card>
+                                        <div class="card-div">
+                                                Rs.{{product}}
+                                        </div>
+                                        <div class="card-div1">
+                                                Per Month
+                                        </div>
+                                        <div>
+                                            <span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <mat-card class="checkout">
+                                    <button mat-raised-button color="primary">proceed to checkout</button>
+                                </mat-card>
+                            </div>
+                            <div>
+                                <button mat-button matStepperPrevious>Back</button>
+                                <button mat-button matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Complete Payment</ng-template>
+                        <p class="fontOrder"> Review Your order</p>
+                        <p class="fontPay">By Clicking "Place Your Order AND Pay" button your agree to
+                            fundooNotes.in's
+                            <span class="privacy">privacy policy</span> and <span class="privacy">condition of
+                                use</span></p>
+                        <div class="topMargin"></div>
+                        <div fxLayout="row">
+                            <div class="cart">
+                                <span fxLayout="row">
+                                    <span>Shopping cart</span>
+                                    <span class="marginLeft">Price</span>
+                                    <span class="marginLeftMore">Validty</span>
+                                </span>
+                                <hr>
+                                <div fxLayout="row">
+                                    <mat-card class="lastCard">
+                                        Rs.{{product}}
+                                        {{productName | titlecase}}
+                                    </mat-card>
+                                    <div class="lastCardDiv">
+                                        Rs.{{product}}
+                                    </div>
+                                    <div class="lastDivCard">
+                                        Per Month
+                                    </div>
+                                    <div>
+                                        <span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <mat-card class="cardDetails">
+                                <div fxLayout="column" fxLayoutAlign="space-between center">
+                                    <button class="widthButton" mat-raised-button color="primary">
+                                        Proceed to pay</button>
+                                    <div> Subtotal (1 item) : <span class="red">Rs.{{product}}</span></div>
+                                </div>
+                            </mat-card>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between">
+                        <div><textarea class="text" placeholder="Delivery Address"></textarea></div>
+                        <div fxLayout="column" fxLayoutGap="20px"> 
+                        <div style="border: 0.5px solid black"></div>
+                        <div class="fontOrder">Payment Method </div>
+                        <div class="fontPay">Cash On Delivery</div>
+                        <div style="border:0.5px solid black"></div>
+                        </div>
+                        </div>
+                        <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button (click)="stepper.reset()">Reset</button>
+                        </div>
+                    </mat-step>
+                </mat-horizontal-stepper>
+            </div>
+        </div>
+    </div>
+    <div  fxFlex.xl=10 fxFlex.lg="10" fxFlex.xs="0" fxFlex.sm="0" fxFlex.md="5"></div>
+</div>
 </div>

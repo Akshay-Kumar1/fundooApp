@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BarRatingModule } from "ngx-bar-rating";
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
+
 import { InterceptService} from '../app/core/services/interceptor/interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpService } from './core/services/httpService/http.service';
@@ -20,8 +21,8 @@ import { LabelSearchPipe } from './core/pipes/label-search.pipe';
 import { MatInputModule ,MatCardModule, MatButtonModule,MatRadioModule,MatCheckboxModule,
          MatStepperModule,MatFormFieldModule,MatIconModule,MatSnackBarModule,MatToolbarModule,
          MatSidenavModule,MatListModule,MatMenuModule,MatExpansionModule,MatTooltipModule,
-         MatDialogModule,MatChipsModule,MatDatepickerModule, MatNativeDateModule,MatTabsModule} from 
-         '@angular/material';
+         MatDialogModule,MatChipsModule,MatDatepickerModule, MatNativeDateModule,MatTabsModule,
+        } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ReactiveFormsModule,FormsModule  } from '@angular/forms';
 

@@ -1,12 +1,11 @@
-    <!-- ****************** Login Page ************************** -->
+<!-- ****************** Login Page ************************** -->
 <div class="container1" fxLayout="column" fxLayout.xs="row">
   <div class="item item-1" fxFlex fxFlexOffset="10%"></div>
   <div class="item item-2" fxFlex fxFlexOffset="10%" fxFlexOrder="3"></div>
   <form>
-    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" 
-      fxLayoutGap="10px" fxLayoutGap.xs="0">
-      <div class="item item-3" fxFlex="30%"></div>
-      <div class="item item-4" fxFlex="35%" fxFlexOrder="3"></div>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+      <div class="item item-3" fxFlex="15"></div>
+      <div class="item item-4" fxFlex="10" fxFlexOrder="3"></div>
       <div class="item item-5" fxFlex>
         <mat-card>
           <my-slide-panel [activePane]="isLeftVisible ? 'right' : 'left'">
@@ -27,15 +26,14 @@
                   <font size="2.5px">Use Your Fundoo Account</font>
                 </p>
                 <div>
-        <!-- ****************** Get User Email ************************** -->
+                  <!-- ****************** Get User Email ************************** -->
                   <mat-form-field class="fullWidth">
-                  <input matInput placeholder="Email" [(ngModel)]="user.email" [formControl]="email" 
-                    required>
+                    <input matInput placeholder="Email" [(ngModel)]="user.email" [formControl]="email" required>
                     <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
                   </mat-form-field>
                 </div>
-                 <div></div> 
-                  <div class=button-row fxLayout="row" fxLayoutAlign="space-between">
+                <div></div>
+                <div class=button-row fxLayout="row" fxLayoutAlign="space-between">
                   <a routerLink="/signup">Create Account</a>
                   <button mat-flat-button (click)="call()">Next</button>
                 </div>
@@ -58,16 +56,16 @@
                   <font size="2.5px">Use Your Fundoo Account</font>
                 </p>
                 <div>
-          <!-- ****************** Get Password ************************** -->
+                  <!-- ****************** Get Password ************************** -->
                   <mat-form-field class="fullWidth">
-                    <input matInput placeholder="Password" [(ngModel)]="user.password" 
-                    [formControl]="password" [type]="hide ? 'password' : 'text'" required>
+                    <input matInput placeholder="Password" [(ngModel)]="user.password" [formControl]="password" [type]="hide ? 'password' : 'text'"
+                      required>
                     <mat-icon matSuffix (click)="hide = !hide">
                       {{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     <mat-error *ngIf="email.invalid">{{getErrorMessagePassword()}}</mat-error>
                   </mat-form-field>
                 </div>
-         <!-- ***************** Navigate to Forgot Password Component **************** -->
+                <!-- ***************** Navigate to Forgot Password Component **************** -->
                 <div class=button-row fxLayout="row" fxLayoutAlign="space-between">
                   <a routerLink="/forgot-password">Forgot Password ?</a>
                   <button mat-flat-button type="submit" (click)="isLeftVisible = !isLeftVisible">
@@ -80,5 +78,26 @@
           </my-slide-panel>
         </mat-card>
       </div>
+      <mat-card style="width:400px">
+        Services
+        <div style="margin-top:15px"></div>
+        <div fxLayout="row" fxLayout.xs="row" fxLayoutAlign="space-between">
+          <div class="shadow" *ngFor="let card of cards" (click)="selectCards(card)" [ngClass]="product==card.id ? 'select' : 'notSelect'">
+            <mat-card class="break">
+              <p class="fontSizes">${{card.price}} per Month
+                <mat-card-subtitle>
+                  <p class="fontColor">{{card.name | titlecase}}
+                </mat-card-subtitle>
+                <mat-card-content>
+                  <p>{{card.description}}
+                </mat-card-content>
+            </mat-card>
+            <div class="whiteFont">
+              <div *ngIf="product==card.id" class="fontSizes">SELECTED</div>
+              <div *ngIf="product!=card.id" class="fontSizes">ADD TO CART</div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
     </div>
   </form>

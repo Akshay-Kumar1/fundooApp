@@ -39,11 +39,15 @@
 
       </div>
     </div>
+    
     <!-----------------------------end of small search bar ------------------------------->
 
     <!----------------------------------------------------------------------->
     <div fxFlex.lg="10%" fxFlex.md="13%" fxFlex.sm="10%" fxFlex.xl="4" fxFlex.xs="30%" fxLayout="row" fxLayoutAlign="space-around center">
     <div  fxFlex.lg="50%" fxFlex.xs="50%" fxFlex.xl="4">
+    <div fxFlex.lg="100%" style="cursor:pointer" matTooltip="cart">
+      <mat-icon routerLink="/purchase">shopping_cart</mat-icon>
+    </div>
       <i class="material-icons" matTooltip="List View" style="cursor:pointer"
        (click)="viewToggle()" *ngIf="gridObj == 0" fxShow = "true" fxHide.sm = "true"
        fxHide.xs = "true">view_stream</i>

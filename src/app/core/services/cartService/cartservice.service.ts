@@ -4,16 +4,25 @@ import { HttpService } from '../httpService/http.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CartserviceService {
+export class CartserviceService 
+{
 
   constructor(private http:HttpService) { }
-
   addToCart(body)
   {
-    return this.http.jsonPost("/productcarts/addToCart",body)
+    return this.http.jsonPost("/productcarts/addToCart",body);
   }
   getCart(cartId)
   {
-    return this.http.jsonGet("/productcarts/getCartDetails/"+cartId)
+    return this.http.jsonGet("/productcarts/getCartDetails/"+cartId);
   }
+  myCart()
+  {
+    return this.http.jsonGet("/productcarts/myCart");
+  }
+  placeOrder(body)
+  {
+    return this.http.jsonPost("/productcarts/placeOrder",body);
+  }
+
 }

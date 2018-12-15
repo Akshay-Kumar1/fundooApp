@@ -4,6 +4,8 @@
 mat-card
 {
   border-radius: 1%;
+  width: 85%;
+  height: 85%;
 } 
 .fullWidth
 {
@@ -38,4 +40,54 @@ mat-card
 .center
 {
     text-align: justify;
+}
+
+.select
+{
+  height:250px;
+  background-color:#fb0;
+  
+}
+.notSelect
+{
+    height: 120px;
+    background-color:gray;
+}
+
+.break
+{
+    word-break: break-word;
+    width:110px; 
+    height: 150px;
+    margin-top: -8%;
+    margin-left: -5%;
+    background-color:whitesmoke
+}
+
+.shadow
+{
+    height: 215px;
+    width: 180px;
+}
+
+.fontColor
+{
+    color: rgb(58,58,221);
+    font-size:12px;
+}
+.fontSizes
+{
+  font-size: 12px;
+}
+
+.whiteFont
+{
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+}
+.gray
+{
+    color:gray;
+    font-size: 10px;
 }

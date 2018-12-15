@@ -110,6 +110,7 @@ private hide=true;
   public user: any = {}
   private  cards=[];
   private service:any;
+  public serviceName;
   
   getCarts()
   {
@@ -117,6 +118,7 @@ private hide=true;
   .subscribe(data => {
     LoggerService.log('data',data);
     this.product=data['data'].productId;
+    this.serviceName=data['data']['product'].name;
   })
 } 
   /**
@@ -128,7 +130,7 @@ private hide=true;
   {
   "firstName": this.user.firstName,
   "lastName": this.user.lastName,
-  "service": this.service,
+  "service": this.serviceName,
   "email": this.user.email,
   "emailVerified": true,
   "password": this.user.password,

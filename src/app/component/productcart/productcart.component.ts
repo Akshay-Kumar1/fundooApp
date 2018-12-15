@@ -1,4 +1,4 @@
-import { Component, OnInit ,OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartserviceService } from 'src/app/core/services/cartService/cartservice.service';
 import { UserserviceService } from 'src/app/core/services/userService/userservice.service';
 import { Subject } from 'rxjs';
@@ -12,46 +12,43 @@ import { LoggerService } from 'src/app/core/services/logger/logger.service';
   templateUrl: './productcart.component.html',
   styleUrls: ['./productcart.component.scss']
 })
-export class ProductcartComponent implements OnInit , OnDestroy {
+export class ProductcartComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
-  constructor( private userService:UserserviceService,private dialog:MatDialog,
-    private cartService:CartserviceService) { }
-  private records={};
-  private cards=[];
-  private service:any;
-  private id:any;
-  ngOnInit() 
-  {
+  constructor(private userService: UserserviceService, private dialog: MatDialog,
+    private cartService: CartserviceService) { }
+  private records = {};
+  private cards = [];
+  private service: any;
+  private id: any;
+  ngOnInit() {
     this.getMethod()
   }
 
-  openDialog(data)
-  {
+  openDialog(data) {
     this.cartService.addToCart(
       {
-        "productId":data.id
+        "productId": data.id
       }
     ).pipe(takeUntil(this.destroy$))
-    .subscribe(data => {
-     LoggerService.log('data',data)
-    localStorage.setItem("cartId",data['data']['details'].id)
-    })
+      .subscribe(data => {
+        LoggerService.log('data', data)
+        localStorage.setItem("cartId", data['data']['details'].id)
+      })
     const dialogRef = this.dialog.open(CartdialogComponent, {
-      width:'500px',height:'290px',
-      data:data
+      width: '500px', height: '290px',
+      data: data
     });
-      dialogRef.afterClosed().subscribe(result => {
-    }); 
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
-  getMethod()
-  {
+  getMethod() {
     this.records = this.userService.getData().pipe(takeUntil(this.destroy$)).subscribe(data => {
       for (var i = 0; i < data["data"].data.length; i++) {
         data["data"].data[i].select = false;
         this.cards.push(data["data"].data[i]);
       }
-     var value = data["data"].data.name;
+      var value = data["data"].data.name;
     })
   }
   selectCards(card) {
@@ -64,8 +61,6 @@ export class ProductcartComponent implements OnInit , OnDestroy {
       this.cards[i].select = false;
     }
   }
-
-
 
   ngOnDestroy() {
     this.destroy$.next(true);

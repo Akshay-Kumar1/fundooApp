@@ -22,7 +22,7 @@ import { MatInputModule ,MatCardModule, MatButtonModule,MatRadioModule,MatCheckb
          MatStepperModule,MatFormFieldModule,MatIconModule,MatSnackBarModule,MatToolbarModule,
          MatSidenavModule,MatListModule,MatMenuModule,MatExpansionModule,MatTooltipModule,
          MatDialogModule,MatChipsModule,MatDatepickerModule, MatNativeDateModule,MatTabsModule,
-        } from '@angular/material';
+         MatProgressBarModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ReactiveFormsModule,FormsModule  } from '@angular/forms';
 
@@ -130,6 +130,7 @@ import { PurchaseComponent } from './component/purchase/purchase.component';
     ImageCropperModule,
     RatingModule,
     MatTabsModule,
+    MatProgressBarModule,
     BarRatingModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
   ],
